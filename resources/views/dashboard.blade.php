@@ -7,6 +7,14 @@
 
 <div class="row g-4">
 
+    <!-- Mensajes de Exito -->
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+
+
     <!-- Crear Responsiva -->
     <div class="col-md-4">
         <div class="card h-100 shadow-sm">
@@ -54,7 +62,20 @@
                 <p class="card-text">
                     Registrar nuevos docentes en el sistema.
                 </p>
-                <a href="#" class="btn btn-warning w-100">Registrar</a>
+                <a href="{{  route("teachers.new") }}" class="btn btn-warning w-100">Registrar</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gestion de Maestros -->
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">Gestion de Maestros</h5>
+                <p class="card-text">
+                    Gestion de docentes en el sistema.
+                </p>
+                <a href="#" class="btn btn-warning w-100">Ver</a>
             </div>
         </div>
     </div>
@@ -68,6 +89,19 @@
                     Registrar nuevos dispositivos disponibles.
                 </p>
                 <a href="#" class="btn btn-info w-100">Registrar</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gestion de Dispositivos -->
+    <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+                <h5 class="card-title">Gestion de Dispositivos</h5>
+                <p class="card-text">
+                    Gestion de dispositivos disponibles.
+                </p>
+                <a href="#" class="btn btn-info w-100">Ver</a>
             </div>
         </div>
     </div>
