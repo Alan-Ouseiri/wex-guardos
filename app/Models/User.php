@@ -45,4 +45,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function responsivas()
+    {
+        return $this->hasMany(Responsiva::class, 'created_by');
+    }
+
+    public function responsivaHistories()
+    {
+        return $this->hasMany(ResponsivaHistory::class, 'changed_by');
+    }
 }
