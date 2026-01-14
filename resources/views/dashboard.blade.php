@@ -23,7 +23,7 @@
                 <p class="card-text">
                     Generar una nueva responsiva para asignar un dispositivo a un docente.
                 </p>
-                <a href="#" class="btn btn-primary w-100">Crear</a>
+                <a href="{{ route("responsivas.index") }}" class="btn btn-primary w-100">Crear</a>
             </div>
         </div>
     </div>

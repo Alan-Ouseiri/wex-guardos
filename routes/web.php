@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\ResponsivaController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,4 +40,10 @@ Route::middleware(["auth"])->group(function () {
     Route::post("/devices", [DeviceController::class, 'create'])->name('devices.create'); //Funcion de crear
     Route::get('/devices/{device}/edit', [DeviceController::class, 'edit'])->name('devices.edit'); //Formulario para editar
     Route::put('/devices/{device}', [DeviceController::class, 'update'])->name('devices.update'); //Funcion para editar
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/responsivas', [ResponsivaController::class, 'index'])->name('responsivas.index');
+    Route::get('/responsivas/create', [ResponsivaController::class, 'create'])->name('responsivas.create');
+    Route::post('/responsivas', [ResponsivaController::class, 'store'])->name('responsivas.store');
 });

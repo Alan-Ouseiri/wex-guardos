@@ -1,0 +1,78 @@
+@extends('layouts.app')
+
+@section('title', 'Crear Responsiva')
+
+@section('content')
+<div class="row justify-content-center">
+    <div class="col-md-7">
+
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0">Nueva Responsiva</h5>
+            </div>
+
+            <div class="card-body">
+
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
+                <form method="POST" action="{{ route('responsivas.store') }}">
+                    @csrf
+
+                    <div class="mb-3">
+                        <label class="form-label">Fecha</label>
+                        <input type="date"
+                            name="date"
+                            class="form-control"
+                            value="{{ old('date', now()->toDateString()) }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Docente</label>
+                        <select name="teacher_id" class="form-select">
+                            <option value="">Seleccione un docente</option>
+                            @foreach ($teachers as $teacher)
+                            <option value="{{ $teacher->id }}"
+                                {{ old('teacher_id') == $teacher->id ? 'selected' : '' }}>
+                                {{ $teacher->full_name }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Dispositivo</label>
+                        <select name="device_id" class="form-select">
+                            <option value="">Seleccione un dispositivo</option>
+                            @foreach ($devices as $device)
+                            <option value="{{ $device->id }}">
+                                {{ $device->description }} - {{ $device->serial_number }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ route('responsivas.index') }}" class="btn btn-secondary">
+                            Cancelar
+                        </a>
+                        <button class="btn btn-primary">
+                            Crear Responsiva
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+@endsection
