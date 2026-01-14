@@ -26,6 +26,6 @@ class Device extends Model
     // Descripción del dispositivo
     public function getDescriptionAttribute()
     {
-        return "{$this->brand} {$this->type} {$this->model} - Serie: {$this->serial_number}";
+        return "{$this->brand} {$this->type} {$this->model}";
     }
 }

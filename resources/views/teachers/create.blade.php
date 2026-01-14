@@ -6,6 +6,12 @@
 <div class="row justify-content-center">
     <div class="col-md-6">
 
+        <div class="d-flex justify-content-between mb-3">
+            <a href="{{ route("teachers.index") }}" class="text-decoration-none">
+                <i class="fa-solid fa-user-graduate"></i> Maestros</h6>
+            </a>
+        </div>
+
         <div class="card shadow-sm">
             <div class="card-header">
                 <h5 class="mb-0">Alta de Maestro</h5>
@@ -44,12 +50,12 @@
                     <!-- Email -->
                     <div class="mb-3">
                         <label class="form-label">Email (opcional)</label>
-                        <input type="email" name="email" class="form-control" placeholder="correo@escuela.edu" value="{{ old('email') }}">
+                        <input type="email" name="email" class="form-control" placeholder="correo@wexford.edu.mx" value="{{ old('email') }}">
                     </div>
 
                     <!-- Botones -->
                     <div class="d-flex justify-content-between">
-                        <a href="{{ route('dashboard') }}" class="btn btn-secondary">
+                        <a href="{{ route('teachers.index') }}" class="btn btn-secondary">
                             Cancelar
                         </a>
                         <button type="submit" class="btn btn-primary">
