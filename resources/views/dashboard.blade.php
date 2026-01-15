@@ -36,7 +36,7 @@
                 <p class="card-text">
                     Consultar y gestionar las responsivas actualmente activas.
                 </p>
-                <a href="#" class="btn btn-success w-100">Ver</a>
+                <a href="{{ route('responsivas.active') }}" class="btn btn-success w-100">Ver</a>
             </div>
         </div>
     </div>

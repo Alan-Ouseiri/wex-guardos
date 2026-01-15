@@ -6,6 +6,12 @@
 <div class="row justify-content-center">
     <div class="col-md-7">
 
+        <div class="d-flex justify-content-between mb-3">
+            <a href="{{ route("responsivas.index") }}" class="text-decoration-none">
+                <h6><i class="fa-solid fa-file"></i> Responsivas</h6>
+            </a>
+        </div>
+
         <div class="card shadow-sm">
             <div class="card-header">
                 <h5 class="mb-0">Nueva Responsiva</h5>

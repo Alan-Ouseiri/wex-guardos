@@ -9,6 +9,7 @@ use App\Models\Teacher;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ResponsivaController extends Controller
 {
@@ -90,5 +91,43 @@ class ResponsivaController extends Controller
             ->setPaper('letter', 'portrait');
 
         return $pdf->stream('Responsiva_' . $responsiva->folio . '.pdf');
+    }
+
+    public function active()
+    {
+        $responsivas = Responsiva::with(['teacher', 'device'])
+            ->where('status', 'active')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('responsivas.active', compact('responsivas'));
+    }
+
+    public function returnDevice(Responsiva $responsiva)
+    {
+        // Evitar doble devolución
+        if ($responsiva->status !== 'active') {
+            return redirect()
+                ->back()
+                ->with('error', 'La responsiva no está activa');
+        }
+
+        DB::transaction(function () use ($responsiva) {
+
+            // Actualizar responsiva
+            $responsiva->update([
+                'status' => 'returned',
+                'returned_date' => Carbon::now(),
+            ]);
+
+            // Liberar dispositivo
+            $responsiva->device->update([
+                'status' => 'available',
+            ]);
+        });
+
+        return redirect()
+            ->route('responsivas.active')
+            ->with('success', 'Dispositivo devuelto correctamente');
     }
 }

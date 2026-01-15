@@ -45,8 +45,10 @@ Route::middleware(["auth"])->group(function () {
 //Ruta para Responsivas
 Route::middleware(['auth'])->group(function () {
     Route::get('/responsivas', [ResponsivaController::class, 'index'])->name('responsivas.index');
+    Route::get('/responsivas/active', [ResponsivaController::class, 'active'])->name('responsivas.active');
     Route::get('/responsivas/create', [ResponsivaController::class, 'create'])->name('responsivas.create');
     Route::post('/responsivas', [ResponsivaController::class, 'store'])->name('responsivas.store');
+    Route::patch('/responsivas/{responsiva}/return', [ResponsivaController::class, 'returnDevice'])->name('responsivas.return');
 });
 
 //Ruta PDF
