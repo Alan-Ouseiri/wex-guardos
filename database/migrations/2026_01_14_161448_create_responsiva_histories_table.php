@@ -21,8 +21,7 @@ return new class extends Migration
             $table->string('action');
             $table->text('description')->nullable();
 
-            $table->foreignId('changed_by')
-                ->constrained('users');
+            $table->timestamp('action_date');
 
             $table->timestamps();
         });

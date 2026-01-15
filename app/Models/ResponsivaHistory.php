@@ -13,7 +13,7 @@ class ResponsivaHistory extends Model
         'responsiva_id',
         'action',
         'description',
-        'changed_by',
+        'action_date',
     ];
 
     // Pertenece a una responsiva

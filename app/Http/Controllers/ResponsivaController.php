@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Device;
 use App\Models\Responsiva;
+use App\Models\ResponsivaHistory;
 use App\Models\Teacher;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -78,6 +79,13 @@ class ResponsivaController extends Controller
             'status' => 'assigned'
         ]);
 
+        ResponsivaHistory::create([
+            'responsiva_id' => $responsiva->id,
+            'action' => 'created',
+            'description' => 'Creación de la responsiva',
+            'action_date' => Carbon::now(),
+        ]);
+
         return redirect()
             ->route('responsivas.index')
             ->with('success', 'Responsiva creada correctamente');
@@ -124,10 +132,103 @@ class ResponsivaController extends Controller
             $responsiva->device->update([
                 'status' => 'available',
             ]);
+
+            ResponsivaHistory::create([
+                'responsiva_id' => $responsiva->id,
+                'action' => 'returned',
+                'description' => 'Dispositivo devuelto',
+                'action_date' => Carbon::now(),
+            ]);
         });
 
         return redirect()
             ->route('responsivas.active')
             ->with('success', 'Dispositivo devuelto correctamente');
+    }
+
+    public function history(Responsiva $responsiva)
+    {
+        $histories = $responsiva->histories()
+            ->orderBy('action_date', 'desc')
+            ->get();
+
+        return view('responsivas.history', compact('responsiva', 'histories'));
+    }
+
+    public function createFull()
+    {
+        return view('responsivas.create-full');
+    }
+
+    public function storeFull(Request $request)
+    {
+        $request->validate([
+            'teacher.name' => 'required',
+            'teacher.surname' => 'required',
+            'teacher.role' => 'required',
+
+            'device.type' => 'required',
+            'device.brand' => 'required',
+            'device.model' => 'required',
+            'device.serial_number' => 'required',
+
+            'assigned_date' => 'required|date',
+            'condition' => 'required',
+            'location' => 'required',
+            'delivered_by' => 'required',
+        ]);
+
+        DB::transaction(function () use ($request) {
+
+            // Crear docente
+            $teacher = Teacher::create($request->teacher);
+
+            // Crear dispositivo
+            $device = Device::create([
+                ...$request->device,
+                'status' => 'assigned'
+            ]);
+
+            // Generar número de responsiva
+            $date = Carbon::parse($request->assigned_date);
+
+            $count = Responsiva::whereYear('assigned_date', $date->year)
+                ->whereMonth('assigned_date', $date->month)
+                ->count();
+
+            $responsivaNumber = $date->format('Ym') . '-' .
+                str_pad($count + 1, 5, '0', STR_PAD_LEFT);
+
+            // Subir imagen
+            $imagePath = null;
+            if ($request->hasFile('delivery_image')) {
+                $imagePath = $request->file('delivery_image')
+                    ->store('responsivas', 'public');
+            }
+
+            // Crear responsiva
+            $responsiva = Responsiva::create([
+                'responsiva_number' => $responsivaNumber,
+                'teacher_id' => $teacher->id,
+                'device_id' => $device->id,
+                'assigned_date' => $request->assigned_date,
+                'condition' => $request->condition,
+                'location' => $request->location,
+                'delivered_by' => $request->delivered_by,
+                'notes' => $request->notes,
+                'delivery_image' => $imagePath,
+            ]);
+
+            // Historial
+            $responsiva->histories()->create([
+                'action' => 'created',
+                'description' => 'Creación completa desde formulario único',
+                'action_date' => now(),
+            ]);
+        });
+
+        return redirect()
+            ->route('responsivas.index')
+            ->with('success', 'Responsiva creada correctamente');
     }
 }

@@ -12,9 +12,15 @@
 
 <div class="d-flex justify-content-between mb-3">
     <h3>Responsivas</h3>
-    <a href="{{ route('responsivas.create') }}" class="btn btn-primary">
-        Nueva Responsiva
-    </a>
+
+    <div class="col-auto">
+        <a href="{{ route('responsivas.create.full') }}" class="btn btn-primary">
+            Nueva Responsiva en Blanco
+        </a>
+        <a href="{{ route('responsivas.create') }}" class="btn btn-primary">
+            Nueva Responsiva
+        </a>
+    </div>
 </div>
 
 <table class="table table-bordered table-hover">
@@ -41,6 +47,10 @@
                     target="_blank"
                     class="btn btn-sm btn-danger">
                     Imprimir
+                </a>
+                <a href="{{ route('responsivas.history', $r) }}"
+                    class="btn btn-sm btn-info">
+                    Historial
                 </a>
             </td>
         </tr>
