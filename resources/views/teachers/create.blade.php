@@ -47,6 +47,12 @@
                         <input type="text" name="employee_number" class="form-control" placeholder="Ej. DOC123" value="{{ old('employee_number') }}">
                     </div>
 
+                    <!-- Rol -->
+                    <div class="mb-3">
+                        <label class="form-label">Rol del empleado</label>
+                        <input type="text" name="role" class="form-control" placeholder="Ej. Profesor, Profesora, Administrativo" value="{{ old('role') }}">
+                    </div>
+
                     <!-- Email -->
                     <div class="mb-3">
                         <label class="form-label">Email (opcional)</label>

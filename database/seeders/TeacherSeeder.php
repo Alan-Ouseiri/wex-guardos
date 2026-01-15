@@ -18,18 +18,21 @@ class TeacherSeeder extends Seeder
                 'name' => 'Juan',
                 'surname' => 'Pérez',
                 'employee_number' => 'DOC001',
+                'role' => 'Profesor',
                 'email' => 'juan.perez@escuela.test',
             ],
             [
                 'name' => 'María',
                 'surname' => 'Gómez',
                 'employee_number' => 'DOC002',
+                'role' => 'Profesora',
                 'email' => 'maria.gomez@escuela.test',
             ],
             [
                 'name' => 'Carlos',
                 'surname' => 'Ramírez',
                 'employee_number' => 'DOC003',
+                'role' => 'Administrativo',
                 'email' => null,
             ],
         ];

@@ -18,8 +18,9 @@ class Responsiva extends Model
         'status',
         'notes',
         'delivery_image',
-        'teacher_signature',
-        'created_by',
+        'condition',
+        'location',
+        'delivered_by',
     ];
 
     protected $dates = [

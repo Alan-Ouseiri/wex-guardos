@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('employee_number')->unique();
+            $table->string('role'); // Profesor, Administrativo, etc.
             $table->string('email')->nullable();
             $table->timestamps();
         });

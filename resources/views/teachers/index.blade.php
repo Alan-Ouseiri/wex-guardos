@@ -30,6 +30,7 @@
             <th>Nombre</th>
             <th>No. Empleado</th>
             <th>Email</th>
+            <th>Rol</th>
             <th width="120">Acciones</th>
         </tr>
     </thead>
@@ -39,6 +40,7 @@
             <td>{{ $teacher->full_name }}</td>
             <td>{{ $teacher->employee_number }}</td>
             <td>{{ $teacher->email ?? '—' }}</td>
+            <td>{{ $teacher->role }}</td>
             <td>
                 <a href="{{ route('teachers.edit', $teacher) }}"
                     class="btn btn-sm btn-warning">

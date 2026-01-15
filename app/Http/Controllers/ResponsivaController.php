@@ -52,6 +52,9 @@ class ResponsivaController extends Controller
             'date' => 'required|date',
             'teacher_id' => 'required|exists:teachers,id',
             'device_id' => 'required|exists:devices,id',
+            'condition' => 'required',
+            'location' => 'required',
+            'delivered_by' => 'required',
         ]);
 
         $device = Device::findOrFail($request->device_id);
@@ -63,6 +66,9 @@ class ResponsivaController extends Controller
             'device_id' => $device->id,
             'device_description' => $device->description,
             'serial_number' => $device->serial_number,
+            'condition' => $request->condition,
+            'location' => $request->location,
+            'delivered_by' => $request->delivered_by,
             'status' => 'active',
         ]);
 

@@ -57,6 +57,15 @@
                             value="{{ old('employee_number', $teacher->employee_number) }}">
                     </div>
 
+                    <!-- Rol -->
+                    <div class="mb-3">
+                        <label class="form-label">Rol del empleado</label>
+                        <input type="text"
+                            name="role"
+                            class="form-control"
+                            value="{{ old('role'). $teacher->role }}">
+                    </div>
+
                     <div class="mb-3">
                         <label class="form-label">Email (opcional)</label>
                         <input type="email"

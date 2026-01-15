@@ -29,13 +29,13 @@ return new class extends Migration
             $table->enum('status', ['active', 'returned', 'canceled'])
                 ->default('active');
 
+            $table->string('condition');       // Estado físico del equipo
+            $table->string('location');        // Ubicación
+            $table->string('delivered_by');    // Entregado por
+
             $table->text('notes')->nullable();
 
             $table->string('delivery_image')->nullable();
-            $table->string('teacher_signature')->nullable();
-
-            $table->foreignId('created_by')
-                ->constrained('users');
 
             $table->timestamps();
         });

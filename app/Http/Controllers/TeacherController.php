@@ -25,6 +25,7 @@ class TeacherController extends Controller
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
             'employee_number' => 'required|string|max:50|unique:teachers,employee_number',
+            'role' => 'required|string|max:255',
             'email' => 'nullable|email|max:255',
         ]);
 
@@ -46,6 +47,7 @@ class TeacherController extends Controller
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
             'employee_number' => 'required|string|max:50|unique:teachers,employee_number,' . $teacher->id,
+            'role' => 'required|string|max:255',
             'email' => 'nullable|email|max:255',
         ]);
 
