@@ -7,8 +7,8 @@
     <div class="col-md-7">
 
         <div class="d-flex justify-content-between mb-3">
-            <a href="{{ route("responsivas.index") }}" class="text-decoration-none">
-                <h6><i class="fa-solid fa-file"></i> Responsivas</h6>
+            <a href="{{ route("dashboard") }}" class="text-decoration-none">
+                <h6><i class="fa-solid fa-house"></i> Regresar</h6>
             </a>
         </div>
 

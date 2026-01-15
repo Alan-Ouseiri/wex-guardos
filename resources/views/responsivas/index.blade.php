@@ -6,7 +6,7 @@
 
 <div class="d-flex justify-content-between mb-3">
     <a href="{{ route("dashboard") }}" class="text-decoration-none">
-        <h6><i class="fa-solid fa-earth-americas"></i> Regresar</h6>
+        <h6><i class="fa-solid fa-house"></i> Regresar</h6>
     </a>
 </div>
 
@@ -42,7 +42,7 @@
             <td>{{ $r->teacher->full_name }}</td>
             <td>{{ $r->device->description }}</td>
             <td>{{ $r->device->serial_number }}</td>
-            <td class="text-center">
+            <td class="text-center align-items-center">
                 <a href="{{ route('responsivas.pdf', $r) }}"
                     target="_blank"
                     class="btn btn-sm btn-danger">
@@ -52,6 +52,19 @@
                     class="btn btn-sm btn-info">
                     Historial
                 </a>
+                @if ($r->status === 'active')
+                <form method="POST"
+                    action="{{ route('responsivas.return', $r) }}"
+                    class="d-inline">
+                    @csrf
+                    @method('PATCH')
+
+                    <button class="btn btn-sm btn-success"
+                        onclick="return confirm('¿Confirmar devolución del dispositivo?')">
+                        Devolver
+                    </button>
+                </form>
+                @endif
             </td>
         </tr>
         @endforeach

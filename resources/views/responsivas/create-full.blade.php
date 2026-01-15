@@ -8,6 +8,12 @@
 
     <div class="row">
 
+        <div class="d-flex justify-content-between mb-3">
+            <a href="{{ route("dashboard") }}" class="text-decoration-none">
+                <h6><i class="fa-solid fa-house"></i> Regresar</h6>
+            </a>
+        </div>
+
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul class="mb-0">
@@ -26,8 +32,8 @@
 
                     <input name="teacher[name]" class="form-control mb-2" placeholder="Nombre">
                     <input name="teacher[surname]" class="form-control mb-2" placeholder="Apellido">
-                    <input name="teacher[employee_number]" class="form-control mb-2" placeholder="No. Empleado">
                     <input name="teacher[role]" class="form-control mb-2" placeholder="Rol">
+                    <input name="teacher[employee_number]" class="form-control mb-2" placeholder="No. Empleado (opcional)">
                     <input name="teacher[email]" class="form-control mb-2" placeholder="Email (opcional)">
 
                 </div>
@@ -43,7 +49,7 @@
                     <input name="device[type]" class="form-control mb-2" placeholder="Tipo">
                     <input name="device[brand]" class="form-control mb-2" placeholder="Marca">
                     <input name="device[model]" class="form-control mb-2" placeholder="Modelo">
-                    <input name="device[serial_number]" class="form-control mb-2" placeholder="Serie">
+                    <input name="device[serial_number]" class="form-control mb-2" placeholder="No. Serie">
 
                 </div>
             </div>

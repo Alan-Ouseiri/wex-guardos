@@ -13,7 +13,7 @@
 
 <div class="d-flex justify-content-between mb-3">
     <a href="{{ route("dashboard") }}" class="text-decoration-none">
-        <h6><i class="fa-solid fa-earth-americas"></i> Regresar</h6>
+        <h6><i class="fa-solid fa-house"></i> Regresar</h6>
     </a>
 </div>
 

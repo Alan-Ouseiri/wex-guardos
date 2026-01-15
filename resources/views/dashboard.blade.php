@@ -23,7 +23,8 @@
                 <p class="card-text">
                     Generar una nueva responsiva para asignar un dispositivo a un docente.
                 </p>
-                <a href="{{ route("responsivas.index") }}" class="btn btn-primary w-100">Crear</a>
+                <a href="{{ route("responsivas.create") }}" class="btn btn-primary w-100 mb-2">Crear</a>
+                <a href="{{ route("responsivas.create.full") }}" class="btn btn-primary w-100">Crear una en blanco</a>
             </div>
         </div>
     </div>
@@ -31,7 +32,7 @@
     <!-- Responsivas Activas -->
     <div class="col-md-4">
         <div class="card h-100 shadow-sm">
-            <div class="card-body text-center">
+            <div class="card-body text-center row align-content-between">
                 <h5 class="card-title">Responsivas Activas</h5>
                 <p class="card-text">
                     Consultar y gestionar las responsivas actualmente activas.
@@ -41,15 +42,15 @@
         </div>
     </div>
 
-    <!-- Historial -->
+    <!-- Todas las Responsivas -->
     <div class="col-md-4">
         <div class="card h-100 shadow-sm">
-            <div class="card-body text-center">
+            <div class="card-body text-center row align-content-between">
                 <h5 class="card-title">Historial de Responsivas</h5>
                 <p class="card-text">
-                    Ver responsivas finalizadas o canceladas.
+                    Ver todas las  responsivas.
                 </p>
-                <a href="#" class="btn btn-secondary w-100">Historial</a>
+                <a href="{{ route("responsivas.index") }}" class="btn btn-secondary w-100">Historial</a>
             </div>
         </div>
     </div>

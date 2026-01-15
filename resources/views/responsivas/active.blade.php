@@ -6,11 +6,11 @@
 
 <div class="d-flex justify-content-between mb-3">
     <a href="{{ route("dashboard") }}" class="text-decoration-none">
-        <h6><i class="fa-solid fa-earth-americas"></i> Regresar</h6>
+        <h6><i class="fa-solid fa-house"></i> Regresar</h6>
     </a>
 </div>
 
-<div class="d-flex justify-content-between mb-3">
+<div class="d-flex justify-content-between align-items-center mb-3">
     <h3>Responsivas</h3>
     <a href="{{ route('responsivas.create') }}" class="btn btn-primary">
         Nueva Responsiva
@@ -25,6 +25,7 @@
             <th>Docente</th>
             <th>Dispositivo</th>
             <th>Serie</th>
+            <th>Estatus</th>
             <th>Acciones</th>
         </tr>
     </thead>
@@ -36,11 +37,12 @@
             <td>{{ $r->teacher->full_name }}</td>
             <td>{{ $r->device->description }}</td>
             <td>{{ $r->device->serial_number }}</td>
-            <td class="text-center">
+            <td>{{ $r->status }}</td>
+            <td class="text-center align-items-center">
 
                 <a href="{{ route('responsivas.pdf', $r) }}"
                     target="_blank"
-                    class="btn btn-sm btn-danger mb-1">
+                    class="btn btn-sm btn-danger">
                     Imprimir
                 </a>
 
@@ -57,6 +59,7 @@
                     </button>
                 </form>
                 @endif
+                
 
             </td>
         </tr>
