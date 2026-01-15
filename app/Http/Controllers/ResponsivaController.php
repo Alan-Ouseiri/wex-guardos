@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Device;
 use App\Models\Responsiva;
 use App\Models\Teacher;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -36,8 +37,8 @@ class ResponsivaController extends Controller
         $month = $date->month;
 
         // Contar responsivas del mismo año y mes
-        $count = Responsiva::whereYear('created_by', $year)
-            ->whereMonth('created_by', $month)
+        $count = Responsiva::whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
             ->count();
 
         // Consecutivo
@@ -73,5 +74,15 @@ class ResponsivaController extends Controller
         return redirect()
             ->route('responsivas.index')
             ->with('success', 'Responsiva creada correctamente');
+    }
+
+    public function pdf(Responsiva $responsiva)
+    {
+        $responsiva->load(['teacher', 'device']);
+
+        $pdf = Pdf::loadView('responsivas.pdf', compact('responsiva'))
+            ->setPaper('letter', 'portrait');
+
+        return $pdf->stream('Responsiva_' . $responsiva->folio . '.pdf');
     }
 }

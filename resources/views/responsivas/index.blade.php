@@ -25,7 +25,7 @@
             <th>Docente</th>
             <th>Dispositivo</th>
             <th>Serie</th>
-            <th>Estado</th>
+            <th>Imprimir</th>
         </tr>
     </thead>
     <tbody>
@@ -36,13 +36,16 @@
             <td>{{ $r->teacher->full_name }}</td>
             <td>{{ $r->device->description }}</td>
             <td>{{ $r->device->serial_number }}</td>
-            <td>
-                <span class="badge bg-success">
-                    {{ ucfirst($r->status) }}
-                </span>
+            <td class="text-center">
+                <a href="{{ route('responsivas.pdf', $r) }}"
+                    target="_blank"
+                    class="btn btn-sm btn-danger">
+                    Imprimir
+                </a>
             </td>
         </tr>
         @endforeach
     </tbody>
+
 </table>
 @endsection

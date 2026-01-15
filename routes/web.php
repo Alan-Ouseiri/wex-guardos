@@ -42,8 +42,12 @@ Route::middleware(["auth"])->group(function () {
     Route::put('/devices/{device}', [DeviceController::class, 'update'])->name('devices.update'); //Funcion para editar
 });
 
+//Ruta para Responsivas
 Route::middleware(['auth'])->group(function () {
     Route::get('/responsivas', [ResponsivaController::class, 'index'])->name('responsivas.index');
     Route::get('/responsivas/create', [ResponsivaController::class, 'create'])->name('responsivas.create');
     Route::post('/responsivas', [ResponsivaController::class, 'store'])->name('responsivas.store');
 });
+
+//Ruta PDF
+Route::get('/responsivas/{responsiva}/pdf', [ResponsivaController::class, 'pdf'])->name('responsivas.pdf');

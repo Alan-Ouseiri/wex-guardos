@@ -59,6 +59,35 @@
                         </select>
                     </div>
 
+                    <!-- NUEVOS CAMPOS -->
+
+                    <div class="mb-3">
+                        <label class="form-label">Condición</label>
+                        <input type="text"
+                            name="condition"
+                            class="form-control"
+                            placeholder="Ej. Usado"
+                            value="{{ old('condition') }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Ubicación</label>
+                        <input type="text"
+                            name="location"
+                            class="form-control"
+                            placeholder="Ej. Campus Maravillas"
+                            value="{{ old('location') }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Entregó con</label>
+                        <input type="text"
+                            name="delivered_by"
+                            class="form-control"
+                            placeholder="Ej. Cable y cargador"
+                            value="{{ old('delivered_by') }}">
+                    </div>
+
                     <div class="d-flex justify-content-between">
                         <a href="{{ route('responsivas.index') }}" class="btn btn-secondary">
                             Cancelar
@@ -67,8 +96,8 @@
                             Crear Responsiva
                         </button>
                     </div>
-
                 </form>
+
 
             </div>
         </div>
