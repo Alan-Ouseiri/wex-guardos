@@ -37,7 +37,6 @@
     </div>
 </form>
 
-
 <table class="table table-bordered table-hover">
     <thead class="table-light">
         <tr>
@@ -61,26 +60,58 @@
             <td>{{ $r->status }}</td>
             <td class="text-center align-items-center">
 
+                <!-- Imprimir -->
                 <a href="{{ route('responsivas.pdf', $r) }}" target="_blank" class="btn btn-sm btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Imprimir la responsiva">
                     <i class="fa-solid fa-print"></i>
                 </a>
 
+                <!-- Historial -->
+                <a href="{{ route('responsivas.history', $r) }}" class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver historial de la responsiva">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </a>
+
+                <!-- Devolver dispositivo -->
                 @if ($r->status === 'active')
-                <form method="POST"
-                    action="{{ route('responsivas.return', $r) }}"
-                    class="d-inline">
-                    @csrf
-                    @method('PATCH')
-
-                    <button class="btn btn-sm btn-danger" onclick="return confirm('¿Confirmar devolución del dispositivo?')" data-bs-toggle="tooltip" data-bs-placement="top" title="Devolucion del dispositivo">
-                        <i class="fa-solid fa-file-circle-check"></i>
-                    </button>
-                </form>
+                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#returnModal{{ $r->id }}">
+                    <i class="fa-solid fa-arrow-rotate-left" data-bs-toggle="tooltip" data-bs-placement="top" title="Devolver dispositivo"></i>
+                </button>
                 @endif
-
-
             </td>
         </tr>
+
+        <div class="modal fade" id="returnModal{{ $r->id }}">
+            <div class="modal-dialog">
+                <form method="POST"
+                    action="{{ route('responsivas.return', $r) }}">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Devolver dispositivo</h5>
+                        </div>
+
+                        <div class="modal-body">
+                            <label>Código de verificación</label>
+                            <input type="text"
+                                name="verification_code"
+                                class="form-control"
+                                required>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary"
+                                data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                            <button class="btn btn-success">
+                                Confirmar devolución
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
         @endforeach
     </tbody>
 

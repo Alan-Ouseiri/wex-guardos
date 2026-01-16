@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/responsivas/active', [ResponsivaController::class, 'active'])->name('responsivas.active');
     Route::get('/responsivas/create', [ResponsivaController::class, 'create'])->name('responsivas.create');
     Route::post('/responsivas', [ResponsivaController::class, 'store'])->name('responsivas.store');
-    Route::patch('/responsivas/{responsiva}/return', [ResponsivaController::class, 'returnDevice'])->name('responsivas.return');
+    Route::put('/responsivas/{responsiva}/return', [ResponsivaController::class, 'returnDevice'])->name('responsivas.return');
     Route::get('/responsivas/{responsiva}/history', [ResponsivaController::class, 'history'])->name('responsivas.history');
 
     Route::get('/responsivas/create-full', [ResponsivaController::class, 'createFull'])->name('responsivas.create.full');

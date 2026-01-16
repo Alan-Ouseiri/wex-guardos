@@ -33,9 +33,7 @@ return new class extends Migration
             $table->string('location');        // Ubicación
             $table->string('delivered_by');    // Entregado por
 
-            $table->text('notes')->nullable();
-
-            $table->string('delivery_image')->nullable();
+            $table->string('verification_code', 10);
 
             $table->timestamps();
         });

@@ -11,6 +11,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ResponsivaController extends Controller
 {
@@ -87,6 +88,7 @@ class ResponsivaController extends Controller
 
         $responsiva = Responsiva::create([
             'responsiva_number' => $folio,
+            'verification_code' => $this->generateVerificationCode(),
             'assigned_date' => $request->date,
             'teacher_id' => $request->teacher_id,
             'device_id' => $device->id,
@@ -160,33 +162,34 @@ class ResponsivaController extends Controller
     }
 
 
-    public function returnDevice(Responsiva $responsiva)
+    public function returnDevice(Request $request, Responsiva $responsiva)
     {
-        // Evitar doble devolución
-        if ($responsiva->status !== 'active') {
-            return redirect()
-                ->back()
-                ->with('error', 'La responsiva no está activa');
+        $request->validate([
+            'verification_code' => 'required',
+        ]);
+
+        if ($request->verification_code !== $responsiva->verification_code) {
+            return back()->withErrors([
+                'verification_code' => 'Código de verificación incorrecto'
+            ]);
         }
 
         DB::transaction(function () use ($responsiva) {
 
-            // Actualizar responsiva
             $responsiva->update([
                 'status' => 'returned',
-                'returned_date' => Carbon::now(),
+                'verification_code' => null,
+                'returned_date' => now(),
             ]);
 
-            // Liberar dispositivo
             $responsiva->device->update([
                 'status' => 'available',
             ]);
 
-            ResponsivaHistory::create([
-                'responsiva_id' => $responsiva->id,
+            $responsiva->histories()->create([
                 'action' => 'returned',
-                'description' => 'Dispositivo devuelto',
-                'action_date' => Carbon::now(),
+                'description' => 'Dispositivo devuelto con código de verificación',
+                'action_date' => now(),
             ]);
         });
 
@@ -194,6 +197,7 @@ class ResponsivaController extends Controller
             ->route('responsivas.active')
             ->with('success', 'Dispositivo devuelto correctamente');
     }
+
 
     public function history(Responsiva $responsiva)
     {
@@ -280,5 +284,10 @@ class ResponsivaController extends Controller
         return redirect()
             ->route('responsivas.index')
             ->with('success', 'Responsiva creada correctamente');
+    }
+
+    private function generateVerificationCode(): string
+    {
+        return strtoupper(Str::random(8));
     }
 }

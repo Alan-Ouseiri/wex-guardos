@@ -16,10 +16,9 @@ class Responsiva extends Model
         'assigned_date',
         'returned_date',
         'status',
-        'notes',
-        'delivery_image',
         'condition',
         'location',
+        'verification_code',
         'delivered_by',
     ];
 
