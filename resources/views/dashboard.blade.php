@@ -21,7 +21,7 @@
             <div class="card-body text-center">
                 <h5 class="card-title">Crear Responsiva</h5>
                 <p class="card-text">
-                    Generar una nueva responsiva para asignar un dispositivo a un docente.
+                    Generar una nueva responsiva para asignar un dispositivo a un usuario.
                 </p>
                 <a href="{{ route("responsivas.create") }}" class="btn btn-primary w-100 mb-2">Crear</a>
                 <a href="{{ route("responsivas.create.full") }}" class="btn btn-primary w-100">Crear una en blanco</a>
@@ -59,9 +59,9 @@
     <div class="col-md-6">
         <div class="card h-100 shadow-sm">
             <div class="card-body text-center">
-                <h5 class="card-title">Gestion de Maestros</h5>
+                <h5 class="card-title">Gestion de Usuarios</h5>
                 <p class="card-text">
-                    Gestion de docentes en el sistema.
+                    Gestion de usuarios en el sistema.
                 </p>
                 <a href="{{ route("teachers.index") }}" class="btn btn-warning w-100">Ver</a>
             </div>

@@ -8,13 +8,13 @@
 
         <div class="d-flex justify-content-between mb-3">
             <a href="{{ route("teachers.index") }}" class="text-decoration-none">
-                <i class="fa-solid fa-user-graduate"></i> Maestros</h6>
+                <i class="fa-solid fa-arrow-left-long"></i> Usuarios</h6>
             </a>
         </div>
 
         <div class="card shadow-sm">
             <div class="card-header">
-                <h5 class="mb-0">Editar Maestro</h5>
+                <h5 class="mb-0">Editar Usuario</h5>
             </div>
 
             <div class="card-body">

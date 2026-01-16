@@ -41,9 +41,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Docente</label>
+                        <label class="form-label">Usuario</label>
                         <select name="teacher_id" class="form-select">
-                            <option value="">Seleccione un docente</option>
+                            <option value="">Seleccione un usuario</option>
                             @foreach ($teachers as $teacher)
                             <option value="{{ $teacher->id }}"
                                 {{ old('teacher_id') == $teacher->id ? 'selected' : '' }}>

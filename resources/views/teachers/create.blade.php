@@ -8,13 +8,13 @@
 
         <div class="d-flex justify-content-between mb-3">
             <a href="{{ route("teachers.index") }}" class="text-decoration-none">
-                <i class="fa-solid fa-user-graduate"></i> Maestros</h6>
+                <i class="fa-solid fa-arrow-left-long"></i> Usuarios</h6>
             </a>
         </div>
 
         <div class="card shadow-sm">
             <div class="card-header">
-                <h5 class="mb-0">Alta de Maestro</h5>
+                <h5 class="mb-0">Alta de Usuario</h5>
             </div>
             @if ($errors->any())
             <div class="alert alert-danger">
@@ -32,13 +32,13 @@
                     <!-- Nombre -->
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
-                        <input type="text" name="name" class="form-control" placeholder="Nombre del docente" value="{{ old('name') }}">
+                        <input type="text" name="name" class="form-control" placeholder="Nombre del usuario" value="{{ old('name') }}">
                     </div>
 
                     <!-- Apellido -->
                     <div class="mb-3">
                         <label class="form-label">Apellido</label>
-                        <input type="text" name="surname" class="form-control" placeholder="Apellido del docente" value="{{ old('surname') }}">
+                        <input type="text" name="surname" class="form-control" placeholder="Apellido del usuario" value="{{ old('surname') }}">
                     </div>
 
                     <!-- Número de empleado -->
@@ -65,7 +65,7 @@
                             Cancelar
                         </a>
                         <button type="submit" class="btn btn-primary">
-                            Guardar Maestro
+                            Guardar
                         </button>
                     </div>
                 </form>

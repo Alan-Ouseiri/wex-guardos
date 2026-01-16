@@ -56,7 +56,7 @@
             A quien corresponda:
         </p>
         <p>
-            Yo, <span class="label">{{ $responsiva->teacher->full_name }}</span>, en mi calidad de <span class="label">Profesor</span> en el COLEGIO WEXFORD,
+            Yo, <span class="label">{{ $responsiva->teacher->full_name }}</span>, en mi calidad de <span class="label"> {{ $responsiva->teacher->role }}</span> en el COLEGIO WEXFORD,
             por medio de la presente hago constar que he recibido, en calidad de resguardo,
             los siguientes activos propiedad de la empresa:
         </p>

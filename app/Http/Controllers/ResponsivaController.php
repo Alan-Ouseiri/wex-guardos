@@ -14,11 +14,35 @@ use Illuminate\Support\Facades\DB;
 
 class ResponsivaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $responsivas = Responsiva::with(['teacher', 'device'])
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $query = Responsiva::with(['teacher', 'device']);
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+
+                // Folio
+                $q->where('responsiva_number', 'like', "%{$search}%")
+
+                    // Docente
+                    ->orWhereHas('teacher', function ($q) use ($search) {
+                        $q->where('name', 'like', "%{$search}%")
+                            ->orWhere('surname', 'like', "%{$search}%");
+                    })
+
+                    // Serie del dispositivo
+                    ->orWhereHas('device', function ($q) use ($search) {
+                        $q->where('serial_number', 'like', "%{$search}%");
+                    });
+            });
+        }
+
+        $responsivas = $query
+            ->orderBy('assigned_date', 'desc')
+            ->paginate(10)
+            ->withQueryString();
 
         return view('responsivas.index', compact('responsivas'));
     }
@@ -101,15 +125,40 @@ class ResponsivaController extends Controller
         return $pdf->stream('Responsiva_' . $responsiva->folio . '.pdf');
     }
 
-    public function active()
+    public function active(Request $request)
     {
-        $responsivas = Responsiva::with(['teacher', 'device'])
-            ->where('status', 'active')
+        $query = Responsiva::with(['teacher', 'device'])
+            ->where('status', 'active');
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+
+                // Folio
+                $q->where('responsiva_number', 'like', "%{$search}%")
+
+                    // Docente
+                    ->orWhereHas('teacher', function ($q) use ($search) {
+                        $q->where('name', 'like', "%{$search}%")
+                            ->orWhere('surname', 'like', "%{$search}%");
+                    })
+
+                    // Serie del dispositivo
+                    ->orWhereHas('device', function ($q) use ($search) {
+                        $q->where('serial_number', 'like', "%{$search}%");
+                    });
+            });
+        }
+
+        $responsivas = $query
             ->orderBy('created_at', 'desc')
-            ->get();
+            ->paginate(10)
+            ->withQueryString();
 
         return view('responsivas.active', compact('responsivas'));
     }
+
 
     public function returnDevice(Responsiva $responsiva)
     {
@@ -166,6 +215,7 @@ class ResponsivaController extends Controller
             'teacher.name' => 'required',
             'teacher.surname' => 'required',
             'teacher.role' => 'required',
+            'teacher.email' => 'required|email',
 
             'device.type' => 'required',
             'device.brand' => 'required',

@@ -17,7 +17,7 @@
     </a>
 </div>
 
-<div class="d-flex justify-content-between mb-3">
+<div class="d-flex justify-content-between align-items-center mb-3">
     <h3>Dispositivos</h3>
     <a href="{{ route('devices.new') }}" class="btn btn-primary">
         Nuevo Dispositivo

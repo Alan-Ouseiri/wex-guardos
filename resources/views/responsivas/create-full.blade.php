@@ -27,14 +27,14 @@
         {{-- DOCENTE --}}
         <div class="col-md-4">
             <div class="card mb-3">
-                <div class="card-header">Datos del Docente</div>
+                <div class="card-header">Datos del Usuario</div>
                 <div class="card-body">
 
                     <input name="teacher[name]" class="form-control mb-2" placeholder="Nombre">
                     <input name="teacher[surname]" class="form-control mb-2" placeholder="Apellido">
                     <input name="teacher[role]" class="form-control mb-2" placeholder="Rol">
+                    <input name="teacher[email]" class="form-control mb-2" placeholder="Email">
                     <input name="teacher[employee_number]" class="form-control mb-2" placeholder="No. Empleado (opcional)">
-                    <input name="teacher[email]" class="form-control mb-2" placeholder="Email (opcional)">
 
                 </div>
             </div>

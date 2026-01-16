@@ -7,7 +7,7 @@
     <div class="col-md-6">
         <div class="d-flex justify-content-between mb-3">
             <a href="{{ route("devices.index") }}" class="text-decoration-none">
-                <h6><i class="fa-solid fa-desktop"></i> Dispositivos</h6>
+                <h6><i class="fa-solid fa-arrow-left-long"></i> Regresar</h6>
             </a>
         </div>
 

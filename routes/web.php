@@ -51,8 +51,8 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/responsivas/{responsiva}/return', [ResponsivaController::class, 'returnDevice'])->name('responsivas.return');
     Route::get('/responsivas/{responsiva}/history', [ResponsivaController::class, 'history'])->name('responsivas.history');
 
-    Route::get('/responsivas/create-full',[ResponsivaController::class, 'createFull'])->name('responsivas.create.full');
-    Route::post('/responsivas/store-full',[ResponsivaController::class, 'storeFull'])->name('responsivas.store.full');
+    Route::get('/responsivas/create-full', [ResponsivaController::class, 'createFull'])->name('responsivas.create.full');
+    Route::post('/responsivas/store-full', [ResponsivaController::class, 'storeFull'])->name('responsivas.store.full');
 });
 
 //Ruta PDF
