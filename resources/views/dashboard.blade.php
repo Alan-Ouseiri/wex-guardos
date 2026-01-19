@@ -3,83 +3,217 @@
 @section('title', 'Panel de Control')
 
 @section('content')
-<h3 class="mb-4">Panel de Control</h3>
 
+<!-- Mensajes de Exito -->
+@if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
+
+<!-- Titulo -->
+<h4 class="mb-4 fw-bold">Crear Responsivas</h4>
+
+<!-- Crear Responsivas -->
 <div class="row g-4">
-
-    <!-- Mensajes de Exito -->
-    @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @endif
-
-
     <!-- Crear Responsiva -->
-    <div class="col-md-4">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body text-center">
-                <h5 class="card-title">Crear Responsiva</h5>
-                <p class="card-text">
-                    Generar una nueva responsiva para asignar un dispositivo a un usuario.
-                </p>
-                <a href="{{ route("responsivas.create") }}" class="btn btn-primary w-100 mb-2">Crear</a>
-                <a href="{{ route("responsivas.create.full") }}" class="btn btn-primary w-100">Crear una en blanco</a>
+    <div class="col-md-6">
+        <a href="{{ route("responsivas.create") }}" class="text-decoration-none text-black">
+            <div class="bg-white shadow rounded-4 h-100 py-5">
+                <!-- Icono -->
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <span class="p-3 rounded-circle h4 text-white" style="background: linear-gradient(135deg,rgba(79, 57, 246, 0.5) 0%, rgba(68, 45, 216, 1) 100%);">
+                        <i class="fa-solid fa-plus"></i>
+                    </span>
+                </div>
+                <!-- Texto -->
+                <div class="col-12 text-center">
+                    <p class="h5 fw-bold">
+                        Nueva Responsiva
+                    </p>
+                    <p class="text-body-tertiary mb-0" style="font-size: 14px;">
+                        Crear Responsiva para un dispositivo
+                    </p>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 
-    <!-- Responsivas Activas -->
-    <div class="col-md-4">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body text-center row align-content-between">
-                <h5 class="card-title">Responsivas Activas</h5>
-                <p class="card-text">
-                    Consultar y gestionar las responsivas actualmente activas.
-                </p>
-                <a href="{{ route('responsivas.active') }}" class="btn btn-success w-100">Ver</a>
+    <!-- Crear Responsiva Blanca -->
+    <div class="col-md-6">
+        <a href="{{ route("responsivas.create.full") }}" class="text-decoration-none text-black">
+            <div class="bg-white shadow rounded-4 h-100 py-5">
+                <!-- Icono -->
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <span class="p-3 rounded-circle h4 text-white" style="background: linear-gradient(135deg,rgba(0, 173, 65, 0.5) 0%, rgba(0, 191, 75, 1) 100%);">
+                        <i class="fa-regular fa-file-lines"></i>
+                    </span>
+                </div>
+                <!-- Texto -->
+                <div class="col-12 text-center">
+                    <p class="h5 fw-bold">
+                        Nueva Responsiva en Blanco
+                    </p>
+                    <p class="text-body-tertiary mb-0" style="font-size: 14px;">
+                        Crear Responsiva en blanco, llena los datos del usuario y del dispositivo
+                    </p>
+                </div>
             </div>
-        </div>
+        </a>
+    </div>
+</div>
+
+<h4 class="my-4 fw-bold">Panel de Control</h4>
+
+<!-- Panel de Control -->
+<div class="row g-4">
+    <!-- Responsivas Activas -->
+    <div class="col-md-3">
+        <a href="{{ route('responsivas.active') }}" class="text-decoration-none text-black">
+            <div class="bg-white shadow rounded-4 h-100 p-4">
+                <!-- Icono -->
+                <div class="col-12 d-flex justify-content-between align-items-center">
+                    <span class="p-2 rounded-3 h4 text-white" style="background: linear-gradient(135deg,rgba(37, 116, 254, 0.7), rgba(20, 76, 232, 1));">
+                        <i class="fa-solid fa-file-circle-check"></i>
+                    </span>
+                    <span class="rounded-pill fw-bold px-3 py-1" style="background-color: #EFF6FF;">
+                        {{ $responsivasActivas }}
+                    </span>
+                </div>
+                <!-- Texto -->
+                <div class="col-12">
+                    <p class="h5 fw-bold">
+                        Responsivas Activas
+                    </p>
+                    <p class="text-body-tertiary mb-0" style="font-size: 14px;">
+                        Documentos vigentes
+                    </p>
+                </div>
+            </div>
+        </a>
     </div>
 
     <!-- Todas las Responsivas -->
-    <div class="col-md-4">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body text-center row align-content-between">
-                <h5 class="card-title">Historial de Responsivas</h5>
-                <p class="card-text">
-                    Ver todas las  responsivas.
-                </p>
-                <a href="{{ route("responsivas.index") }}" class="btn btn-secondary w-100">Historial</a>
+    <div class="col-md-3">
+        <a href="{{ route("responsivas.index") }}" class="text-decoration-none text-black">
+            <div class="bg-white shadow rounded-4 h-100 p-4">
+                <!-- Icono -->
+                <div class="col-12 d-flex justify-content-between align-items-center">
+                    <span class="p-2 rounded-3 h4 text-white" style="background: linear-gradient(135deg,rgba(166, 63, 255, 0.7), rgba(136, 13, 224, 1));">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </span>
+                    <span class="rounded-pill fw-bold px-3 py-1" style="background-color: #FAF5FF;">
+                        {{ $totalResponsivas }}
+                    </span>
+                </div>
+                <!-- Texto -->
+                <div class="col-12">
+                    <p class="h5 fw-bold">
+                        Todas las Responsivas
+                    </p>
+                    <p class="text-body-tertiary mb-0" style="font-size: 14px;">
+                        Registro Completo
+                    </p>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <!-- Gestion de Maestros -->
-    <div class="col-md-6">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body text-center">
-                <h5 class="card-title">Gestion de Usuarios</h5>
-                <p class="card-text">
-                    Gestion de usuarios en el sistema.
-                </p>
-                <a href="{{ route("teachers.index") }}" class="btn btn-warning w-100">Ver</a>
+    <div class="col-md-3">
+        <a href="{{ route("teachers.index") }}" class="text-decoration-none text-black">
+            <div class="bg-white shadow rounded-4 h-100 p-4">
+                <!-- Icono -->
+                <div class="col-12 d-flex justify-content-between align-items-center">
+                    <span class="p-2 rounded-3 h4 text-white" style="background: linear-gradient(135deg,rgba(250, 96, 0, 0.5), rgba(209, 59, 0, 1));">
+                        <i class="fa-solid fa-people-group"></i>
+                    </span>
+                    <span class="rounded-pill fw-bold px-3 py-1" style="background-color: #FFF7ED;">
+                        {{ $totalUsuarios }}
+                    </span>
+                </div>
+                <!-- Texto -->
+                <div class="col-12">
+                    <p class="h5 fw-bold">
+                        Gestion de Usuarios
+                    </p>
+                    <p class="text-body-tertiary mb-0" style="font-size: 14px;">
+                        Usuarios regsitardos
+                    </p>
+                </div>
             </div>
-        </div>
+        </a>
     </div>
 
     <!-- Gestion de Dispositivos -->
-    <div class="col-md-6">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body text-center">
-                <h5 class="card-title">Gestion de Dispositivos</h5>
-                <p class="card-text">
-                    Gestion de dispositivos disponibles.
-                </p>
-                <a href="{{ route("devices.index") }}" class="btn btn-info w-100">Ver</a>
+    <div class="col-md-3">
+        <a href="{{ route("devices.index") }}" class="text-decoration-none text-black">
+            <div class="bg-white shadow rounded-4 h-100 p-4">
+                <!-- Icono -->
+                <div class="col-12 d-flex justify-content-between align-items-center">
+                    <span class="p-2 rounded-3 h4 text-white" style="background: linear-gradient(135deg,rgba(0, 180, 161, 0.5), rgba(0, 127, 117, 1));">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </span>
+                    <span class="rounded-pill fw-bold px-3 py-1" style="background-color: #F0FDFA;">
+                        {{ $totalDispositivos }}
+                    </span>
+                </div>
+                <!-- Texto -->
+                <div class="col-12">
+                    <p class="h5 fw-bold">
+                        Gestion de Dispositivos
+                    </p>
+                    <p class="text-body-tertiary mb-0" style="font-size: 14px;">
+                        Inventario total
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- Estadisticas -->
+<div class="row g-4 my-4">
+    <div class="col-12">
+        <div class="row h-100 shadow bg-white rounded-4 p-4">
+            <!-- Titulo -->
+            <h5 class="fw-bold">Resumen de Actividad</h5>
+
+            <!-- Dispositivos Disponibles -->
+            <div class="col-md-4">
+                <div class="rounded-4 h-100 py-4 text-center" style="background-color: #F0FDF4;">
+                    <p class="h4 fw-bold" style="color: #00A63E;">
+                        {{ $dispositivosDisponibles }}
+                    </p>
+                    <p class="mb-0" style="font-size: 14px;">
+                        Dispositivos disponibles
+                    </p>
+                </div>
+            </div>
+
+            <!-- Dispositivos Usados -->
+            <div class="col-md-4">
+                <div class="rounded-4 h-100 py-4 text-center" style="background-color: #FEFCE8;">
+                    <p class="h4 fw-bold" style="color: #D08700;">
+                        {{ $dispositivosUsados }}
+                    <p class="mb-0" style="font-size: 14px;">
+                        Dispositivos en uso
+                    </p>
+                </div>
+            </div>
+
+            <!-- Dispositivos en mantenimiento -->
+            <div class="col-md-4">
+                <div class="rounded-4 h-100 py-4 text-center" style="background-color: #EFF6FF;">
+                    <p class="h4 fw-bold" style="color: #155DFC;">
+                        {{ $dispositivosMantenimiento }}
+                    </p>
+                    <p class="mb-0" style="font-size: 14px;">
+                        Dispositivos en mantenimiento
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-
 </div>
 @endsection

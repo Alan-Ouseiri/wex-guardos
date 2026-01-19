@@ -4,108 +4,95 @@
 
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-md-7">
+    <div class="col-md-6">
 
-        <div class="d-flex justify-content-between mb-3">
-            <a href="{{ route("dashboard") }}" class="text-decoration-none">
-                <h6><i class="fa-solid fa-house"></i> Regresar</h6>
+        <!-- Titulo -->
+        <div class="d-flex align-items-center mb-3">
+            <a href="{{ route("dashboard") }}" class="text-decoration-none text-black">
+                <i class="h5 fa-solid fa-arrow-left mb-0"></i>
             </a>
+            <div class="flex-fill ms-2">
+                <p class="h4 fw-bold mb-0">Nueva Responsiva</p>
+                <span style="font-size: 12px;">Completa los datos para generar la Responsiva</span>
+            </div>
         </div>
 
-        <div class="card shadow-sm">
-            <div class="card-header">
-                <h5 class="mb-0">Nueva Responsiva</h5>
+        <!-- Contenido -->
+        <div class="col-12 p-4 rounded-4 bg-white shadow">
+            <!-- Errores -->
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
+            @endif
 
-            <div class="card-body">
+            <form method="POST" action="{{ route('responsivas.store') }}">
+                @csrf
 
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+                <div class="mb-3">
+                    <label class="form-label"><i class="fa-regular fa-calendar" style="color: #4630DD;"></i> Fecha de Entrega</label>
+                    <input type="date" name="date" class="form-control" value="{{ old('date', now()->toDateString()) }}">
                 </div>
-                @endif
 
-                <form method="POST" action="{{ route('responsivas.store') }}">
-                    @csrf
+                <div class="mb-3">
+                    <label class="form-label"><i class="fa-regular fa-user" style="color: #4630DD;"></i> Usuario</label>
+                    <select name="teacher_id" class="form-select">
+                        <option value="">Seleccione un usuario</option>
+                        @foreach ($teachers as $teacher)
+                        <option value="{{ $teacher->id }}"
+                            {{ old('teacher_id') == $teacher->id ? 'selected' : '' }}>
+                            {{ $teacher->full_name }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Fecha</label>
-                        <input type="date"
-                            name="date"
-                            class="form-control"
-                            value="{{ old('date', now()->toDateString()) }}">
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label"><i class="fa-solid fa-mobile-screen-button" style="color: #4630DD;"></i> Dispositivo</label>
+                    <select name="device_id" class="form-select">
+                        <option value="">Seleccione un dispositivo</option>
+                        @foreach ($devices as $device)
+                        <option value="{{ $device->id }}">
+                            {{ $device->description }} - {{ $device->serial_number }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Usuario</label>
-                        <select name="teacher_id" class="form-select">
-                            <option value="">Seleccione un usuario</option>
-                            @foreach ($teachers as $teacher)
-                            <option value="{{ $teacher->id }}"
-                                {{ old('teacher_id') == $teacher->id ? 'selected' : '' }}>
-                                {{ $teacher->full_name }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label"><i class="fa-solid fa-box-open" style="color: #4630DD;"></i> Condición</label>
+                    <input type="text" name="condition" class="form-control" placeholder="Ej. Usado" value="{{ old('condition') }}">
+                </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Dispositivo</label>
-                        <select name="device_id" class="form-select">
-                            <option value="">Seleccione un dispositivo</option>
-                            @foreach ($devices as $device)
-                            <option value="{{ $device->id }}">
-                                {{ $device->description }} - {{ $device->serial_number }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
+                <div class="mb-3">
+                    <label class="form-label"><i class="fa-solid fa-location-dot" style="color: #4630DD;"></i> Ubicación</label>
+                    <input type="text" name="location" class="form-control" placeholder="Ej. Campus Maravillas" value="{{ old('location') }}">
+                </div>
 
-                    <!-- NUEVOS CAMPOS -->
+                <div class="mb-3">
+                    <label class="form-label"><i class="fa-regular fa-circle-check" style="color: #4630DD;"></i> Entregó con</label>
+                    <input type="text" name="delivered_by" class="form-control" placeholder="Ej. Cable y cargador" value="{{ old('delivered_by') }}">
+                </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Condición</label>
-                        <input type="text"
-                            name="condition"
-                            class="form-control"
-                            placeholder="Ej. Usado"
-                            value="{{ old('condition') }}">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Ubicación</label>
-                        <input type="text"
-                            name="location"
-                            class="form-control"
-                            placeholder="Ej. Campus Maravillas"
-                            value="{{ old('location') }}">
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Entregó con</label>
-                        <input type="text"
-                            name="delivered_by"
-                            class="form-control"
-                            placeholder="Ej. Cable y cargador"
-                            value="{{ old('delivered_by') }}">
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                        <a href="{{ route('responsivas.index') }}" class="btn btn-secondary">
-                            Cancelar
+                <div class="row g-4">
+                    <div class="col-6">
+                        <a href="{{ route('dashboard') }}" class="text-decoration-none text-black">
+                            <div class="col-12 border border-2 border-secondary rounded-3 py-2 h-100 w-100 text-center">
+                                Cancelar
+                            </div>
                         </a>
-                        <button class="btn btn-primary">
-                            Crear Responsiva
+                    </div>
+                    <div class="col-6">
+                        <button class="text-white w-100 border border-0 h-100 rounded-3 py-2" style="background-color: #4630DD;">
+                            <i class="fa-regular fa-floppy-disk"></i> Crear Responsiva
                         </button>
                     </div>
-                </form>
-
-
-            </div>
+                </div>
+            </form>
         </div>
 
     </div>

@@ -8,11 +8,35 @@ use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $teachers = Teacher::orderBy('surname')->get();
+        $query = Teacher::query();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+
+                // Nombre
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('surname', 'like', "%{$search}%")
+
+                    // Email
+                    ->orWhere('email', 'like', "%{$search}%")
+
+                    // Número de empleado
+                    ->orWhere('employee_number', 'like', "%{$search}%");
+            });
+        }
+
+        $teachers = $query
+            ->orderBy('employee_number')
+            ->paginate(10)
+            ->withQueryString();
+
         return view('teachers.index', compact('teachers'));
     }
+
 
     public function new()
     {
@@ -24,16 +48,16 @@ class TeacherController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
-            'employee_number' => 'required|string|max:50|unique:teachers,employee_number',
+            'employee_number' => 'max:50|unique:teachers,employee_number',
             'role' => 'required|string|max:255',
-            'email' => 'nullable|email|max:255',
+            'email' => 'required|email',
         ]);
 
         Teacher::create($validated);
 
         return redirect()
             ->route('teachers.index')
-            ->with('success', 'Maestro registrado correctamente');
+            ->with('success', 'Usuario registrado correctamente');
     }
 
     public function edit(Teacher $teacher)
@@ -46,15 +70,15 @@ class TeacherController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
-            'employee_number' => 'required|string|max:50|unique:teachers,employee_number,' . $teacher->id,
+            'employee_number' => 'max:50|unique:teachers,employee_number,' . $teacher->id,
             'role' => 'required|string|max:255',
-            'email' => 'nullable|email|max:255',
+            'email' => 'required|email',
         ]);
 
         $teacher->update($validated);
 
         return redirect()
             ->route('teachers.index')
-            ->with('success', 'Maestro actualizado correctamente');
+            ->with('success', 'Usuario actualizado correctamente');
     }
 }

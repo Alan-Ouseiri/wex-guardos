@@ -4,30 +4,40 @@
 
 @section('content')
 
-<div class="d-flex justify-content-between mb-3">
-    <a href="{{ route("dashboard") }}" class="text-decoration-none">
-        <h6><i class="fa-solid fa-house"></i> Regresar</h6>
-    </a>
+<div class="row">
+    <div class="col-12">
+        <!-- Titulo -->
+        <div class="d-flex align-items-center mb-3">
+            <a href="{{ route("responsivas.index") }}" class="text-decoration-none text-black">
+                <i class="h5 fa-solid fa-arrow-left mb-0"></i>
+            </a>
+            <div class="flex-fill ms-2">
+                <p class="h4 fw-bold mb-0">Historial - {{ $responsiva->responsiva_number }}</p>
+                <span style="font-size: 12px;">Ve el historial de movimientos de una Responsiva</span>
+            </div>
+        </div>
+
+        <!-- Contenido -->
+        <div class="col-12 mt-4">
+            <table class="col-12 w-100 p-3 rounded-2 bg-white shadow">
+                <thead>
+                    <tr class="col-12 row mx-auto text-white py-3 rounded-top-2" style="background-color: #462FDD;">
+                        <th class="col-3">Fecha</th>
+                        <th class="col-3">Acción</th>
+                        <th class="col-5">Descripción</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    @foreach ($histories as $h)
+                    <tr class="col-12 row mx-auto border-bottom py-3">
+                        <td class="col-3">{{ $h->action_date }}</td>
+                        <td class="col-3">{{ ucfirst($h->action) }}</td>
+                        <td class="col-5">{{ $h->description }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
-
-<h4>Historial – {{ $responsiva->responsiva_number }}</h4>
-
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Fecha</th>
-            <th>Acción</th>
-            <th>Descripción</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($histories as $h)
-        <tr>
-            <td>{{ $h->action_date }}</td>
-            <td>{{ ucfirst($h->action) }}</td>
-            <td>{{ $h->description }}</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
 @endsection

@@ -8,9 +8,19 @@ use Illuminate\Http\Request;
 
 class DeviceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $devices = Device::orderBy('created_at', 'desc')->get();
+        $query = Device::query();
+
+        if ($request->filled('search')) {
+            $query->where('serial_number', 'like', '%' . $request->search . '%');
+        }
+
+        $devices = $query
+            ->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->withQueryString();
+
         return view('devices.index', compact('devices'));
     }
 

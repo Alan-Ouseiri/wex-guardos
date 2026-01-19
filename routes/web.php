@@ -4,6 +4,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\ResponsivaController;
 use App\Http\Controllers\TeacherController;
+use App\Models\Device;
+use App\Models\Responsiva;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,7 +23,28 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Pagina de Incio
 Route::middleware(['auth'])->group(function () {
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/dashboard', function () {
+
+        $totalResponsivas = Responsiva::count();
+        $responsivasActivas = Responsiva::where('status', 'active')->count();
+
+        $totalUsuarios = User::count();
+
+        $totalDispositivos = Device::count();
+        $dispositivosUsados = Device::where('status', 'used')->count();
+        $dispositivosDisponibles = Device::where('status', 'available')->count();
+        $dispositivosMantenimiento = Device::where('status', 'maintenance')->count();
+
+        return view('dashboard', compact(
+            'totalResponsivas',
+            'responsivasActivas',
+            'totalUsuarios',
+            'totalDispositivos',
+            'dispositivosUsados',
+            'dispositivosDisponibles',
+            'dispositivosMantenimiento'
+        ));
+    })->name('dashboard');
 });
 
 
