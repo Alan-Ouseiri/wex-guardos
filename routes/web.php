@@ -6,6 +6,7 @@ use App\Http\Controllers\ResponsivaController;
 use App\Http\Controllers\TeacherController;
 use App\Models\Device;
 use App\Models\Responsiva;
+use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -28,10 +29,10 @@ Route::middleware(['auth'])->group(function () {
         $totalResponsivas = Responsiva::count();
         $responsivasActivas = Responsiva::where('status', 'active')->count();
 
-        $totalUsuarios = User::count();
+        $totalUsuarios = Teacher::count();
 
         $totalDispositivos = Device::count();
-        $dispositivosUsados = Device::where('status', 'used')->count();
+        $dispositivosUsados = Device::where('status', 'assigned')->count();
         $dispositivosDisponibles = Device::where('status', 'available')->count();
         $dispositivosMantenimiento = Device::where('status', 'maintenance')->count();
 

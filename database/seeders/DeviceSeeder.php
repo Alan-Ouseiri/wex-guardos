@@ -33,7 +33,7 @@ class DeviceSeeder extends Seeder
                 'brand' => 'Epson',
                 'model' => 'X200',
                 'serial_number' => 'EP-X200-003',
-                'status' => 'maintenance',
+                'status' => 'available',
             ],
         ];
 

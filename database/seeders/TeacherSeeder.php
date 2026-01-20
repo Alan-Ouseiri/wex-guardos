@@ -15,25 +15,25 @@ class TeacherSeeder extends Seeder
     {
         $teachers = [
             [
-                'name' => 'Juan',
-                'surname' => 'Pérez',
-                'employee_number' => 'DOC001',
+                'name' => 'Angel Josafath',
+                'surname' => 'Lopez Lopez',
+                'employee_number' => '102',
+                'role' => 'Redes',
+                'email' => 'Josafath.lopez@wexford.edu.mx',
+            ],
+            [
+                'name' => 'Ruben',
+                'surname' => 'Rodriguez Rojas',
+                'employee_number' => '109',
                 'role' => 'Profesor',
-                'email' => 'juan.perez@escuela.test',
+                'email' => 'ruben.rodriguez@wexford.edu.mx',
             ],
             [
-                'name' => 'María',
-                'surname' => 'Gómez',
-                'employee_number' => 'DOC002',
-                'role' => 'Profesora',
-                'email' => 'maria.gomez@escuela.test',
-            ],
-            [
-                'name' => 'Carlos',
-                'surname' => 'Ramírez',
-                'employee_number' => 'DOC003',
+                'name' => 'Martin de Jesus',
+                'surname' => 'Arreola Morales',
+                'employee_number' => '10000',
                 'role' => 'Administrativo',
-                'email' => null,
+                'email' => 'martin.morales@wexford.edu.mx',
             ],
         ];
 

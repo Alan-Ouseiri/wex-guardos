@@ -63,7 +63,7 @@
                         <td class="col-3">{{ $r->teacher->full_name }}</td>
                         <td class="col-3">{{ $r->device->description }}</td>
                         <td class="col-2">{{ $r->device->serial_number }}</td>
-                        <td class="col-2 d-flex flex-wrap justify-content-between text-center align-items-center">
+                        <td class="col-2 d-flex flex-wrap justify-content-around text-center align-items-center">
 
                             <!-- Imprimir -->
                             <a href="{{ route('responsivas.pdf', $r) }}" target="_blank" class="text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Imprimir la responsiva">
@@ -152,10 +152,3 @@
     </div>
 </div>
 @endsection
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('[data-bs-toggle="tooltip"]')
-            .forEach(el => new bootstrap.Tooltip(el));
-    });
-</script>

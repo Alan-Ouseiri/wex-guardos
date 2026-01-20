@@ -41,7 +41,7 @@ class ResponsivaController extends Controller
         }
 
         $responsivas = $query
-            ->orderBy('assigned_date', 'desc')
+            ->orderBy('created_at', 'desc')
             ->paginate(10)
             ->withQueryString();
 
@@ -161,7 +161,6 @@ class ResponsivaController extends Controller
         return view('responsivas.active', compact('responsivas'));
     }
 
-
     public function returnDevice(Request $request, Responsiva $responsiva)
     {
         $request->validate([
@@ -197,7 +196,6 @@ class ResponsivaController extends Controller
             ->route('responsivas.active')
             ->with('success', 'Dispositivo devuelto correctamente');
     }
-
 
     public function history(Responsiva $responsiva)
     {
@@ -263,6 +261,7 @@ class ResponsivaController extends Controller
             // Crear responsiva
             $responsiva = Responsiva::create([
                 'responsiva_number' => $responsivaNumber,
+                'verification_code' => $this->generateVerificationCode(),
                 'teacher_id' => $teacher->id,
                 'device_id' => $device->id,
                 'assigned_date' => $request->assigned_date,

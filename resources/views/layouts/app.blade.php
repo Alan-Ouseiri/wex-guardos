@@ -16,9 +16,9 @@
     <nav class="navbar navbar-white bg-white shadow-sm px-3">
         <div class="col-8 d-flex flex-wrap align-items-center justify-content-center">
             <!-- Icono -->
-            <span class="text-white h3 mb-0 p-2 rounded-3" style="background-color: #4F39F6;">
+            <a href="{{ route('dashboard') }}" class="text-white h3 mb-0 p-2 rounded-3" style="background-color: #4F39F6;">
                 <i class="fa-regular fa-file-lines"></i>
-            </span>
+            </a>
 
             <!-- Titulo -->
             <div class="flex-fill ms-2">
@@ -40,6 +40,13 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('[data-bs-toggle="tooltip"]')
+                .forEach(el => new bootstrap.Tooltip(el));
+        });
+    </script>
 </body>
 
 </html>
