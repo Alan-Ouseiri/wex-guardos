@@ -50,7 +50,7 @@ class ResponsivaController extends Controller
 
     public function create()
     {
-        $teachers = Teacher::orderBy('surname')->get();
+        $teachers = Teacher::orderBy('name')->get();
         $devices = Device::where('status', 'available')->get();
 
         return view('responsivas.create', compact('teachers', 'devices'));

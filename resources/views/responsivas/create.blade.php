@@ -40,12 +40,11 @@
 
                 <div class="mb-3">
                     <label class="form-label"><i class="fa-regular fa-user" style="color: #4630DD;"></i> Usuario</label>
-                    <select name="teacher_id" class="form-select">
+                    <select name="teacher_id" class="form-select select-teacher">
                         <option value="">Seleccione un usuario</option>
                         @foreach ($teachers as $teacher)
-                        <option value="{{ $teacher->id }}"
-                            {{ old('teacher_id') == $teacher->id ? 'selected' : '' }}>
-                            {{ $teacher->full_name }}
+                        <option value="{{ $teacher->id }}">
+                            {{ $teacher->full_name }} — {{ $teacher->employee_number }}
                         </option>
                         @endforeach
                     </select>

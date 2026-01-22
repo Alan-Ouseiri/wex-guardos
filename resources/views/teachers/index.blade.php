@@ -69,6 +69,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="col-12 mt-4 d-flex justify-content-center">
+                {{ $teachers->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </div>
 </div>

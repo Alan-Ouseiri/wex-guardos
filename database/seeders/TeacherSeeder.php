@@ -11,7 +11,7 @@ class TeacherSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+/*     public function run(): void
     {
         $teachers = [
             [
@@ -40,5 +40,5 @@ class TeacherSeeder extends Seeder
         foreach ($teachers as $teacher) {
             Teacher::create($teacher);
         }
-    }
+    } */
 }

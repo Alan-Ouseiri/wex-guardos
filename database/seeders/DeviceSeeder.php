@@ -11,7 +11,7 @@ class DeviceSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+/*     public function run(): void
     {
         $devices = [
             [
@@ -40,5 +40,5 @@ class DeviceSeeder extends Seeder
         foreach ($devices as $device) {
             Device::create($device);
         }
-    }
+    } */
 }
