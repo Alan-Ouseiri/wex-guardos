@@ -12,9 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 
 //Ruta Raiz
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AuthController::class, 'showLogin'])->name('login');
 
 //Rutas del login
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
