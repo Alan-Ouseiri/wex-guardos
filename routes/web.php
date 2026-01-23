@@ -27,14 +27,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
 
         $totalResponsivas = Responsiva::count();
-        $responsivasActivas = Responsiva::where('status', 'active')->count();
+        $responsivasActivas = Responsiva::where('status', 'Activa')->count();
 
         $totalUsuarios = Teacher::count();
 
         $totalDispositivos = Device::count();
-        $dispositivosUsados = Device::where('status', 'assigned')->count();
-        $dispositivosDisponibles = Device::where('status', 'available')->count();
-        $dispositivosMantenimiento = Device::where('status', 'maintenance')->count();
+        $dispositivosUsados = Device::where('status', 'Asignado')->count();
+        $dispositivosDisponibles = Device::where('status', 'Disponible')->count();
+        $dispositivosMantenimiento = Device::where('status', 'Mantenimiento')->count();
 
         return view('dashboard', compact(
             'totalResponsivas',
@@ -76,7 +76,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/responsivas', [ResponsivaController::class, 'store'])->name('responsivas.store');
     Route::put('/responsivas/{responsiva}/return', [ResponsivaController::class, 'returnDevice'])->name('responsivas.return');
     Route::get('/responsivas/{responsiva}/history', [ResponsivaController::class, 'history'])->name('responsivas.history');
-
     Route::get('/responsivas/create-full', [ResponsivaController::class, 'createFull'])->name('responsivas.create.full');
     Route::post('/responsivas/store-full', [ResponsivaController::class, 'storeFull'])->name('responsivas.store.full');
 });

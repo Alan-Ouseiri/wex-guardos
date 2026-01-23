@@ -51,7 +51,7 @@ class ResponsivaController extends Controller
     public function create()
     {
         $teachers = Teacher::orderBy('name')->get();
-        $devices = Device::where('status', 'available')->get();
+        $devices = Device::where('status', 'Disponible')->get();
 
         return view('responsivas.create', compact('teachers', 'devices'));
     }
@@ -97,18 +97,18 @@ class ResponsivaController extends Controller
             'condition' => $request->condition,
             'location' => $request->location,
             'delivered_by' => $request->delivered_by,
-            'status' => 'active',
+            'status' => 'Activa',
         ]);
 
         // Cambiar estado del dispositivo
         $device->update([
-            'status' => 'assigned'
+            'status' => 'Asignado'
         ]);
 
         ResponsivaHistory::create([
             'responsiva_id' => $responsiva->id,
-            'action' => 'created',
-            'description' => 'Creación de la responsiva',
+            'action' => 'Asignada',
+            'description' => 'Creación de la responsiva y asignacion del dispositivo',
             'action_date' => Carbon::now(),
         ]);
 
@@ -130,7 +130,7 @@ class ResponsivaController extends Controller
     public function active(Request $request)
     {
         $query = Responsiva::with(['teacher', 'device'])
-            ->where('status', 'active');
+            ->where('status', 'Activa');
 
         if ($request->filled('search')) {
             $search = $request->search;
@@ -176,17 +176,17 @@ class ResponsivaController extends Controller
         DB::transaction(function () use ($responsiva) {
 
             $responsiva->update([
-                'status' => 'returned',
+                'status' => 'Regresado',
                 'verification_code' => null,
                 'returned_date' => now(),
             ]);
 
             $responsiva->device->update([
-                'status' => 'available',
+                'status' => 'Disponible',
             ]);
 
             $responsiva->histories()->create([
-                'action' => 'returned',
+                'action' => 'Regresado',
                 'description' => 'Dispositivo devuelto con código de verificación',
                 'action_date' => now(),
             ]);
@@ -238,7 +238,7 @@ class ResponsivaController extends Controller
             // Crear dispositivo
             $device = Device::create([
                 ...$request->device,
-                'status' => 'assigned'
+                'status' => 'Asignado'
             ]);
 
             // Generar número de responsiva
@@ -270,12 +270,13 @@ class ResponsivaController extends Controller
                 'delivered_by' => $request->delivered_by,
                 'notes' => $request->notes,
                 'delivery_image' => $imagePath,
+                'status' => 'Activa',
             ]);
 
             // Historial
             $responsiva->histories()->create([
-                'action' => 'created',
-                'description' => 'Creación completa desde formulario único',
+                'action' => 'Asignada',
+                'description' => 'Creación de la responsiva y asignacion del dispositivo',
                 'action_date' => now(),
             ]);
         });

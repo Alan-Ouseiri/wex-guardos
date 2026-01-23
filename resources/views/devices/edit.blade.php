@@ -60,23 +60,23 @@
                     <label class="form-label"><i class="fa-solid fa-clipboard-check" style="color: #0E887F;"></i> Estado</label>
                     <select name="status" class="form-select">
 
-                        <option value="available"
-                            {{ old('status', $device->status) == 'available' ? 'selected' : '' }}>
+                        <option value="Disponible"
+                            {{ old('status', $device->status) == 'Disponible' ? 'selected' : '' }}>
                             Disponible
                         </option>
 
-                        <option value="assigned"
-                            {{ old('status', $device->status) == 'assigned' ? 'selected' : '' }}>
+                        <option value="Asignado"
+                            {{ old('status', $device->status) == 'Asignado' ? 'selected' : '' }}>
                             Asignado
                         </option>
 
-                        <option value="maintenance"
-                            {{ old('status', $device->status) == 'maintenance' ? 'selected' : '' }}>
+                        <option value="Mantenimiento"
+                            {{ old('status', $device->status) == 'Mantenimiento' ? 'selected' : '' }}>
                             Mantenimiento
                         </option>
 
-                        <option value="retired"
-                            {{ old('status', $device->status) == 'retired' ? 'selected' : '' }}>
+                        <option value="Retirado"
+                            {{ old('status', $device->status) == 'Retirado' ? 'selected' : '' }}>
                             Retirado
                         </option>
 

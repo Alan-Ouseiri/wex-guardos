@@ -11,7 +11,7 @@ class DeviceSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-/*     public function run(): void
+    public function run(): void
     {
         $devices = [
             [
@@ -19,26 +19,26 @@ class DeviceSeeder extends Seeder
                 'brand' => 'Apple',
                 'model' => 'Air 11',
                 'serial_number' => 'MB-A11-001',
-                'status' => 'available',
+                'status' => 'Disponible',
             ],
             [
                 'type' => 'iPad',
                 'brand' => 'Apple',
                 'model' => '10th Gen',
                 'serial_number' => 'IP-10-002',
-                'status' => 'available',
+                'status' => 'Disponible',
             ],
             [
                 'type' => 'Proyector',
                 'brand' => 'Epson',
                 'model' => 'X200',
                 'serial_number' => 'EP-X200-003',
-                'status' => 'available',
+                'status' => 'Disponible',
             ],
         ];
 
         foreach ($devices as $device) {
             Device::create($device);
         }
-    } */
+    }
 }

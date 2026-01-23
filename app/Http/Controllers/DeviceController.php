@@ -36,7 +36,7 @@ class DeviceController extends Controller
             'brand' => 'required|string|max:100',
             'model' => 'required|string|max:100',
             'serial_number' => 'required|string|max:100|unique:devices,serial_number',
-            'status' => 'required|in:available,assigned,maintenance,retired',
+            'status' => 'required|in:Disponible,Asignado,Mantenimiento,Retirado',
         ]);
 
         Device::create($validated);
@@ -58,7 +58,7 @@ class DeviceController extends Controller
             'brand' => 'required|string|max:100',
             'model' => 'required|string|max:100',
             'serial_number' => 'required|string|max:100|unique:devices,serial_number,' . $device->id,
-            'status' => 'required|in:available,assigned,maintenance,retired',
+            'status' => 'required|in:Disponible,Asignado,Mantenimiento,Retirado',
         ]);
 
         $device->update($validated);

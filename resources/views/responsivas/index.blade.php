@@ -76,13 +76,13 @@
                                 <i class="fa-solid fa-clock-rotate-left" style="color: #A52EFB;"></i>
                             </a>
                             <!-- Devolver -->
-                            @if ($r->status === 'active')
+                            @if ($r->status === 'Activa')
                             <button style="background: none; border: none;" data-bs-toggle="modal" data-bs-target="#returnModal{{ $r->id }}">
                                 <i class="fa-solid fa-arrow-rotate-left" style="color: #F54900;" data-bs-toggle="tooltip" data-bs-placement="top" title="Devolver dispositivo"></i>
                             </button>
                             @endif
                             <!-- Correo -->
-                            @if ($r->status === 'active' && $r->teacher->email)
+                            @if ($r->status === 'Activa' && $r->teacher->email)
                             @php
                             $to = rawurlencode($r->teacher->email);
 

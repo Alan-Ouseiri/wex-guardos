@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('brand');
             $table->string('model');
             $table->string('serial_number')->unique();
-            $table->enum('status', ['available', 'assigned', 'maintenance', 'retired'])
-                ->default('available');
+            $table->enum('status', ['Disponible', 'Asignado', 'Mantenimiento', 'Retirado'])
+                ->default('Disponible');
             $table->timestamps();
         });
     }

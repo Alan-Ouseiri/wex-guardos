@@ -58,10 +58,10 @@
                 <div class="mb-3">
                     <label class="form-label"><i class="fa-solid fa-clipboard-check" style="color: #0E887F;"></i> Estado</label>
                     <select name="status" class="form-select">
-                        <option value="available">Disponible</option>
-                        <option value="assigned">Asignado</option>
-                        <option value="maintenance">Mantenimiento</option>
-                        <option value="retired">Retirado</option>
+                        <option value="Disponible">Disponible</option>
+                        <option value="Asignado">Asignado</option>
+                        <option value="Mantenimiento">Mantenimiento</option>
+                        <option value="Retirado">Retirado</option>
                     </select>
                 </div>
 

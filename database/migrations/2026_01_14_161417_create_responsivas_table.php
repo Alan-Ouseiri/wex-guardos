@@ -26,8 +26,8 @@ return new class extends Migration
             $table->date('assigned_date');
             $table->date('returned_date')->nullable();
 
-            $table->enum('status', ['active', 'returned', 'canceled'])
-                ->default('active');
+            $table->enum('status', ['Activa', 'Regresado', 'Cancelada'])
+                ->default('Activa');
 
             $table->string('condition');       // Estado físico del equipo
             $table->string('location');        // Ubicación
