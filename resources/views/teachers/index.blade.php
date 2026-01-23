@@ -60,12 +60,56 @@
                         <td class="col-2">{{ $teacher->employee_number }}</td>
                         <td class="col-3">{{ $teacher->email ?? '—' }}</td>
                         <td class="col-3">{{ $teacher->role }}</td>
-                        <td class="col-1 text-center">
+                        <td class="col-1 d-flex flex-wrap justify-content-around text-center align-items-center">
                             <a href="{{ route('teachers.edit', $teacher) }}">
                                 <i class="fa-solid fa-pencil"></i>
                             </a>
+                            <button type="button" class="btn btn-link text-danger p-0" data-bs-toggle="modal" data-bs-target="#deleteTeacherModal{{ $teacher->id }}">
+                                <i class="fa-regular fa-trash-can text-danger"></i>
+                            </button>
                         </td>
                     </tr>
+
+                    <div class="modal fade" id="deleteTeacherModal{{ $teacher->id }}" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-danger">
+                                        Confirmar eliminación
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <p>
+                                        ¿Estás seguro de que deseas eliminar al docente
+                                        <strong>{{ $teacher->full_name }}</strong>?
+                                    </p>
+                                    <p class="text-muted mb-0">
+                                        Esta acción no se puede deshacer.
+                                    </p>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                        Cancelar
+                                    </button>
+
+                                    <form method="POST" action="{{ route('teachers.destroy', $teacher) }}">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-danger">
+                                            Sí, eliminar
+                                        </button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                     @endforeach
                 </tbody>
             </table>

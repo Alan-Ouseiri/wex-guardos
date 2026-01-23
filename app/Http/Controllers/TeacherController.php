@@ -37,7 +37,6 @@ class TeacherController extends Controller
         return view('teachers.index', compact('teachers'));
     }
 
-
     public function new()
     {
         return view('teachers.create');
@@ -80,5 +79,14 @@ class TeacherController extends Controller
         return redirect()
             ->route('teachers.index')
             ->with('success', 'Usuario actualizado correctamente');
+    }
+
+    public function destroy(Teacher $teacher)
+    {
+        $teacher->delete();
+
+        return redirect()
+            ->route('teachers.index')
+            ->with('success', 'Docente eliminado correctamente');
     }
 }

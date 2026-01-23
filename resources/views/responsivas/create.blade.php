@@ -35,7 +35,7 @@
 
                 <div class="mb-3">
                     <label class="form-label"><i class="fa-regular fa-calendar" style="color: #4630DD;"></i> Fecha de Entrega</label>
-                    <input type="date" name="date" class="form-control" value="{{ old('date', now()->toDateString()) }}">
+                    <input type="date" name="date" min="2020-01-01" max="2030-12-31" class="form-control" value="{{ old('date', now()->toDateString()) }}">
                 </div>
 
                 <div class="mb-3">

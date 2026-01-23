@@ -12,8 +12,8 @@
                 <i class="h5 fa-solid fa-arrow-left mb-0"></i>
             </a>
             <div class="flex-fill ms-2">
-                <p class="h4 fw-bold mb-0">Usuarios</p>
-                <span style="font-size: 12px;">Gestiona todos los Usuarios</span>
+                <p class="h4 fw-bold mb-0">Dispositivos</p>
+                <span style="font-size: 12px;">Gestiona todos los Dispositivos</span>
             </div>
         </div>
 

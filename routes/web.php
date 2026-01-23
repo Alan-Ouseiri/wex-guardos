@@ -56,6 +56,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/teachers', [TeacherController::class, 'create'])->name('teachers.create'); //Funcion de crear
     Route::get('/teachers/{teacher}/edit', [TeacherController::class, 'edit'])->name('teachers.edit'); //Formulario para editar
     Route::put('/teachers/{teacher}', [TeacherController::class, 'update'])->name('teachers.update'); //Funcion para editar
+    Route::delete('/teachers/{teacher}', [TeacherController::class, 'destroy'])->name('teachers.destroy'); //Funcion para eliminar
 });
 
 //Ruta de Dispositivos

@@ -61,11 +61,11 @@
                 <tbody>
                     @foreach ($responsivas as $r)
                     <tr class="col-12 row mx-auto border-bottom py-3">
-                        <td class="col-2">{{ $r->responsiva_number }}</td>
+                        <td class="col-2 fw-bold" style="color: #462FDD;">{{ $r->responsiva_number }}</td>
                         <td class="col-3">{{ $r->teacher->full_name }}</td>
                         <td class="col-2">{{ $r->device->description }}</td>
-                        <td class="col-2">{{ $r->device->serial_number }}</td>
-                        <td class="col-1">{{ $r->device->status }}</td>
+                        <td class="col-2 text-truncate">{{ $r->device->serial_number }}</td>
+                        <td class="col-1">{{ $r->status }}</td>
                         <td class="col-2 d-flex flex-wrap justify-content-around text-center align-items-center">
                             <!-- Imprimir -->
                             <a href="{{ route('responsivas.pdf', $r) }}" target="_blank" class="text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Imprimir la responsiva">
