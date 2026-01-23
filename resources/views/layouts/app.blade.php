@@ -16,8 +16,6 @@
 
     <!-- Icono -->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-
-
 </head>
 
 <body style="background-color: #EAF1FF;">
@@ -26,7 +24,7 @@
     <nav class="navbar navbar-white bg-white shadow-sm px-3">
         <div class="col-8 d-flex flex-wrap align-items-center justify-content-center">
             <!-- Icono -->
-            <a href="{{ route('dashboard') }}" class="text-white h3 mb-0 p-2 rounded-3" style="background-color: #4F39F6;">
+            <a href="{{ route('dashboard') }}" class="text-white h3 mb-0 p-2 rounded-3" style="background: linear-gradient(139deg,#3341e8 0%, #9412f8 50%, #3341e8 100%);">
                 <i class="fa-regular fa-file-lines"></i>
             </a>
 

@@ -46,7 +46,7 @@
             <!-- Tabla -->
             <table class="col-12 w-100 p-3 rounded-2 bg-white shadow">
                 <thead>
-                    <tr class="col-12 row mx-auto text-white py-3 rounded-top-2" style="background-color: #D33900;">
+                    <tr class="col-12 row mx-auto text-white py-3 rounded-top-2" style="background: linear-gradient(135deg,rgba(250, 96, 0, 0.8), rgba(209, 59, 0, 1));">
                         <th class="col-3">Nombre</th>
                         <th class="col-2">No. Empleado</th>
                         <th class="col-3">Email</th>

@@ -38,8 +38,8 @@
                 <!-- Docente -->
                 <div class="col-md-4">
                     <!-- Icono -->
-                    <div class="col-12 pb-2" style="border-bottom: solid 2px #4630DD;">
-                        <i class="fa-regular fa-user" style="color: #4630DD;"></i><span class="fw-bold ps-2">Datos del Usuario</span>
+                    <div class="col-12 pb-2" style="border-bottom: solid 2px #DC4D0D;">
+                        <i class="fa-regular fa-user" style="color: #DC4D0D;"></i><span class="fw-bold ps-2">Datos del Usuario</span>
                     </div>
 
                     <!-- Switch -->
@@ -51,8 +51,8 @@
                     </div>
 
                     <!-- Docente Existente -->
-                    <div id="existingTeacher" class="d-none">
-                        <label class="form-label"><i class="fa-regular fa-user" style="color: #4630DD;"></i> Usuario</label>
+                    <div id="existingTeacher" class="d-none mt-3">
+                        <i class="fa-regular fa-user" style="color: #DC4D0D;"></i><span class="fw-bold ps-2">Usuario</span>
                         <select name="teacher_id" class="form-select select-teacher">
                             <option value="">Seleccione un usuario</option>
                             @foreach ($teachers as $teacher)
@@ -97,8 +97,8 @@
                 <!-- Dispositivo -->
                 <div class="col-md-4">
                     <!-- Icono -->
-                    <div class="col-12 pb-2" style="border-bottom: solid 2px #00A63E;">
-                        <i class="fa-solid fa-mobile-screen-button" style="color: #00A63E;"></i><span class="fw-bold ps-2">Datos del Dispositivo</span>
+                    <div class="col-12 pb-2" style="border-bottom: solid 2px #12978B;">
+                        <i class="fa-solid fa-mobile-screen-button" style="color: #12978B;"></i><span class="fw-bold ps-2">Datos del Dispositivo</span>
                     </div>
 
                     <!-- Switch -->
@@ -110,8 +110,8 @@
                     </div>
 
                     <!-- Dispositivo Existente -->
-                    <div id="existingDevice" class="d-none">
-                        <label>Dispositivo</label>
+                    <div id="existingDevice" class="d-none mt-3">
+                        <i class="fa-solid fa-mobile-screen-button" style="color: #12978B;"></i><span class="ps-2">Dispositivo</span>
                         <select name="device_id" class="form-select select-device">
                             <option value="">Seleccione un dispositivo</option>
                             @foreach ($devices as $device)
@@ -182,7 +182,7 @@
                 </div>
 
                 <!-- Botones -->
-                <div class="row  border-top border-1  g-2">
+                <div class="row border-top border-1  g-2">
                     <div class="col-6">
                         <a href="{{ route('dashboard') }}" class="text-decoration-none text-black">
                             <div class="col-12 border border-2 border-secondary rounded-3 py-2 h-100 w-100 text-center">

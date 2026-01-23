@@ -34,7 +34,7 @@
             <!-- Botones -->
             <div class="col-auto row justify-content-end">
                 <a href="{{ route('devices.new') }}" class="text-decoration-none text-white col-auto">
-                    <div class="col-12 rounded-3 py-2 px-4 text-center" style="background: linear-gradient(135deg,rgba(113, 207, 198, 0.8) 0%, rgba(14, 136, 127, 1) 100%);">
+                    <div class="col-12 rounded-3 py-2 px-4 text-center" style="background: linear-gradient(135deg,rgba(113, 207, 198, 0.9) 0%, rgba(14, 136, 127, 1) 100%);">
                         <i class="fa-solid fa-plus"></i> Nuevo Dispositivo
                     </div>
                 </a>
@@ -46,7 +46,7 @@
             <!-- Tabla -->
             <table class="col-12 w-100 p-3 rounded-2 bg-white shadow">
                 <thead>
-                    <tr class="col-12 row mx-auto text-white py-3 rounded-top-2" style="background-color: #0E887F;">
+                    <tr class="col-12 row mx-auto text-white py-3 rounded-top-2" style="background: linear-gradient(135deg,rgba(0, 180, 161, 0.8), rgba(0, 127, 117, 1));">
                         <th class="col-4">Dispositivo</th>
                         <th class="col-4">No. Serie</th>
                         <th class="col-2">Estado</th>

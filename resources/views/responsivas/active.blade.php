@@ -47,7 +47,7 @@
             <table class="col-12 w-100 p-3 rounded-2 bg-white shadow">
                 <!-- Cabcera -->
                 <thead>
-                    <tr class="col-12 row mx-auto text-white py-3 rounded-top-2" style="background-color: #462FDD;">
+                    <tr class="col-12 row mx-auto text-white py-3 rounded-top-2" style="background: linear-gradient(135deg,rgba(37, 116, 254, 0.8), rgba(20, 76, 232, 1));">
                         <th class="col-2">Folio</th>
                         <th class="col-3">Usuario</th>
                         <th class="col-3">Dispositivo</th>

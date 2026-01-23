@@ -48,7 +48,7 @@
             <table class="col-12 w-100 p-3 rounded-2 bg-white shadow">
                 <!-- Cabecera -->
                 <thead>
-                    <tr class="col-12 row mx-auto text-white py-3 rounded-top-2" style="background-color: #462FDD;">
+                    <tr class="col-12 row mx-auto text-white py-3 rounded-top-2" style="background: linear-gradient(135deg,rgba(166, 63, 255, 0.8), rgba(136, 13, 224, 1));">
                         <th class="col-2">Folio</th>
                         <th class="col-3">Usuario</th>
                         <th class="col-2">Dispositivo</th>
