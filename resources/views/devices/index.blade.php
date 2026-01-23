@@ -43,6 +43,7 @@
 
         <!-- Contenido -->
         <div class="col-12 mt-4">
+            <!-- Tabla -->
             <table class="col-12 w-100 p-3 rounded-2 bg-white shadow">
                 <thead>
                     <tr class="col-12 row mx-auto text-white py-3 rounded-top-2" style="background-color: #0E887F;">
@@ -67,6 +68,10 @@
                     @endforeach
                 </tbody>
             </table>
+            <!-- Paginacion -->
+            <div class="col-12 mt-4 d-flex justify-content-center">
+                {{ $devices->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </div>
 </div>

@@ -52,14 +52,15 @@
 
                 <div class="mb-3">
                     <label class="form-label"><i class="fa-solid fa-mobile-screen-button" style="color: #4630DD;"></i> Dispositivo</label>
-                    <select name="device_id" class="form-select">
+                    <select name="device_id" class="form-select select-device">
                         <option value="">Seleccione un dispositivo</option>
                         @foreach ($devices as $device)
                         <option value="{{ $device->id }}">
-                            {{ $device->description }} - {{ $device->serial_number }}
+                            {{ $device->description }} — {{ $device->serial_number }}
                         </option>
                         @endforeach
                     </select>
+
                 </div>
 
                 <div class="mb-3">

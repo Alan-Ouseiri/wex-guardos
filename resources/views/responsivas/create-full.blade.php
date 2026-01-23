@@ -37,11 +37,34 @@
 
                 <!-- Docente -->
                 <div class="col-md-4">
+                    <!-- Icono -->
                     <div class="col-12 pb-2" style="border-bottom: solid 2px #4630DD;">
                         <i class="fa-regular fa-user" style="color: #4630DD;"></i><span class="fw-bold ps-2">Datos del Usuario</span>
                     </div>
 
-                    <div class="col-12 mt-3">
+                    <!-- Switch -->
+                    <div class="form-check form-switch mt-3">
+                        <input class="form-check-input" type="checkbox" id="useExistingTeacher">
+                        <label class="form-check-label" for="useExistingTeacher">
+                            Usar Usuario existente
+                        </label>
+                    </div>
+
+                    <!-- Docente Existente -->
+                    <div id="existingTeacher" class="d-none">
+                        <label class="form-label"><i class="fa-regular fa-user" style="color: #4630DD;"></i> Usuario</label>
+                        <select name="teacher_id" class="form-select select-teacher">
+                            <option value="">Seleccione un usuario</option>
+                            @foreach ($teachers as $teacher)
+                            <option value="{{ $teacher->id }}">
+                                {{ $teacher->full_name }} — {{ $teacher->employee_number }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Nuevo Docente -->
+                    <div class="col-12 mt-3 " id="newTeacher">
 
                         <div class="mb-3">
                             <label class="form-label">Nombre(s)</label>
@@ -73,12 +96,34 @@
 
                 <!-- Dispositivo -->
                 <div class="col-md-4">
-
+                    <!-- Icono -->
                     <div class="col-12 pb-2" style="border-bottom: solid 2px #00A63E;">
                         <i class="fa-solid fa-mobile-screen-button" style="color: #00A63E;"></i><span class="fw-bold ps-2">Datos del Dispositivo</span>
                     </div>
 
-                    <div class="col-12 mt-3">
+                    <!-- Switch -->
+                    <div class="form-check form-switch mt-3">
+                        <input class="form-check-input" type="checkbox" id="useExistingDevice">
+                        <label class="form-check-label">
+                            Usar dispositivo existente
+                        </label>
+                    </div>
+
+                    <!-- Dispositivo Existente -->
+                    <div id="existingDevice" class="d-none">
+                        <label>Dispositivo</label>
+                        <select name="device_id" class="form-select select-device">
+                            <option value="">Seleccione un dispositivo</option>
+                            @foreach ($devices as $device)
+                            <option value="{{ $device->id }}">
+                                {{ $device->description }} — {{ $device->serial_number }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Dispositivo Nuevo -->
+                    <div class="col-12 mt-3 " id="newDevice">
 
                         <div class="mb-3">
                             <label class="form-label">Tipo</label>
@@ -115,7 +160,7 @@
 
                         <div class="mb-3">
                             <label class="form-label">Fecha</label>
-                            <input type="date" name="assigned_date"  min="2020-01-01" max="2030-12-31" class="form-control" value="{{ now()->toDateString() }}">
+                            <input type="date" name="assigned_date" min="2020-01-01" max="2030-12-31" class="form-control" value="{{ now()->toDateString() }}">
                         </div>
 
                         <div class="mb-3">

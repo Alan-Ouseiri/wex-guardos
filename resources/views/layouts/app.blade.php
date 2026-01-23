@@ -58,11 +58,17 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- JS Generales -->
-    <!-- Buscador de Usuarios -->
+    <!-- Buscador de Usuarios y dispositivos -->
     <script>
         $(document).ready(function() {
             $('.select-teacher').select2({
                 placeholder: 'Seleccione un usuario',
+                allowClear: true,
+                width: '100%'
+            });
+
+            $('.select-device').select2({
+                placeholder: 'Seleccione un dispositivo',
                 allowClear: true,
                 width: '100%'
             });
@@ -76,6 +82,30 @@
                 .forEach(el => new bootstrap.Tooltip(el));
         });
     </script>
+
+    <!-- Switch -->
+    <script>
+        const toggleSection = (checkbox, showId, hideId) => {
+            document.getElementById(showId).classList.toggle('d-none', !checkbox.checked);
+            document.getElementById(hideId).classList.toggle('d-none', checkbox.checked);
+        };
+
+        const teacherSwitch = document.getElementById('useExistingTeacher');
+        const deviceSwitch = document.getElementById('useExistingDevice');
+
+        // Estado inicial (OFF)
+        toggleSection(teacherSwitch, 'existingTeacher', 'newTeacher');
+        toggleSection(deviceSwitch, 'existingDevice', 'newDevice');
+
+        teacherSwitch.addEventListener('change', function() {
+            toggleSection(this, 'existingTeacher', 'newTeacher');
+        });
+
+        deviceSwitch.addEventListener('change', function() {
+            toggleSection(this, 'existingDevice', 'newDevice');
+        });
+    </script>
+
 
 </body>
 

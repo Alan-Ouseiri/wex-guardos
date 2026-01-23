@@ -208,21 +208,28 @@ class ResponsivaController extends Controller
 
     public function createFull()
     {
-        return view('responsivas.create-full');
+        $teachers = Teacher::orderBy('name')->get();
+        $devices = Device::where('status', 'Disponible')->get();
+        return view('responsivas.create-full', compact('teachers', 'devices'));
     }
 
     public function storeFull(Request $request)
     {
-        $request->validate([
-            'teacher.name' => 'required',
-            'teacher.surname' => 'required',
-            'teacher.role' => 'required',
-            'teacher.email' => 'required|email',
+        $usingExistingTeacher = $request->filled('teacher_id');
+        $usingExistingDevice  = $request->filled('device_id');
 
-            'device.type' => 'required',
-            'device.brand' => 'required',
-            'device.model' => 'required',
-            'device.serial_number' => 'required',
+        $request->validate([
+            'teacher_id' => $usingExistingTeacher ? 'required|exists:teachers,id' : 'nullable',
+            'teacher.name' => $usingExistingTeacher ? 'nullable' : 'required',
+            'teacher.surname' => $usingExistingTeacher ? 'nullable' : 'required',
+            'teacher.role' => $usingExistingTeacher ? 'nullable' : 'required',
+            'teacher.email' => $usingExistingTeacher ? 'nullable' : 'required|email',
+
+            'device_id' => $usingExistingDevice ? 'required|exists:devices,id' : 'nullable',
+            'device.type' => $usingExistingDevice ? 'nullable' : 'required',
+            'device.brand' => $usingExistingDevice ? 'nullable' : 'required',
+            'device.model' => $usingExistingDevice ? 'nullable' : 'required',
+            'device.serial_number' => $usingExistingDevice ? 'nullable' : 'required',
 
             'assigned_date' => 'required|date',
             'condition' => 'required',
@@ -230,35 +237,28 @@ class ResponsivaController extends Controller
             'delivered_by' => 'required',
         ]);
 
-        DB::transaction(function () use ($request) {
+        DB::transaction(function () use ($request, $usingExistingTeacher, $usingExistingDevice) {
 
-            // Crear docente
-            $teacher = Teacher::create($request->teacher);
+            $teacher = $usingExistingTeacher
+                ? Teacher::findOrFail($request->teacher_id)
+                : Teacher::create($request->teacher);
 
-            // Crear dispositivo
-            $device = Device::create([
-                ...$request->device,
-                'status' => 'Asignado'
-            ]);
+            $device = $usingExistingDevice
+                ? Device::findOrFail($request->device_id)
+                : Device::create([...$request->device, 'status' => 'Asignado']);
 
-            // Generar número de responsiva
             $date = Carbon::parse($request->assigned_date);
 
             $count = Responsiva::whereYear('assigned_date', $date->year)
                 ->whereMonth('assigned_date', $date->month)
                 ->count();
 
-            $responsivaNumber = $date->format('Ym') . '-' .
-                str_pad($count + 1, 5, '0', STR_PAD_LEFT);
+            $responsivaNumber = $date->format('Ym') . '-' . str_pad($count + 1, 5, '0', STR_PAD_LEFT);
 
-            // Subir imagen
-            $imagePath = null;
-            if ($request->hasFile('delivery_image')) {
-                $imagePath = $request->file('delivery_image')
-                    ->store('responsivas', 'public');
-            }
+            $imagePath = $request->hasFile('delivery_image')
+                ? $request->file('delivery_image')->store('responsivas', 'public')
+                : null;
 
-            // Crear responsiva
             $responsiva = Responsiva::create([
                 'responsiva_number' => $responsivaNumber,
                 'verification_code' => $this->generateVerificationCode(),
@@ -273,10 +273,9 @@ class ResponsivaController extends Controller
                 'status' => 'Activa',
             ]);
 
-            // Historial
             $responsiva->histories()->create([
                 'action' => 'Asignada',
-                'description' => 'Creación de la responsiva y asignacion del dispositivo',
+                'description' => 'Creación de la responsiva y asignación del dispositivo',
                 'action_date' => now(),
             ]);
         });
