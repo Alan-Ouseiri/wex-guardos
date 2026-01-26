@@ -114,18 +114,19 @@
             display: block;
         }
 
-        .menu-card .card-hover {
+        .card-hover {
             border: 2px solid transparent;
             transition:
+                transform 0.25s ease,
                 border-color 0.25s ease,
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
+                box-shadow 0.25s ease;
+            transform-origin: center;
         }
 
         .menu-card:hover .card-hover {
+            transform: scale(1.08);
             border-color: var(--hover-color);
-            transform: translateY(-3px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
         }
     </style>
 
