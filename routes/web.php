@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\ResponsivaController;
 use App\Http\Controllers\TeacherController;
 use App\Models\Device;
+use App\Models\Loan;
 use App\Models\Responsiva;
 use App\Models\Teacher;
 use App\Models\User;
@@ -34,6 +36,11 @@ Route::middleware(['auth'])->group(function () {
         $dispositivosDisponibles = Device::where('status', 'Disponible')->count();
         $dispositivosMantenimiento = Device::where('status', 'Mantenimiento')->count();
 
+        $activeLoans = Loan::with(['teacher', 'device'])
+            ->where('status', 'active')
+            ->orderBy('loan_date')
+            ->get();
+
         return view('dashboard', compact(
             'totalResponsivas',
             'responsivasActivas',
@@ -41,7 +48,8 @@ Route::middleware(['auth'])->group(function () {
             'totalDispositivos',
             'dispositivosUsados',
             'dispositivosDisponibles',
-            'dispositivosMantenimiento'
+            'dispositivosMantenimiento',
+            'activeLoans'
         ));
     })->name('dashboard');
 });
@@ -80,3 +88,11 @@ Route::middleware(['auth'])->group(function () {
 
 //Ruta PDF
 Route::get('/responsivas/{responsiva}/pdf', [ResponsivaController::class, 'pdf'])->name('responsivas.pdf');
+
+//Ruta de PRestamo
+Route::prefix('loans')->name('loans.')->group(function () {
+    Route::get('/', [LoanController::class, 'index'])->name('index');
+    Route::get('/create', [LoanController::class, 'create'])->name('create');
+    Route::post('/', [LoanController::class, 'store'])->name('store');
+    Route::patch('/{loan}/return', [LoanController::class, 'return'])->name('return');
+});

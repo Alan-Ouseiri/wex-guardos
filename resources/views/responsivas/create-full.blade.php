@@ -116,7 +116,7 @@
                             <option value="">Seleccione un dispositivo</option>
                             @foreach ($devices as $device)
                             <option value="{{ $device->id }}">
-                                {{ $device->description }} — {{ $device->serial_number }}
+                                {{ $device->description }} - {{ $device->serial_number }}
                             </option>
                             @endforeach
                         </select>

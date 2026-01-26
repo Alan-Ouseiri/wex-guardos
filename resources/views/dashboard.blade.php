@@ -17,7 +17,7 @@
 <!-- Crear Responsivas -->
 <div class="row g-4">
     <!-- Crear Responsiva -->
-    <div class="col-md-6">
+    <div class="col-md-4">
         <a href="{{ route("responsivas.create") }}" class="text-decoration-none text-black">
             <div class="bg-white shadow rounded-4 h-100 py-5">
                 <!-- Icono -->
@@ -40,7 +40,7 @@
     </div>
 
     <!-- Crear Responsiva Blanca -->
-    <div class="col-md-6">
+    <div class="col-md-4">
         <a href="{{ route("responsivas.create.full") }}" class="text-decoration-none text-black">
             <div class="bg-white shadow rounded-4 h-100 py-5">
                 <!-- Icono -->
@@ -55,7 +55,30 @@
                         Nueva Responsiva en Blanco
                     </p>
                     <p class="text-body-tertiary mb-0" style="font-size: 14px;">
-                        Crear Responsiva en blanco, llena los datos del usuario y del dispositivo
+                        Crear Responsiva, llena los datos del usuario y del dispositivo
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Crear Prestamo -->
+    <div class="col-md-4">
+        <a href="{{ route("loans.index") }}" class="text-decoration-none text-black">
+            <div class="bg-white shadow rounded-4 h-100 py-5">
+                <!-- Icono -->
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <span class="p-3 rounded-circle h4 text-white" style="background: linear-gradient(135deg,rgba(173, 0, 144, 0.5) 0%, rgb(175, 0, 191) 100%);">
+                        <i class="fa-regular fa-clock"></i>
+                    </span>
+                </div>
+                <!-- Texto -->
+                <div class="col-12 text-center">
+                    <p class="h5 fw-bold">
+                        Prestamo de equipos
+                    </p>
+                    <p class="text-body-tertiary mb-0" style="font-size: 14px;">
+                        Crea un prestamo temporal de un equipo
                     </p>
                 </div>
             </div>
