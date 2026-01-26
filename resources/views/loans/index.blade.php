@@ -28,8 +28,8 @@
         <!-- Buscador y Botones -->
         <div class="col-12 row mx-auto justify-content-between align-items-center p-3 rounded-4 bg-white shadow">
             <!-- Buscador -->
-            <form method="GET" class="col-6 mb-0">
-                <input type="text" name="search" class="form-control" placeholder="&#x1F50E;&#xFE0E; Buscar por nombre, email o No. empleado" value="{{ request('search') }}">
+            <form method="GET" action="{{ route('loans.index') }}" class="col-6 mb-0">
+                <input type="text" name="search" class="form-control" placeholder="&#x1F50E;&#xFE0E; Buscar por Usuario o No.serie del Dispositivo" value="{{ request('search') }}">
             </form>
 
             <!-- Botones -->
@@ -139,6 +139,10 @@
                     @endforeach
                 </tbody>
             </table>
+
+            <div class="mt-3">
+                {{ $loans->links() }}
+            </div>
         </div>
 
     </div>

@@ -11,11 +11,32 @@ use Illuminate\Http\Request;
 
 class LoanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $loans = Loan::with(['teacher', 'device'])
-            ->orderBy('loan_date', 'desc')
-            ->get();
+        $query = Loan::with(['teacher', 'device']);
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+
+                // Buscar por docente
+                $q->whereHas('teacher', function ($teacher) use ($search) {
+                    $teacher->where('name', 'like', "%{$search}%")
+                        ->orWhere('surname', 'like', "%{$search}%");
+                })
+
+                    // Buscar por dispositivo
+                    ->orWhereHas('device', function ($device) use ($search) {
+                        $device->where('serial_number', 'like', "%{$search}%");
+                    });
+            });
+        }
+
+        $loans = $query
+            ->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->withQueryString();
 
         return view('loans.index', compact('loans'));
     }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Panel de Control')
+@section('title', 'Panel de Inicio')
 
 @section('content')
 
@@ -225,14 +225,14 @@
                 </div>
             </div>
 
-            <!-- Dispositivos en mantenimiento -->
+            <!-- Prestamos Activos -->
             <div class="col-md-4">
-                <div class="rounded-4 h-100 py-4 text-center" style="background-color: #EFF6FF;">
-                    <p class="h4 fw-bold" style="color: #155DFC;">
-                        {{ $dispositivosMantenimiento }}
+                <div class="rounded-4 h-100 py-4 text-center" style="background-color: #fdefff;">
+                    <p class="h4 fw-bold" style="color: #ce15fc;">
+                        {{ $totalPrestamos }}
                     </p>
                     <p class="mb-0" style="font-size: 14px;">
-                        Dispositivos en mantenimiento
+                        Total de Prestamos Activos
                     </p>
                 </div>
             </div>

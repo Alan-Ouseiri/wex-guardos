@@ -41,11 +41,14 @@ Route::middleware(['auth'])->group(function () {
             ->orderBy('loan_date')
             ->get();
 
+        $totalPrestamos = Loan::where('status', 'active')->count();
+
         return view('dashboard', compact(
             'totalResponsivas',
             'responsivasActivas',
             'totalUsuarios',
             'totalDispositivos',
+            'totalPrestamos',
             'dispositivosUsados',
             'dispositivosDisponibles',
             'dispositivosMantenimiento',

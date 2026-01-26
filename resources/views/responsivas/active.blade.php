@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Responsivas')
+@section('title', 'Responsivas Activas')
 
 @section('content')
 
