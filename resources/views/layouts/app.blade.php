@@ -108,6 +108,26 @@
         });
     </script>
 
+    <!-- Estilos -->
+    <style>
+        .menu-card {
+            display: block;
+        }
+
+        .menu-card .card-hover {
+            border: 2px solid transparent;
+            transition:
+                border-color 0.25s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .menu-card:hover .card-hover {
+            border-color: var(--hover-color);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
+    </style>
 
 </body>
 

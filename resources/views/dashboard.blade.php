@@ -4,6 +4,8 @@
 
 @section('content')
 
+
+
 <!-- Mensajes de Exito -->
 @if (session('success'))
 <div class="alert alert-success">
@@ -18,8 +20,8 @@
 <div class="row g-4">
     <!-- Crear Responsiva -->
     <div class="col-md-4">
-        <a href="{{ route("responsivas.create") }}" class="text-decoration-none text-black">
-            <div class="bg-white shadow rounded-4 h-100 py-5">
+        <a href="{{ route("responsivas.create") }}" class="text-decoration-none text-black menu-card" style="--hover-color:#4630DD;">
+            <div class="bg-white shadow rounded-4 h-100 py-5 card-hover">
                 <!-- Icono -->
                 <div class="col-12 d-flex justify-content-center align-items-center">
                     <span class="p-3 rounded-circle h4 text-white" style="background: linear-gradient(135deg,rgba(79, 57, 246, 0.5) 0%, rgba(68, 45, 216, 1) 100%);">
@@ -41,8 +43,8 @@
 
     <!-- Crear Responsiva Blanca -->
     <div class="col-md-4">
-        <a href="{{ route("responsivas.create.full") }}" class="text-decoration-none text-black">
-            <div class="bg-white shadow rounded-4 h-100 py-5">
+        <a href="{{ route("responsivas.create.full") }}" class="text-decoration-none text-black menu-card" style="--hover-color:#35C86E;">
+            <div class="bg-white shadow rounded-4 h-100 py-5 card-hover">
                 <!-- Icono -->
                 <div class="col-12 d-flex justify-content-center align-items-center">
                     <span class="p-3 rounded-circle h4 text-white" style="background: linear-gradient(135deg,rgba(0, 173, 65, 0.5) 0%, rgba(0, 191, 75, 1) 100%);">
@@ -64,8 +66,8 @@
 
     <!-- Crear Prestamo -->
     <div class="col-md-4">
-        <a href="{{ route("loans.index") }}" class="text-decoration-none text-black">
-            <div class="bg-white shadow rounded-4 h-100 py-5">
+        <a href="{{ route("loans.index") }}" class="text-decoration-none text-black menu-card" style="--hover-color:#BF36C2;">
+            <div class="bg-white shadow rounded-4 h-100 py-5 card-hover">
                 <!-- Icono -->
                 <div class="col-12 d-flex justify-content-center align-items-center">
                     <span class="p-3 rounded-circle h4 text-white" style="background: linear-gradient(135deg,rgba(173, 0, 144, 0.5) 0%, rgb(175, 0, 191) 100%);">
@@ -92,8 +94,8 @@
 <div class="row g-4">
     <!-- Responsivas Activas -->
     <div class="col-md-3">
-        <a href="{{ route('responsivas.active') }}" class="text-decoration-none text-black">
-            <div class="bg-white shadow rounded-4 h-100 p-4">
+        <a href="{{ route('responsivas.active') }}" class="text-decoration-none text-black menu-card" style="--hover-color:#336BF0;">
+            <div class="bg-white shadow rounded-4 h-100 p-4 card-hover">
                 <!-- Icono -->
                 <div class="col-12 d-flex justify-content-between align-items-center">
                     <span class="p-2 rounded-3 h4 text-white" style="background: linear-gradient(135deg,rgba(37, 116, 254, 0.7), rgba(20, 76, 232, 1));">
@@ -118,8 +120,8 @@
 
     <!-- Todas las Responsivas -->
     <div class="col-md-3">
-        <a href="{{ route("responsivas.index") }}" class="text-decoration-none text-black">
-            <div class="bg-white shadow rounded-4 h-100 p-4">
+        <a href="{{ route("responsivas.index") }}" class="text-decoration-none text-black menu-card" style="--hover-color:#A340EF;">
+            <div class="bg-white shadow rounded-4 h-100 p-4 card-hover">
                 <!-- Icono -->
                 <div class="col-12 d-flex justify-content-between align-items-center">
                     <span class="p-2 rounded-3 h4 text-white" style="background: linear-gradient(135deg,rgba(166, 63, 255, 0.7), rgba(136, 13, 224, 1));">
@@ -144,8 +146,8 @@
 
     <!-- Gestion de Maestros -->
     <div class="col-md-3">
-        <a href="{{ route("teachers.index") }}" class="text-decoration-none text-black">
-            <div class="bg-white shadow rounded-4 h-100 p-4">
+        <a href="{{ route("teachers.index") }}" class="text-decoration-none text-black menu-card" style="--hover-color:#DF612A;">
+            <div class="bg-white shadow rounded-4 h-100 p-4 card-hover">
                 <!-- Icono -->
                 <div class="col-12 d-flex justify-content-between align-items-center">
                     <span class="p-2 rounded-3 h4 text-white" style="background: linear-gradient(135deg,rgba(250, 96, 0, 0.5), rgba(209, 59, 0, 1));">
@@ -170,8 +172,8 @@
 
     <!-- Gestion de Dispositivos -->
     <div class="col-md-3">
-        <a href="{{ route("devices.index") }}" class="text-decoration-none text-black">
-            <div class="bg-white shadow rounded-4 h-100 p-4">
+        <a href="{{ route("devices.index") }}" class="text-decoration-none text-black menu-card" style="--hover-color:#32A399;">
+            <div class="bg-white shadow rounded-4 h-100 p-4 card-hover">
                 <!-- Icono -->
                 <div class="col-12 d-flex justify-content-between align-items-center">
                     <span class="p-2 rounded-3 h4 text-white" style="background: linear-gradient(135deg,rgba(0, 180, 161, 0.5), rgba(0, 127, 117, 1));">
@@ -239,4 +241,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection
