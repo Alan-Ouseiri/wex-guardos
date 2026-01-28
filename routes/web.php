@@ -87,12 +87,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/responsivas/{responsiva}/history', [ResponsivaController::class, 'history'])->name('responsivas.history');
     Route::get('/responsivas/create-full', [ResponsivaController::class, 'createFull'])->name('responsivas.create.full');
     Route::post('/responsivas/store-full', [ResponsivaController::class, 'storeFull'])->name('responsivas.store.full');
+    Route::get('/responsivas/{responsiva}/edit', [ResponsivaController::class, 'edit'])->name('responsivas.edit');
+    Route::post('/responsivas/{responsiva}', [ResponsivaController::class, 'update'])->name('responsivas.update');
 });
 
 //Ruta PDF
 Route::get('/responsivas/{responsiva}/pdf', [ResponsivaController::class, 'pdf'])->name('responsivas.pdf');
 
-//Ruta de PRestamo
+//Ruta de Prestamo
 Route::prefix('loans')->name('loans.')->group(function () {
     Route::get('/', [LoanController::class, 'index'])->name('index');
     Route::get('/create', [LoanController::class, 'create'])->name('create');

@@ -59,6 +59,8 @@ class ResponsivaController extends Controller
     public function store(Request $request)
     {
         $date = Carbon::parse($request->date);
+        date_default_timezone_set('America/Mexico_City');
+
 
         $year = $date->year;
         $month = $date->month;
@@ -109,7 +111,7 @@ class ResponsivaController extends Controller
             'responsiva_id' => $responsiva->id,
             'action' => 'Asignada',
             'description' => 'Creación de la responsiva y asignacion del dispositivo',
-            'action_date' => Carbon::now(),
+            'action_date' => date('Y-m-d H:i:s'),
         ]);
 
         return redirect()
@@ -288,5 +290,47 @@ class ResponsivaController extends Controller
     private function generateVerificationCode(): string
     {
         return strtoupper(Str::random(8));
+    }
+
+    public function edit(Responsiva $responsiva)
+    {
+        return view('responsivas.edit', [
+            'responsiva' => $responsiva,
+            'teachers' => Teacher::all(),
+            'devices' => Device::all(),
+        ]);
+    }
+
+    public function update(Request $request, Responsiva $responsiva)
+    {
+
+        date_default_timezone_set('America/Mexico_City');
+
+        $request->validate([
+            'teacher_id' => 'required|exists:teachers,id',
+            'device_id' => 'required|exists:devices,id',
+            'description' => 'nullable|string|max:255',
+        ]);
+
+        $responsiva->update([
+            'teacher_id' => $request->teacher_id,
+            'device_id' => $request->device_id,
+            'assigned_date' => $request->assigned_date,
+            'description' => $request->description,
+            'condition' => $request->condition,
+            'location' => $request->location,
+            'delivered_by' => $request->delivered_by,
+        ]);
+
+        ResponsivaHistory::create([
+            'responsiva_id' => $responsiva->id,
+            'action' => 'Edicion',
+            'description' => 'La responsiva se edito',
+            'action_date' => date('Y-m-d H:i:s'),
+        ]);
+
+        return redirect()
+            ->route('responsivas.index')
+            ->with('success', 'Responsiva actualizada correctamente');
     }
 }
