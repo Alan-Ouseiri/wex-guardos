@@ -73,21 +73,23 @@
                                 <ul class="dropdown-menu text-center">
                                     <li class="d-flex flex-wrap p-2 justify-content-around">
                                         <!-- Imprimir -->
-                                        <a href="{{ route('responsivas.pdf', $r) }}" target="_blank" class="text-decoration-none"" data-bs-toggle="tooltip" data-bs-placement="top" title="Imprimir la responsiva">
+                                        <a href="{{ route('responsivas.pdf', $r) }}" target="_blank" class="text-decoration-none"" data-bs-toggle=" tooltip" data-bs-placement="top" title="Imprimir la responsiva">
                                             <i class="fa-solid fa-print"></i>
                                         </a>
                                         <!-- Edicion -->
-                                        <a href="{{ route('responsivas.edit', $r) }}" class="text-warning"" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar la responsiva">
+                                        @if ($r->status === 'Activa')
+                                        <a href="{{ route('responsivas.edit', $r) }}" class="text-warning"" data-bs-toggle=" tooltip" data-bs-placement="top" title="Editar la responsiva">
                                             <i class="fa-solid fa-pen"></i>
                                         </a>
+                                        @endif
                                         <!-- Ver -->
-                                        <a href="{{ route('responsivas.edit', $r) }}" class="text-success"" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver la responsiva">
+                                        <a href="{{ route('responsivas.show', $r) }}" class="text-success"" data-bs-toggle=" tooltip" data-bs-placement="top" title="Ver la responsiva">
                                             <i class="fa-regular fa-eye"></i>
                                         </a>
                                     </li>
                                     <li class="d-flex flex-wrap p-2 justify-content-around">
                                         <!-- Historial -->
-                                        <a href="{{ route('responsivas.history', $r) }}" class="text-decoration-none"" data-bs-toggle="tooltip" data-bs-placement="top" title="Ver historial de la responsiva">
+                                        <a href="{{ route('responsivas.history', $r) }}" class="text-decoration-none"" data-bs-toggle=" tooltip" data-bs-placement="top" title="Ver historial de la responsiva">
                                             <i class="fa-solid fa-clock-rotate-left" style="color: #A52EFB;"></i>
                                         </a>
                                         <!-- Devolver -->
@@ -123,7 +125,7 @@
                                         $gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to={$to}&su={$subject}&body={$body}";
                                         @endphp
 
-                                        <a href="{{ $gmailUrl }}" target="_blank" class="text-decoration-none"" data-bs-toggle="tooltip" data-bs-placement="top" title="Enviar correo con Gmail">
+                                        <a href="{{ $gmailUrl }}" target="_blank" class="text-decoration-none"" data-bs-toggle=" tooltip" data-bs-placement="top" title="Enviar correo con Gmail">
                                             <i class="fa-solid fa-envelope" style="color: #00A63E;"></i>
                                         </a>
                                         @endif

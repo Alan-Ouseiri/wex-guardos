@@ -195,7 +195,7 @@ class ResponsivaController extends Controller
         });
 
         return redirect()
-            ->route('responsivas.active')
+            ->route('responsivas.index')
             ->with('success', 'Dispositivo devuelto correctamente');
     }
 
@@ -332,5 +332,16 @@ class ResponsivaController extends Controller
         return redirect()
             ->route('responsivas.index')
             ->with('success', 'Responsiva actualizada correctamente');
+    }
+
+    public function show(Responsiva $responsiva)
+    {
+        $responsiva->load([
+            'teacher',
+            'device',
+            'histories.user'
+        ]);
+
+        return view('responsivas.show', compact('responsiva'));
     }
 }

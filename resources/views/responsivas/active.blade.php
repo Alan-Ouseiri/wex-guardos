@@ -51,8 +51,8 @@
                         <th class="col-lg-2 col-3">Folio</th>
                         <th class="col-lg-3 col-4">Usuario</th>
                         <th class="col-3">Dispositivo</th>
-                        <th class="col-lg-2 d-none d-lg-table-cell">No. Serie</th>
-                        <th class="col-2 text-center">Acciones</th>
+                        <th class="col-lg-3 d-none d-lg-table-cell">No. Serie</th>
+                        <th class="col-1 text-center">Acciones</th>
                     </tr>
                 </thead>
                 <!-- Cuerpo -->
@@ -62,52 +62,72 @@
                         <td class="col-lg-2 col-3 fw-bold" style="color: #462FDD;">{{ $r->responsiva_number }}</td>
                         <td class="col-lg-3 col-4">{{ $r->teacher->full_name }}</td>
                         <td class="col-3">{{ $r->device->description }}</td>
-                        <td class="col-lg-2 d-none d-lg-table-cell">{{ $r->device->serial_number }}</td>
-                        <td class="col-2 d-flex flex-wrap justify-content-around text-center align-items-center">
+                        <td class="col-lg-3 d-none d-lg-table-cell">{{ $r->device->serial_number }}</td>
+                        <td class="col-1 d-flex flex-wrap justify-content-around text-center align-items-center">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa-solid fa-gear"></i>
+                                </button>
+                                <ul class="dropdown-menu text-center">
+                                    <li class="d-flex flex-wrap p-2 justify-content-around">
+                                        <!-- Imprimir -->
+                                        <a href="{{ route('responsivas.pdf', $r) }}" target="_blank" class="text-decoration-none"" data-bs-toggle=" tooltip" data-bs-placement="top" title="Imprimir la responsiva">
+                                            <i class="fa-solid fa-print"></i>
+                                        </a>
+                                        <!-- Edicion -->
+                                        <a href="{{ route('responsivas.edit', $r) }}" class="text-warning"" data-bs-toggle=" tooltip" data-bs-placement="top" title="Editar la responsiva">
+                                            <i class="fa-solid fa-pen"></i>
+                                        </a>
+                                        <!-- Ver -->
+                                        <a href="{{ route('responsivas.show', $r) }}" class="text-success"" data-bs-toggle=" tooltip" data-bs-placement="top" title="Ver la responsiva">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </a>
+                                    </li>
+                                    <li class="d-flex flex-wrap p-2 justify-content-around">
+                                        <!-- Historial -->
+                                        <a href="{{ route('responsivas.history', $r) }}" class="text-decoration-none"" data-bs-toggle=" tooltip" data-bs-placement="top" title="Ver historial de la responsiva">
+                                            <i class="fa-solid fa-clock-rotate-left" style="color: #A52EFB;"></i>
+                                        </a>
+                                        <!-- Devolver -->
+                                        @if ($r->status === 'Activa')
+                                        <button style="background: none; border: none;" data-bs-toggle="modal" data-bs-target="#returnModal{{ $r->id }}">
+                                            <i class="fa-solid fa-arrow-rotate-left" style="color: #F54900;" data-bs-toggle="tooltip" data-bs-placement="top" title="Devolver dispositivo"></i>
+                                        </button>
+                                        @endif
+                                        <!-- Correo -->
+                                        @if ($r->status === 'Activa' && $r->teacher->email)
+                                        @php
+                                        $to = rawurlencode($r->teacher->email);
 
-                            <!-- Imprimir -->
-                            <a href="{{ route('responsivas.pdf', $r) }}" target="_blank" class="text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Imprimir la responsiva">
-                                <i class="fa-solid fa-print"></i>
-                            </a>
+                                        $subject = rawurlencode(
+                                        'Responsiva de ' . $r->device->description
+                                        );
 
-                            <!-- Devolver dispositivo -->
-                            @if ($r->status === 'Activa')
-                            <button style="background: none; border: none;" data-bs-toggle="modal" data-bs-target="#returnModal{{ $r->id }}">
-                                <i class="fa-solid fa-arrow-rotate-left" style="color: #F54900;" data-bs-toggle="tooltip" data-bs-placement="top" title="Devolver dispositivo"></i>
-                            </button>
-                            @endif
+                                        $body = rawurlencode(
+                                        "Estimado(a) {$r->teacher->name} {$r->teacher->surname},\n\n" .
+                                        "Por medio del presente se le informa la asignación del siguiente dispositivo, el cual queda bajo su resguardo:\n\n" .
+                                        "Dispositivo: {$r->device->description}\n" .
+                                        "Número de serie: {$r->device->serial_number}\n" .
+                                        "Folio de responsiva: {$r->responsiva_number}\n" .
+                                        "Código de verificación: {$r->verification_code}\n\n" .
+                                        "Es indispensable que conserve este correo y, especialmente, el código de verificación, ya que le será solicitado obligatoriamente al momento de la devolución del dispositivo.\n\n" .
+                                        "En caso de tener cualquier duda, aclaración o requerir apoyo adicional, puede acudir directamente al área de Cultura Digital o comunicarse al correo electrónico info.culturadigital@wexford.edu.mx.\n\n" .
+                                        "Agradecemos su atención y colaboración.\n" .
+                                        "Atentamente,\n" .
+                                        "Cultura Digital\n".
+                                        "Colegio Wexford"
+                                        );
 
-                            <!-- Correo -->
-                            @if ($r->status === 'Activa' && $r->teacher->email)
-                            @php
-                            $to = rawurlencode($r->teacher->email);
+                                        $gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to={$to}&su={$subject}&body={$body}";
+                                        @endphp
 
-                            $subject = rawurlencode(
-                            'Responsiva de ' . $r->device->description
-                            );
-
-                            $body = rawurlencode(
-                            "Estimado(a) {$r->teacher->name} {$r->teacher->surname},\n\n" .
-                            "Por medio del presente se le informa la asignación del siguiente dispositivo, el cual queda bajo su resguardo:\n\n" .
-                            "Dispositivo: {$r->device->description}\n" .
-                            "Número de serie: {$r->device->serial_number}\n" .
-                            "Folio de responsiva: {$r->responsiva_number}\n" .
-                            "Código de verificación: {$r->verification_code}\n\n" .
-                            "Es indispensable que conserve este correo y, especialmente, el código de verificación, ya que le será solicitado obligatoriamente al momento de la devolución del dispositivo.\n\n" .
-                            "En caso de tener cualquier duda, aclaración o requerir apoyo adicional, puede acudir directamente al área de Cultura Digital o comunicarse al correo electrónico info.culturadigital@wexford.edu.mx.\n\n" .
-                            "Agradecemos su atención y colaboración.\n" .
-                            "Atentamente,\n" .
-                            "Cultura Digital\n".
-                            "Colegio Wexford"
-                            );
-
-                            $gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to={$to}&su={$subject}&body={$body}";
-                            @endphp
-
-                            <a href="{{ $gmailUrl }}" target="_blank" class="text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Enviar correo con Gmail">
-                                <i class="fa-solid fa-envelope" style="color: #00A63E;"></i>
-                            </a>
-                            @endif
+                                        <a href="{{ $gmailUrl }}" target="_blank" class="text-decoration-none"" data-bs-toggle=" tooltip" data-bs-placement="top" title="Enviar correo con Gmail">
+                                            <i class="fa-solid fa-envelope" style="color: #00A63E;"></i>
+                                        </a>
+                                        @endif
+                                    </li>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
 

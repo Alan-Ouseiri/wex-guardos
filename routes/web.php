@@ -89,6 +89,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/responsivas/store-full', [ResponsivaController::class, 'storeFull'])->name('responsivas.store.full');
     Route::get('/responsivas/{responsiva}/edit', [ResponsivaController::class, 'edit'])->name('responsivas.edit');
     Route::post('/responsivas/{responsiva}', [ResponsivaController::class, 'update'])->name('responsivas.update');
+    Route::get('/responsivas/{responsiva}', [ResponsivaController::class, 'show'])->name('responsivas.show');
 });
 
 //Ruta PDF

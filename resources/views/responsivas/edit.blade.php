@@ -9,7 +9,7 @@
 
         <!-- Titulo -->
         <div class="d-flex align-items-center mb-3">
-            <a href="{{ route("dashboard") }}" class="text-decoration-none text-black">
+            <a href="{{ route("responsivas.index") }}" class="text-decoration-none text-black">
                 <i class="h5 fa-solid fa-arrow-left mb-0"></i>
             </a>
             <div class="flex-fill ms-2">
