@@ -4,8 +4,8 @@
 
 @section('content')
 
-<div class="row">
-    <div class="col-12">
+<div class='d-flex justify-content-center mt-5 pb-5'>
+    <div class="col-xl-8 col-11">
 
         <!-- Titulo -->
         <div class="d-flex align-items-center mb-3">
@@ -21,7 +21,7 @@
         <!-- Buscador y Botones -->
         <div class="col-12 row mx-auto justify-content-between align-items-center p-3 rounded-4 bg-white shadow">
             <!-- Buscador -->
-            <form method="GET" class="col-6 mb-0">
+            <form method="GET" class="col-lg-6 col-12 mb-lg-0 mb-3">
                 <input type="text" name="search" class="form-control" placeholder="&#x1F50E;&#xFE0E; Buscar por folio, usuario o numero de serie" value="{{ request('search') }}">
             </form>
 
@@ -48,10 +48,10 @@
                 <!-- Cabcera -->
                 <thead>
                     <tr class="col-12 row mx-auto text-white py-3 rounded-top-2" style="background: linear-gradient(135deg,rgba(37, 116, 254, 0.8), rgba(20, 76, 232, 1));">
-                        <th class="col-2">Folio</th>
-                        <th class="col-3">Usuario</th>
+                        <th class="col-lg-2 col-3">Folio</th>
+                        <th class="col-lg-3 col-4">Usuario</th>
                         <th class="col-3">Dispositivo</th>
-                        <th class="col-2">No. Serie</th>
+                        <th class="col-lg-2 d-none d-lg-table-cell">No. Serie</th>
                         <th class="col-2 text-center">Acciones</th>
                     </tr>
                 </thead>
@@ -59,10 +59,10 @@
                 <tbody>
                     @foreach ($responsivas as $r)
                     <tr class="col-12 row mx-auto border-bottom py-3">
-                        <td class="col-2 fw-bold" style="color: #462FDD;">{{ $r->responsiva_number }}</td>
-                        <td class="col-3">{{ $r->teacher->full_name }}</td>
+                        <td class="col-lg-2 col-3 fw-bold" style="color: #462FDD;">{{ $r->responsiva_number }}</td>
+                        <td class="col-lg-3 col-4">{{ $r->teacher->full_name }}</td>
                         <td class="col-3">{{ $r->device->description }}</td>
-                        <td class="col-2">{{ $r->device->serial_number }}</td>
+                        <td class="col-lg-2 d-none d-lg-table-cell">{{ $r->device->serial_number }}</td>
                         <td class="col-2 d-flex flex-wrap justify-content-around text-center align-items-center">
 
                             <!-- Imprimir -->
@@ -151,4 +151,5 @@
 
     </div>
 </div>
+
 @endsection

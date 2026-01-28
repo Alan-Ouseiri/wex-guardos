@@ -3,8 +3,9 @@
 @section('title', 'Editar Usuario')
 
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-md-6">
+
+<div class='d-flex justify-content-center mt-5 pb-5'>
+    <div class="col-xl-4 col-lg-6 col-md-8 col-11">
 
         <!-- Titulo -->
         <div class="d-flex align-items-center mb-3">
@@ -66,7 +67,7 @@
                 <div class="row g-4">
                     <div class="col-6">
                         <a href="{{ route('teachers.index') }}" class="text-decoration-none text-black">
-                            <div class="col-12 border border-2 border-secondary rounded-3 py-2 h-100 w-100 text-center">
+                            <div class="col-12 border border-2 border-secondary rounded-3 py-2 h-100 w-100 d-flex justify-content-center align-items-center">
                                 Cancelar
                             </div>
                         </a>

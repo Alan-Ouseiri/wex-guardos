@@ -4,8 +4,8 @@
 
 @section('content')
 
-<div class="row">
-    <div class="col-12">
+<div class='d-flex justify-content-center mt-5 pb-5'>
+    <div class="col-xl-8 col-lg-10 col-11">
 
         <!-- Titulo -->
         <div class="d-flex align-items-center mb-3">
@@ -185,7 +185,7 @@
                 <div class="row border-top border-1  g-2">
                     <div class="col-6">
                         <a href="{{ route('dashboard') }}" class="text-decoration-none text-black">
-                            <div class="col-12 border border-2 border-secondary rounded-3 py-2 h-100 w-100 text-center">
+                            <div class="col-12 border border-2 border-secondary rounded-3 py-2 h-100 w-100 d-flex justify-content-center align-items-center">
                                 Cancelar
                             </div>
                         </a>
@@ -203,5 +203,6 @@
 
     </div>
 </div>
+
 
 @endsection

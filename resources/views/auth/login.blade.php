@@ -4,9 +4,8 @@
 
 @section('content')
 
-<div class="row justify-content-center">
-
-    <div class="col-md-4">
+<div class='d-flex justify-content-center align-items-center h-100'>
+    <div class="col-xl-3 col-lg-5 col-md-8 col-11">
         <div class="col-12 bg-white shadow rounded-4">
 
             <!-- Logo -->

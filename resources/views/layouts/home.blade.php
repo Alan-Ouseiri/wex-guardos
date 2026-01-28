@@ -11,11 +11,11 @@
 
 </head>
 
-<body style="background-color: #EAF1FF;">
+<body class="d-flex align-items-center" style="background-color: #EAF1FF; height: 100dvh;">
 
-    <div class="container mt-4">
+    <main class="col-12 flex-wrap h-100">
         @yield('content')
-    </div>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 

@@ -18,36 +18,35 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
 
-<body style="background-color: #EAF1FF;">
-
-    <!-- Navegacion -->
-    <nav class="navbar navbar-white bg-white shadow-sm px-3">
-        <div class="col-8 d-flex flex-wrap align-items-center justify-content-center">
-            <!-- Icono -->
-            <a href="{{ route('dashboard') }}" class="text-white h3 mb-0 p-2 rounded-3" style="background: linear-gradient(139deg,#3341e8 0%, #9412f8 50%, #3341e8 100%);">
-                <i class="fa-regular fa-file-lines"></i>
-            </a>
-
-            <!-- Titulo -->
-            <div class="flex-fill ms-2">
-                <p class="h4 mb-0"><b>Sistema de Responsivas</b></p>
-                <span style="font-size: 12px;">Gestión de dispositivos y documentos</span>
-            </div>
-        </div>
-
-        @auth
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-            <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
-        </form>
-        @endauth
-    </nav>
+<body class="d-flex align-items-center" style="background-color: #EAF1FF; height: 100dvh;">
 
     <!-- Contenido -->
-    <div class="container mt-4">
-        @yield('content')
-    </div>
+    <main class="col-12 flex-wrap h-100">
+        <!-- Navegacion -->
+        <nav class="col-12 navbar navbar-white bg-white shadow-sm px-3">
+            <div class="col-auto d-flex flex-wrap align-items-center justify-content-center">
+                <!-- Icono -->
+                <a href="{{ route('dashboard') }}" class="text-white h3 mb-0 p-2 rounded-3" style="background: linear-gradient(139deg,#3341e8 0%, #9412f8 50%, #3341e8 100%);">
+                    <i class="fa-regular fa-file-lines"></i>
+                </a>
 
+                <!-- Titulo -->
+                <div class="flex-fill ms-2">
+                    <p class="h4 mb-0"><b>Sistema de Responsivas</b></p>
+                    <span style="font-size: 12px;">Gestión de dispositivos y documentos</span>
+                </div>
+            </div>
+
+            @auth
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+            </form>
+            @endauth
+        </nav>
+        <!-- Contenido -->
+        @yield('content')
+    </main>
 
     <!-- CDNs -->
     <!-- Bootstrap -->

@@ -3,8 +3,9 @@
 @section('title', 'Usuarios')
 
 @section('content')
-<div class="row">
-    <div class="col-12">
+
+<div class='d-flex justify-content-center mt-5 pb-5'>
+    <div class="col-xl-8 col-11">
 
         <!-- Titulo -->
         <div class="d-flex align-items-center mb-3">
@@ -47,21 +48,21 @@
             <table class="col-12 w-100 p-3 rounded-2 bg-white shadow">
                 <thead>
                     <tr class="col-12 row mx-auto text-white py-3 rounded-top-2" style="background: linear-gradient(135deg,rgba(250, 96, 0, 0.8), rgba(209, 59, 0, 1));">
-                        <th class="col-3">Nombre</th>
-                        <th class="col-2">No. Empleado</th>
-                        <th class="col-3">Email</th>
-                        <th class="col-3">Rol</th>
-                        <th class="col-1">Acciones</th>
+                        <th class="col-xl-3 col-5">Nombre</th>
+                        <th class="col-xl-2 d-none d-xl-table-cell">No. Empleado</th>
+                        <th class="col-xl-3 col-5">Email</th>
+                        <th class="col-3 d-none d-xl-table-cell">Rol</th>
+                        <th class="col-xl-1 col-2 text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($teachers as $teacher)
                     <tr class="col-12 row mx-auto border-bottom py-3">
-                        <td class="col-3">{{ $teacher->full_name }}</td>
-                        <td class="col-2">{{ $teacher->employee_number }}</td>
-                        <td class="col-3">{{ $teacher->email ?? '—' }}</td>
-                        <td class="col-3">{{ $teacher->role }}</td>
-                        <td class="col-1 d-flex flex-wrap justify-content-around text-center align-items-center">
+                        <td class="col-xl-3 col-5">{{ $teacher->full_name }}</td>
+                        <td class="col-xl-2 d-none d-xl-table-cell">{{ $teacher->employee_number }}</td>
+                        <td class="col-xl-3 col-5">{{ $teacher->email ?? '—' }}</td>
+                        <td class="col-3 d-none d-xl-table-cell">{{ $teacher->role }}</td>
+                        <td class="col-xl-1 col-2 d-flex flex-wrap justify-content-between text-center align-items-center">
                             <a href="{{ route('teachers.edit', $teacher) }}">
                                 <i class="fa-solid fa-pencil"></i>
                             </a>

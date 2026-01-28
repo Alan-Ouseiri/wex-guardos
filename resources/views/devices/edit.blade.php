@@ -3,8 +3,9 @@
 @section('title', 'Editar Dispositivo')
 
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-md-6">
+
+<div class='d-flex justify-content-center mt-5 pb-5'>
+    <div class="col-xl-4 col-lg-6 col-md-8 col-11">
 
         <!-- Titulo -->
         <div class="d-flex align-items-center mb-3">

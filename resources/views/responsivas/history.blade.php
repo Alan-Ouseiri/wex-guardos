@@ -4,8 +4,9 @@
 
 @section('content')
 
-<div class="row">
-    <div class="col-12">
+<div class='d-flex justify-content-center mt-5 pb-5'>
+    <div class="col-xl-8 col-11">
+        
         <!-- Titulo -->
         <div class="d-flex align-items-center mb-3">
             <a href="{{ route("responsivas.index") }}" class="text-decoration-none text-black">
@@ -27,7 +28,7 @@
                         <th class="col-5">Descripción</th>
                     </tr>
                 </thead>
-                <tbody >
+                <tbody>
                     @foreach ($histories as $h)
                     <tr class="col-12 row mx-auto border-bottom py-3">
                         <td class="col-3">{{ $h->action_date }}</td>
