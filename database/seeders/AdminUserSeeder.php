@@ -15,7 +15,7 @@ class AdminUserSeeder extends Seeder
     public function run(): void
     {
         User::firstOrCreate(
-            ['email' => 'admin@escuela.test'],
+            ['email' => 'cultura.digital@colegiowexford.edu.mx'],
             [
                 'name' => 'Administrador',
                 'password' => Hash::make('admin123'),
