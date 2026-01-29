@@ -6,7 +6,7 @@
 
 <div class='d-flex justify-content-center mt-5 pb-5'>
     <div class="col-xl-8 col-11">
-        
+
         <!-- Titulo -->
         <div class="d-flex align-items-center mb-3">
             <a href="{{ route("responsivas.index") }}" class="text-decoration-none text-black">
@@ -38,6 +38,10 @@
                     @endforeach
                 </tbody>
             </table>
+            <!-- Paginacion -->
+            <div class="col-12 mt-4 d-flex justify-content-center">
+                {{ $histories->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </div>
 </div>

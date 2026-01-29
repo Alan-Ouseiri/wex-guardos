@@ -140,8 +140,8 @@
                 </tbody>
             </table>
 
-            <div class="mt-3">
-                {{ $loans->links() }}
+            <div class="col-12 mt-4 d-flex justify-content-center">
+                {{ $loans->links('pagination::bootstrap-5') }}
             </div>
         </div>
 

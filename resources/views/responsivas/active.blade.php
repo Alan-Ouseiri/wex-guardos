@@ -167,8 +167,11 @@
                     @endforeach
                 </tbody>
             </table>
+            <!-- Paginacion -->
+            <div class="col-12 mt-4 d-flex justify-content-center">
+                {{ $responsivas->links('pagination::bootstrap-5') }}
+            </div>
         </div>
-
     </div>
 </div>
 

@@ -131,7 +131,7 @@
                                         @endif
                                         <!-- Eliminar -->
                                         @if ($r->status === 'Regresado')
-                                        <button  style="background: none; border: none;" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $r->id }}">
+                                        <button style="background: none; border: none;" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $r->id }}">
                                             <i class="fa-regular fa-trash-can text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar Responsiva"></i>
                                         </button>
                                         @endif
@@ -214,6 +214,10 @@
                     @endforeach
                 </tbody>
             </table>
+            <!-- Paginacion -->
+            <div class="col-12 mt-4 d-flex justify-content-center">
+                {{ $responsivas->links('pagination::bootstrap-5') }}
+            </div>
         </div>
     </div>
 </div>

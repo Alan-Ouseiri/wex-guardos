@@ -68,8 +68,8 @@
                 </tbody>
             </table>
 
-            <div class="mt-3">
-                {{ $responsivas->links() }}
+            <div class="col-12 mt-4 d-flex justify-content-center">
+                {{ $responsivas->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>
