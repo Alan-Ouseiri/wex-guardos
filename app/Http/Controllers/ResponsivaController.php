@@ -65,16 +65,21 @@ class ResponsivaController extends Controller
         $year = $date->year;
         $month = $date->month;
 
-        // Contar responsivas del mismo año y mes
-        $count = Responsiva::whereYear('created_at', $year)
+        $lastResponsiva = Responsiva::withTrashed()
+            ->whereYear('created_at', $year)
             ->whereMonth('created_at', $month)
-            ->count();
+            ->orderBy('responsiva_number', 'desc')
+            ->first();
 
-        // Consecutivo
-        $consecutive = str_pad($count + 1, 5, '0', STR_PAD_LEFT);
+        $nextNumber = 1;
 
-        // Folio final
-        $folio = $date->format('Ym') . '-' . $consecutive;
+        if ($lastResponsiva) {
+            $lastConsecutive = (int) substr($lastResponsiva->responsiva_number, -5);
+            $nextNumber = $lastConsecutive + 1;
+        }
+
+        $responsivaNumber = $year . str_pad($month, 2, '0') . '-' .
+            str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
 
 
         $validated = $request->validate([
@@ -89,7 +94,7 @@ class ResponsivaController extends Controller
         $device = Device::findOrFail($request->device_id);
 
         $responsiva = Responsiva::create([
-            'responsiva_number' => $folio,
+            'responsiva_number' => $responsivaNumber,
             'verification_code' => $this->generateVerificationCode(),
             'assigned_date' => $request->date,
             'teacher_id' => $request->teacher_id,
@@ -165,6 +170,7 @@ class ResponsivaController extends Controller
 
     public function returnDevice(Request $request, Responsiva $responsiva)
     {
+        date_default_timezone_set('America/Mexico_City');
         $request->validate([
             'verification_code' => 'required',
         ]);
@@ -180,7 +186,7 @@ class ResponsivaController extends Controller
             $responsiva->update([
                 'status' => 'Regresado',
                 'verification_code' => null,
-                'returned_date' => now(),
+                'returned_date' => date('Y-m-d H:i:s'),
             ]);
 
             $responsiva->device->update([
@@ -190,7 +196,7 @@ class ResponsivaController extends Controller
             $responsiva->histories()->create([
                 'action' => 'Regresado',
                 'description' => 'Dispositivo devuelto con código de verificación',
-                'action_date' => now(),
+                'action_date' => date('Y-m-d H:i:s'),
             ]);
         });
 
@@ -217,6 +223,7 @@ class ResponsivaController extends Controller
 
     public function storeFull(Request $request)
     {
+        date_default_timezone_set('America/Mexico_City');
         $usingExistingTeacher = $request->filled('teacher_id');
         $usingExistingDevice  = $request->filled('device_id');
 
@@ -251,11 +258,24 @@ class ResponsivaController extends Controller
 
             $date = Carbon::parse($request->assigned_date);
 
-            $count = Responsiva::whereYear('assigned_date', $date->year)
-                ->whereMonth('assigned_date', $date->month)
-                ->count();
+            $year = $date->year;
+            $month = $date->month;
 
-            $responsivaNumber = $date->format('Ym') . '-' . str_pad($count + 1, 5, '0', STR_PAD_LEFT);
+            $lastResponsiva = Responsiva::withTrashed()
+                ->whereYear('created_at', $year)
+                ->whereMonth('created_at', $month)
+                ->orderBy('responsiva_number', 'desc')
+                ->first();
+
+            $nextNumber = 1;
+
+            if ($lastResponsiva) {
+                $lastConsecutive = (int) substr($lastResponsiva->responsiva_number, -5);
+                $nextNumber = $lastConsecutive + 1;
+            }
+
+            $responsivaNumber = $year . str_pad($month, 2, '0') . '-' .
+                str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
 
             $imagePath = $request->hasFile('delivery_image')
                 ? $request->file('delivery_image')->store('responsivas', 'public')
@@ -278,7 +298,7 @@ class ResponsivaController extends Controller
             $responsiva->histories()->create([
                 'action' => 'Asignada',
                 'description' => 'Creación de la responsiva y asignación del dispositivo',
-                'action_date' => now(),
+                'action_date' => date('Y-m-d H:i:s'),
             ]);
         });
 
@@ -343,5 +363,92 @@ class ResponsivaController extends Controller
         ]);
 
         return view('responsivas.show', compact('responsiva'));
+    }
+
+    public function destroy(Responsiva $responsiva)
+    {
+        date_default_timezone_set('America/Mexico_City');
+        DB::transaction(function () use ($responsiva) {
+
+            $responsiva->histories()->create([
+                'action' => 'Eliminada',
+                'description' => 'La responsiva fue enviada a la papelera',
+                'action_date' => date('Y-m-d H:i:s'),
+            ]);
+
+            $responsiva->delete();
+        });
+
+        return back()->with('success', 'Responsiva enviada a la papelera');
+    }
+
+    public function forceDelete($id)
+    {
+        $responsiva = Responsiva::onlyTrashed()->findOrFail($id);
+
+        DB::transaction(function () use ($responsiva) {
+            $responsiva->histories()->create([
+                'action' => 'Eliminada definitivamente',
+                'description' => 'La responsiva fue eliminada permanentemente',
+                'action_date' => date('Y-m-d H:i:s'),
+            ]);
+
+            $responsiva->forceDelete();
+        });
+
+        return back()->with('success', 'Responsiva eliminada definitivamente');
+    }
+
+    public function trash(Request $request)
+    {
+        $query = Responsiva::onlyTrashed()
+            ->with(['teacher', 'device']);
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+
+                // Folio
+                $q->where('responsiva_number', 'like', "%{$search}%")
+
+                    // Docente
+                    ->orWhereHas('teacher', function ($t) use ($search) {
+                        $t->where('name', 'like', "%{$search}%")
+                            ->orWhere('surname', 'like', "%{$search}%");
+                    })
+
+                    // Dispositivo
+                    ->orWhereHas('device', function ($d) use ($search) {
+                        $d->where('serial_number', 'like', "%{$search}%");
+                    });
+            });
+        }
+
+        $responsivas = $query
+            ->orderBy('deleted_at', 'desc')
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('responsivas.trash', compact('responsivas'));
+    }
+
+    public function restore($id)
+    {
+        date_default_timezone_set('America/Mexico_City');
+        $responsiva = Responsiva::onlyTrashed()->findOrFail($id);
+
+        $responsiva->restore();
+
+        // Historial
+        $responsiva->histories()->create([
+            'action' => 'Restaurada',
+            'description' => 'La responsiva fue restaurada desde la papelera',
+            'action_date' => date('Y-m-d H:i:s'),
+        ]);
+
+        return redirect()
+            ->route('responsivas.trash')
+            ->with('success', 'Responsiva restaurada correctamente');
     }
 }

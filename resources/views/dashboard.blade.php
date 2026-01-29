@@ -91,7 +91,7 @@
         <h4 class="my-4 fw-bold">Panel de Control</h4>
 
         <!-- Panel de Control -->
-        <div class="row mx-auto g-4 row-cols-xl-4 row-cols-md-2 row-cols-1">
+        <div class="row mx-auto g-4 row-cols-xl-3 row-cols-md-2 row-cols-1">
             <!-- Responsivas Activas -->
             <div class="col">
                 <a href="{{ route('responsivas.active') }}" class="text-decoration-none text-black menu-card" style="--hover-color:#336BF0;">
@@ -138,6 +138,32 @@
                             </p>
                             <p class="text-body-tertiary mb-0" style="font-size: 14px;">
                                 Registro Completo
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Papelera de Responsivas -->
+            <div class="col">
+                <a href="{{ route("responsivas.trash") }}" class="text-decoration-none text-black menu-card" style="--hover-color:#8B8B8B;">
+                    <div class="bg-white shadow rounded-4 h-100 p-4 card-hover">
+                        <!-- Icono -->
+                        <div class="col-12 d-flex justify-content-between align-items-center">
+                            <span class="p-2 rounded-3 h4 text-white" style="background: linear-gradient(135deg,rgba(209, 209, 209, 0.7), rgb(119, 119, 119));">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </span>
+                            <span class="rounded-pill fw-bold px-3 py-1" style="background-color: #dbdbdb;">
+                                {{ $responsivasPapelera }}
+                            </span>
+                        </div>
+                        <!-- Texto -->
+                        <div class="col-12">
+                            <p class="h5 fw-bold">
+                                Papelera de Responsivas
+                            </p>
+                            <p class="text-body-tertiary mb-0" style="font-size: 14px;">
+                                Todas las Responsivas eliminadas
                             </p>
                         </div>
                     </div>

@@ -129,12 +129,19 @@
                                             <i class="fa-solid fa-envelope" style="color: #00A63E;"></i>
                                         </a>
                                         @endif
+                                        <!-- Eliminar -->
+                                        @if ($r->status === 'Regresado')
+                                        <button  style="background: none; border: none;" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $r->id }}">
+                                            <i class="fa-regular fa-trash-can text-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar Responsiva"></i>
+                                        </button>
+                                        @endif
                                     </li>
                                 </ul>
                             </div>
                         </td>
                     </tr>
 
+                    <!-- Modal para regresar -->
                     <div class="modal fade" id="returnModal{{ $r->id }}">
                         <div class="modal-dialog">
                             <form method="POST"
@@ -168,6 +175,42 @@
                             </form>
                         </div>
                     </div>
+
+                    <!-- Modal para eliminar -->
+                    <div class="modal fade" id="deleteModal{{ $r->id }}">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-danger">Eliminar Responsiva</h5>
+                                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    ¿Seguro que deseas enviar esta responsiva a la papelera?
+                                    <br>
+                                    <strong>{{ $r->responsiva_number }}</strong>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                        Cancelar
+                                    </button>
+
+                                    <form method="POST"
+                                        action="{{ route('responsivas.destroy', $r) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger">
+                                            Sí, eliminar
+                                        </button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                     @endforeach
                 </tbody>
             </table>

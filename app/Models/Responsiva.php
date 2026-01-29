@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Responsiva extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'responsiva_number',
@@ -25,6 +27,7 @@ class Responsiva extends Model
     protected $dates = [
         'assigned_date',
         'returned_date',
+        'deleted_at'
     ];
 
     // Pertenece a un docente

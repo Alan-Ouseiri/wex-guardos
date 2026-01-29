@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
 
         $totalResponsivas = Responsiva::count();
         $responsivasActivas = Responsiva::where('status', 'Activa')->count();
+        $responsivasPapelera = Responsiva::onlyTrashed()->count();
 
         $totalUsuarios = Teacher::count();
 
@@ -46,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
         return view('dashboard', compact(
             'totalResponsivas',
             'responsivasActivas',
+            'responsivasPapelera',
             'totalUsuarios',
             'totalDispositivos',
             'totalPrestamos',
@@ -80,6 +82,7 @@ Route::middleware(["auth"])->group(function () {
 //Ruta para Responsivas
 Route::middleware(['auth'])->group(function () {
     Route::get('/responsivas', [ResponsivaController::class, 'index'])->name('responsivas.index');
+    Route::get('/responsivas/trash', [ResponsivaController::class, 'trash'])->name('responsivas.trash');
     Route::get('/responsivas/active', [ResponsivaController::class, 'active'])->name('responsivas.active');
     Route::get('/responsivas/create', [ResponsivaController::class, 'create'])->name('responsivas.create');
     Route::post('/responsivas', [ResponsivaController::class, 'store'])->name('responsivas.store');
@@ -90,6 +93,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/responsivas/{responsiva}/edit', [ResponsivaController::class, 'edit'])->name('responsivas.edit');
     Route::post('/responsivas/{responsiva}', [ResponsivaController::class, 'update'])->name('responsivas.update');
     Route::get('/responsivas/{responsiva}', [ResponsivaController::class, 'show'])->name('responsivas.show');
+    Route::delete('/responsivas/{responsiva}', [ResponsivaController::class, 'destroy'])->name('responsivas.destroy');
+    Route::delete('/responsivas/{id}/force', [ResponsivaController::class, 'forceDelete'])->name('responsivas.forceDelete');
+    Route::post('/responsivas/{id}/restore', [ResponsivaController::class, 'restore'])->name('responsivas.restore');
 });
 
 //Ruta PDF
