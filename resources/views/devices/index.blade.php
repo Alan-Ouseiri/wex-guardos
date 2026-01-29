@@ -25,6 +25,12 @@
         </div>
         @endif
 
+        @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+        @endif
+
         <!-- Buscador y Botones -->
         <div class="col-12 row mx-auto justify-content-between align-items-center p-3 rounded-4 bg-white shadow">
             <!-- Buscador -->
@@ -60,15 +66,64 @@
                         <td class="col-4">{{ $device->description }}</td>
                         <td class="col-4">{{ $device->serial_number }}</td>
                         <td class="col-2">{{ ucfirst($device->status) }}</td>
-                        <td class="col-2 text-center">
+                        <td class="col-2 d-flex flex-wrap justify-content-around text-center align-items-center">
                             <a href="{{ route('devices.edit', $device) }}">
                                 <i class="fa-solid fa-pencil"></i>
                             </a>
+
+                            @if($device->where('status', 'Asignado')->exists())
+
+                            @else
+                            <button type="button" class="btn btn-link text-danger p-0" data-bs-toggle="modal" data-bs-target="#deleteDeviceModal{{ $device->id }}">
+                                <i class="fa-regular fa-trash-can text-danger"></i>
+                            </button>
+                            @endif
                         </td>
                     </tr>
+
+                    <div class="modal fade" id="deleteDeviceModal{{ $device->id }}" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-danger">
+                                        Confirmar eliminación
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <p>
+                                        ¿Estás seguro de que deseas eliminar el dispositivo
+                                        <strong>{{ $device->description }}</strong>?
+                                    </p>
+                                    <p class="text-muted mb-0">
+                                        Esta acción no se puede deshacer.
+                                    </p>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                                        Cancelar
+                                    </button>
+
+                                    <form method="POST" action="{{ route('devices.destroy', $device) }}">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-danger">
+                                            Sí, eliminar
+                                        </button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                     @endforeach
                 </tbody>
             </table>
+
             <!-- Paginacion -->
             <div class="col-12 mt-4 d-flex justify-content-center">
                 {{ $devices->links('pagination::bootstrap-5') }}

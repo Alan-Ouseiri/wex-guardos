@@ -59,7 +59,6 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 });
 
-
 //Ruta de Maestros
 Route::middleware(['auth'])->group(function () {
     Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index'); //Incio y listado de docentes
@@ -77,6 +76,7 @@ Route::middleware(["auth"])->group(function () {
     Route::post("/devices", [DeviceController::class, 'create'])->name('devices.create'); //Funcion de crear
     Route::get('/devices/{device}/edit', [DeviceController::class, 'edit'])->name('devices.edit'); //Formulario para editar
     Route::put('/devices/{device}', [DeviceController::class, 'update'])->name('devices.update'); //Funcion para editar
+    Route::delete('/devices/{device}', [DeviceController::class, 'destroy'])->name('devices.destroy'); //Funcion para eliminar
 });
 
 //Ruta para Responsivas

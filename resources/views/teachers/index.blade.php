@@ -25,6 +25,13 @@
         </div>
         @endif
 
+        <!-- Mensajes de Error -->
+        @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+        @endif
+
         <!-- Buscador y Botones -->
         <div class="col-12 row mx-auto justify-content-between align-items-center p-3 rounded-4 bg-white shadow">
             <!-- Buscador -->
@@ -66,9 +73,13 @@
                             <a href="{{ route('teachers.edit', $teacher) }}">
                                 <i class="fa-solid fa-pencil"></i>
                             </a>
+                            @if($teacher->responsivas()->where('status', 'Activa')->exists())
+
+                            @else
                             <button type="button" class="btn btn-link text-danger p-0" data-bs-toggle="modal" data-bs-target="#deleteTeacherModal{{ $teacher->id }}">
                                 <i class="fa-regular fa-trash-can text-danger"></i>
                             </button>
+                            @endif
                         </td>
                     </tr>
 

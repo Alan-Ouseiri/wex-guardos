@@ -83,6 +83,16 @@ class TeacherController extends Controller
 
     public function destroy(Teacher $teacher)
     {
+        $hasActiveResponsiva = $teacher->responsivas()
+            ->where('status', 'active')
+            ->exists();
+
+        if ($hasActiveResponsiva) {
+            return redirect()
+                ->route('teachers.index')
+                ->with('error', 'No se puede eliminar el docente porque tiene una responsiva activa');
+        }
+
         $teacher->delete();
 
         return redirect()

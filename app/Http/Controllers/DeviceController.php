@@ -67,4 +67,23 @@ class DeviceController extends Controller
             ->route('devices.index')
             ->with('success', 'Dispositivo actualizado correctamente');
     }
+
+    public function destroy(Device $device)
+    {
+        $hasActiveResponsiva = $device->responsivas()
+            ->where('status', 'active')
+            ->exists();
+
+        if ($hasActiveResponsiva) {
+            return redirect()
+                ->route('devices.index')
+                ->with('error', 'No se puede eliminar el dispositivo porque tiene una responsiva activa');
+        }
+
+        $device->delete();
+
+        return redirect()
+            ->route('devices.index')
+            ->with('success', 'Dispositivo eliminado correctamente');
+    }
 }
