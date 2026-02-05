@@ -78,9 +78,8 @@ class ResponsivaController extends Controller
             $nextNumber = $lastConsecutive + 1;
         }
 
-        $responsivaNumber = $year . str_pad($month, 2, '0') . '-' .
+        $responsivaNumber = $year . str_pad($month, 2, '0', STR_PAD_LEFT) . '-' .
             str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
-
 
         $validated = $request->validate([
             'date' => 'required|date',

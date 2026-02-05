@@ -71,9 +71,7 @@
                                 <i class="fa-solid fa-pencil"></i>
                             </a>
 
-                            @if($device->where('status', 'Asignado')->exists())
-
-                            @else
+                            @if($device->status != "Asignado")
                             <button type="button" class="btn btn-link text-danger p-0" data-bs-toggle="modal" data-bs-target="#deleteDeviceModal{{ $device->id }}">
                                 <i class="fa-regular fa-trash-can text-danger"></i>
                             </button>
