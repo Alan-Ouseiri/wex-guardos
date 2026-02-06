@@ -24,7 +24,7 @@
                     <div class="bg-white shadow rounded-4 h-100 py-3 card-hover">
                         <!-- Icono -->
                         <div class="col-12 d-flex justify-content-center align-items-center">
-                            <span class="p-3 rounded-circle h4 text-white" style="background: linear-gradient(135deg,rgba(79, 57, 246, 0.5) 0%, rgba(68, 45, 216, 1) 100%);">
+                            <span class="p-3 rounded-circle h4 text-white bg-gradient-blue">
                                 <i class="fa-solid fa-plus"></i>
                             </span>
                         </div>
@@ -47,7 +47,7 @@
                     <div class="bg-white shadow rounded-4 h-100 py-3 card-hover">
                         <!-- Icono -->
                         <div class="col-12 d-flex justify-content-center align-items-center">
-                            <span class="p-3 rounded-circle h4 text-white" style="background: linear-gradient(135deg,rgba(0, 173, 65, 0.5) 0%, rgba(0, 191, 75, 1) 100%);">
+                            <span class="p-3 rounded-circle h4 text-white bg-gradient-green">
                                 <i class="fa-regular fa-file-lines"></i>
                             </span>
                         </div>
@@ -70,7 +70,7 @@
                     <div class="bg-white shadow rounded-4 h-100 py-3 card-hover">
                         <!-- Icono -->
                         <div class="col-12 d-flex justify-content-center align-items-center">
-                            <span class="p-3 rounded-circle h4 text-white" style="background: linear-gradient(135deg,rgba(173, 0, 144, 0.5) 0%, rgb(175, 0, 191) 100%);">
+                            <span class="p-3 rounded-circle h4 text-white bg-gradient-pink">
                                 <i class="fa-regular fa-clock"></i>
                             </span>
                         </div>
@@ -98,7 +98,7 @@
                     <div class="bg-white shadow rounded-4 h-100 p-4 card-hover">
                         <!-- Icono -->
                         <div class="col-12 d-flex justify-content-between align-items-center">
-                            <span class="p-2 rounded-3 h4 text-white" style="background: linear-gradient(135deg,rgba(37, 116, 254, 0.7), rgba(20, 76, 232, 1));">
+                            <span class="p-2 rounded-3 h4 text-white bg-gradient-cyan">
                                 <i class="fa-solid fa-file-circle-check"></i>
                             </span>
                             <span class="rounded-pill fw-bold px-3 py-1" style="background-color: #EFF6FF;">
@@ -124,7 +124,7 @@
                     <div class="bg-white shadow rounded-4 h-100 p-4 card-hover">
                         <!-- Icono -->
                         <div class="col-12 d-flex justify-content-between align-items-center">
-                            <span class="p-2 rounded-3 h4 text-white" style="background: linear-gradient(135deg,rgba(166, 63, 255, 0.7), rgba(136, 13, 224, 1));">
+                            <span class="p-2 rounded-3 h4 text-white bg-gradient-purple">
                                 <i class="fa-solid fa-clock-rotate-left"></i>
                             </span>
                             <span class="rounded-pill fw-bold px-3 py-1" style="background-color: #FAF5FF;">
@@ -150,7 +150,7 @@
                     <div class="bg-white shadow rounded-4 h-100 p-4 card-hover">
                         <!-- Icono -->
                         <div class="col-12 d-flex justify-content-between align-items-center">
-                            <span class="p-2 rounded-3 h4 text-white" style="background: linear-gradient(135deg,rgba(209, 209, 209, 0.7), rgb(119, 119, 119));">
+                            <span class="p-2 rounded-3 h4 text-white bg-gradient-gray">
                                 <i class="fa-regular fa-trash-can"></i>
                             </span>
                             <span class="rounded-pill fw-bold px-3 py-1" style="background-color: #dbdbdb;">
@@ -176,7 +176,7 @@
                     <div class="bg-white shadow rounded-4 h-100 p-4 card-hover">
                         <!-- Icono -->
                         <div class="col-12 d-flex justify-content-between align-items-center">
-                            <span class="p-2 rounded-3 h4 text-white" style="background: linear-gradient(135deg,rgba(250, 96, 0, 0.5), rgba(209, 59, 0, 1));">
+                            <span class="p-2 rounded-3 h4 text-white bg-gradient-orange">
                                 <i class="fa-solid fa-people-group"></i>
                             </span>
                             <span class="rounded-pill fw-bold px-3 py-1" style="background-color: #FFF7ED;">
@@ -202,7 +202,7 @@
                     <div class="bg-white shadow rounded-4 h-100 p-4 card-hover">
                         <!-- Icono -->
                         <div class="col-12 d-flex justify-content-between align-items-center">
-                            <span class="p-2 rounded-3 h4 text-white" style="background: linear-gradient(135deg,rgba(0, 180, 161, 0.5), rgba(0, 127, 117, 1));">
+                            <span class="p-2 rounded-3 h4 text-white bg-gradient-teal">
                                 <i class="fa-solid fa-mobile-screen-button"></i>
                             </span>
                             <span class="rounded-pill fw-bold px-3 py-1" style="background-color: #F0FDFA;">

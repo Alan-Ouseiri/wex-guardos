@@ -16,6 +16,8 @@
 
     <!-- Icono -->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body class="d-flex align-items-center" style="background-color: #EAF1FF; height: 100dvh;">

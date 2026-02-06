@@ -153,7 +153,7 @@
                 <div class="col-md-4">
 
                     <div class="col-12 pb-2" style="border-bottom: solid 2px #543EF6;">
-                        <i class="fa-regular fa-file-lines" style="color: #543EF6;"></i><span class="fw-bold ps-2">Datos del Responsiva</span>
+                        <i class="fa-regular fa-file-lines text-blue"></i><span class="fw-bold ps-2">Datos del Responsiva</span>
                     </div>
 
                     <div class="col-12 mt-3">
@@ -192,7 +192,7 @@
                     </div>
 
                     <div class="col-6">
-                        <button class="text-white w-100 border border-0 h-100 rounded-3 py-2" style="background-color: #4630DD;">
+                        <button class="text-white w-100 border border-0 h-100 rounded-3 py-2 bg-blue">
                             <i class="fa-regular fa-floppy-disk"></i> Crear Responsiva
                         </button>
                     </div>
