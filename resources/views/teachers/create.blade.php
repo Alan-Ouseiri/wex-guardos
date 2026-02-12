@@ -37,31 +37,31 @@
                 <!-- Nombre -->
                 <div class="mb-3">
                     <label class="form-label"><i class="fa-solid fa-user-plus" style="color: #D33900;"></i> Nombre</label>
-                    <input type="text" name="name" class="form-control" placeholder="Nombre del usuario" value="{{ old('name') }}">
+                    <input type="text" name="name" class="form-control" placeholder="Nombre del usuario" value="{{ old('name') }}" required>
                 </div>
 
                 <!-- Apellido -->
                 <div class="mb-3">
                     <label class="form-label"><i class="fa-solid fa-user-group" style="color: #D33900;"></i> Apellido</label>
-                    <input type="text" name="surname" class="form-control" placeholder="Apellido del usuario" value="{{ old('surname') }}">
+                    <input type="text" name="surname" class="form-control" placeholder="Apellido del usuario" value="{{ old('surname') }}" required>
                 </div>
 
                 <!-- Número de empleado -->
                 <div class="mb-3">
                     <label class="form-label"><i class="fa-solid fa-hashtag" style="color: #D33900;"></i> Número de empleado</label>
-                    <input type="text" name="employee_number" class="form-control" placeholder="Ej. DOC123" value="{{ old('employee_number') }}">
+                    <input type="text" name="employee_number" class="form-control" placeholder="Ej. DOC123" value="{{ old('employee_number') }}" required>
                 </div>
 
                 <!-- Email -->
                 <div class="mb-3">
                     <label class="form-label"><i class="fa-regular fa-envelope" style="color: #D33900;"></i> Email</label>
-                    <input type="email" name="email" class="form-control" placeholder="correo@wexford.edu.mx" value="{{ old('email') }}">
+                    <input type="email" name="email" class="form-control" placeholder="correo@wexford.edu.mx" value="{{ old('email') }}" required>
                 </div>
 
                 <!-- Rol -->
                 <div class="mb-3">
                     <label class="form-label"><i class="fa-regular fa-address-book" style="color: #D33900;"></i> Rol del empleado</label>
-                    <input type="text" name="role" class="form-control" placeholder="Ej. Profesor, Profesora, Administrativo" value="{{ old('role') }}">
+                    <input type="text" name="role" class="form-control" placeholder="Ej. Profesor, Profesora, Administrativo" value="{{ old('role') }}" required>
                 </div>
 
                 <!-- Botones -->

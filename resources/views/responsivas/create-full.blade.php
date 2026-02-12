@@ -67,28 +67,28 @@
                     <div class="col-12 mt-3 " id="newTeacher">
 
                         <div class="mb-3">
-                            <label class="form-label">Nombre(s)</label>
-                            <input name="teacher[name]" class="form-control" placeholder="Ingresa el nombre">
+                            <label class="form-label">Nombre(s) <span class="text-danger">*</span> </label>
+                            <input name="teacher[name]" class="form-control" placeholder="Ingresa el nombre" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Apellido(s)</label>
-                            <input name="teacher[surname]" class="form-control" placeholder="Ingresa el apellido">
+                            <label class="form-label">Apellido(s) <span class="text-danger">*</span></label>
+                            <input name="teacher[surname]" class="form-control" placeholder="Ingresa el apellido" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Rol</label>
-                            <input name="teacher[role]" class="form-control" placeholder="Ej. Administrativo, Profesor, Profesora">
+                            <label class="form-label">Rol <span class="text-danger">*</span></label>
+                            <input name="teacher[role]" class="form-control" placeholder="Ej. Administrativo, Profesor, Profesora" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Correo</label>
-                            <input name="teacher[email]" class="form-control" placeholder="Ej. profesor@wexford.edu.mx">
+                            <label class="form-label">Correo <span class="text-danger">*</span></label>
+                            <input name="teacher[email]" class="form-control" placeholder="Ej. profesor@wexford.edu.mx" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">No. Empleado</label>
-                            <input name="teacher[employee_number]" class="form-control" placeholder="No. Empleado">
+                            <label class="form-label">No. Empleado <span class="text-danger">*</span></label>
+                            <input name="teacher[employee_number]" class="form-control" placeholder="No. Empleado" required>
                         </div>
 
                     </div>
@@ -126,23 +126,23 @@
                     <div class="col-12 mt-3 " id="newDevice">
 
                         <div class="mb-3">
-                            <label class="form-label">Tipo</label>
-                            <input name="device[type]" class="form-control" placeholder="Ej. Laptop, iPad, Macbook">
+                            <label class="form-label">Tipo <span class="text-danger">*</span></label>
+                            <input name="device[type]" class="form-control" placeholder="Ej. Laptop, iPad, Macbook" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Marca</label>
-                            <input name="device[brand]" class="form-control" placeholder="Ej. Apple, Lenovo, MSI">
+                            <label class="form-label">Marca <span class="text-danger">*</span></label>
+                            <input name="device[brand]" class="form-control" placeholder="Ej. Apple, Lenovo, MSI" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Modelo</label>
-                            <input name="device[model]" class="form-control" placeholder="Ej. 5, Gen 8, Air 11">
+                            <label class="form-label">Modelo <span class="text-danger">*</span></label>
+                            <input name="device[model]" class="form-control" placeholder="Ej. 5, Gen 8, Air 11" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">No. Serie</label>
-                            <input name="device[serial_number]" class="form-control" placeholder="xxxxxxxxxx">
+                            <label class="form-label">No. Serie <span class="text-danger">*</span></label>
+                            <input name="device[serial_number]" class="form-control" placeholder="xxxxxxxxxx" required>
                         </div>
 
 
@@ -159,23 +159,23 @@
                     <div class="col-12 mt-3">
 
                         <div class="mb-3">
-                            <label class="form-label">Fecha</label>
-                            <input type="date" name="assigned_date" min="2020-01-01" max="2030-12-31" class="form-control" value="{{ now()->toDateString() }}">
+                            <label class="form-label">Fecha <span class="text-danger">*</span></label>
+                            <input type="date" name="assigned_date" min="2020-01-01" max="2030-12-31" class="form-control" value="{{ now()->toDateString() }}" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Condicion</label>
-                            <input name="condition" class="form-control" placeholder="Ej. Usado">
+                            <label class="form-label">Condicion <span class="text-danger">*</span></label>
+                            <input name="condition" class="form-control" placeholder="Ej. Usado" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Ubicacion</label>
-                            <input name="location" class="form-control" placeholder="Ej. Campus Maravillas">
+                            <label class="form-label">Ubicacion <span class="text-danger">*</span></label>
+                            <input name="location" class="form-control" placeholder="Ej. Campus Maravillas" required>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Entregó con</label>
-                            <input name="delivered_by" class="form-control" placeholder="Ej. Cable y Cargador">
+                            <label class="form-label">Entregó con <span class="text-danger">*</span></label>
+                            <input name="delivered_by" class="form-control" placeholder="Ej. Cable y Cargador" required>
                         </div>
 
                     </div>

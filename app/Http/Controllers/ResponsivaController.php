@@ -232,6 +232,7 @@ class ResponsivaController extends Controller
             'teacher.surname' => $usingExistingTeacher ? 'nullable' : 'required',
             'teacher.role' => $usingExistingTeacher ? 'nullable' : 'required',
             'teacher.email' => $usingExistingTeacher ? 'nullable' : 'required|email',
+            'teacher.employee_number' => $usingExistingTeacher ? 'nullable' : 'max:50|unique:teachers,employee_number',
 
             'device_id' => $usingExistingDevice ? 'required|exists:devices,id' : 'nullable',
             'device.type' => $usingExistingDevice ? 'nullable' : 'required',
@@ -273,7 +274,7 @@ class ResponsivaController extends Controller
                 $nextNumber = $lastConsecutive + 1;
             }
 
-            $responsivaNumber = $year . str_pad($month, 2, '0') . '-' .
+            $responsivaNumber = $year . str_pad($month, 2, '0', STR_PAD_LEFT) . '-' .
                 str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
 
             $imagePath = $request->hasFile('delivery_image')
