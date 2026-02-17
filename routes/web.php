@@ -12,6 +12,9 @@ use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
+//Ruta Raiz
+Route::get('/', [AuthController::class, 'showLogin'])->name('login');
+
 //Rutas del login
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name("auth");
