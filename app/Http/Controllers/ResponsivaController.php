@@ -10,6 +10,7 @@ use App\Models\Teacher;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -104,6 +105,7 @@ class ResponsivaController extends Controller
             'location' => $request->location,
             'delivered_by' => $request->delivered_by,
             'status' => 'Activa',
+            'user_id' => Auth::id(),
         ]);
 
         // Cambiar estado del dispositivo

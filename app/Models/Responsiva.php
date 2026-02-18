@@ -22,6 +22,7 @@ class Responsiva extends Model
         'location',
         'verification_code',
         'delivered_by',
+        'user_id',
     ];
 
     protected $dates = [
@@ -52,5 +53,10 @@ class Responsiva extends Model
     public function histories()
     {
         return $this->hasMany(ResponsivaHistory::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

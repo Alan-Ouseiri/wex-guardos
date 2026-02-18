@@ -55,4 +55,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(ResponsivaHistory::class, 'changed_by');
     }
+
+    public function responsiva()
+    {
+        return $this->hasMany(Responsiva::class);
+    }
 }

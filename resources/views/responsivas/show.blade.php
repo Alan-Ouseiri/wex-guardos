@@ -14,7 +14,7 @@
             </a>
             <div class="flex-fill ms-2">
                 <p class="h4 fw-bold mb-0">Ver Responsiva {{ $responsiva->responsiva_number }}</p>
-                <span style="font-size: 12px;">Edita los campos de la Responsiva</span>
+                <span style="font-size: 12px;">Ve los datos a detalle de una Responsiva</span>
             </div>
         </div>
 
@@ -63,15 +63,18 @@
 
                     <div class="col-12 mt-3">
 
-                        <div class="mb-3">                        
+                        <div class="mb-3">
                             <p><strong>Fecha:</strong> {{ $responsiva->assigned_date }}</p>
                             <p><strong>Condicion:</strong> {{ $responsiva->condition }}</p>
                             <p><strong>Ubicacion:</strong> {{ $responsiva->location }}</p>
                             <p><strong>Entregó con:</strong> {{ $responsiva->delivered_by }}</p>
                             <p><strong>Codigo de Verificacion:</strong> {{ $responsiva->verification_code }}</p>
                             <p><strong>Estatus:</strong> {{ $responsiva->status }}</p>
-                        </div>
 
+                            @if($responsiva->user_id != null)
+                            <p><strong>Responsiva creada por:</strong> {{ $responsiva->user->name }} - {{ $responsiva->user->email }}</p>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
