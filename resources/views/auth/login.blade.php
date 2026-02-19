@@ -68,7 +68,7 @@
 
         <!-- Derechos -->
         <p class="mt-3 text-center" style="font-size: 11px;">
-            © 2025 Sistema de Responsivas. Todos los derechos reservados.
+            © 2026 Sistema de Responsivas. Todos los derechos reservados.
         </p>
     </div>
 </div>
