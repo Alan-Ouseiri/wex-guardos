@@ -18,6 +18,24 @@
             </div>
         </div>
 
+        <!-- Mensajes de Exito -->
+        @if (session('success'))
+        <div class="col-12 alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fa-regular fa-circle-check"></i>
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        @endif
+
+        <!-- Mensajes de Error -->
+        @if(session('error'))
+        <div class="col-12 alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        @endif
+
         <!-- Buscador y Botones -->
         <div class="col-12 row mx-auto justify-content-between align-items-center p-3 rounded-4 bg-white shadow">
             <!-- Buscador -->
