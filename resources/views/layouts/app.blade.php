@@ -78,14 +78,6 @@
         });
     </script>
 
-    <!-- Tooltip -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('[data-bs-toggle="tooltip"]')
-                .forEach(el => new bootstrap.Tooltip(el));
-        });
-    </script>
-
     <!-- Switch -->
     <script>
         const toggleSection = (checkbox, showId, hideId) => {
