@@ -5,7 +5,7 @@
 @section('content')
 
 <div class='d-flex justify-content-center mt-5 pb-5'>
-    <div class="col-xl-8 col-11">
+    <div class="col-xxl-8 col-xl-10 col-lg-11 col-12">
 
         <!-- Titulo -->
         <div class="d-flex align-items-center mb-3">
