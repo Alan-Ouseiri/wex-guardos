@@ -40,7 +40,12 @@
         <div class="col-12 row mx-auto justify-content-between align-items-center p-3 rounded-4 bg-white shadow">
             <!-- Buscador -->
             <form method="GET" class="col-6 mb-0">
-                <input type="text" name="search" class="form-control" placeholder="&#x1F50E;&#xFE0E; Buscar por número de serie" value="{{ request('search') }}">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="&#x1F50E;&#xFE0E; Buscar por número de serie" value="{{ request('search') }}">
+                    <a href="{{ route("devices.index") }}" class="btn btn-outline-danger">
+                        <i class="fa-solid fa-eraser"></i>
+                    </a>
+                </div>
             </form>
 
             <!-- Botones -->

@@ -18,8 +18,7 @@ class TeacherController extends Controller
             $query->where(function ($q) use ($search) {
 
                 // Nombre
-                $q->where('name', 'like', "%{$search}%")
-                    ->orWhere('surname', 'like', "%{$search}%")
+                $q->where('surname', 'like', "%{$search}%")
 
                     // Email
                     ->orWhere('email', 'like', "%{$search}%")

@@ -22,7 +22,12 @@
         <div class="col-12 row mx-auto justify-content-between align-items-center p-3 rounded-4 bg-white shadow">
             <!-- Buscador -->
             <form method="GET" class="col-lg-6 col-12 mb-lg-0 mb-3">
-                <input type="text" name="search" class="form-control" placeholder="&#x1F50E;&#xFE0E; Buscar por folio, usuario o numero de serie" value="{{ request('search') }}">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="&#x1F50E;&#xFE0E; Buscar por folio, apellido del usuario o numero de serie" value="{{ request('search') }}">
+                    <a href="{{ route("responsivas.trash") }}" class="btn btn-outline-danger">
+                        <i class="fa-solid fa-eraser"></i>
+                    </a>
+                </div>
             </form>
         </div>
 

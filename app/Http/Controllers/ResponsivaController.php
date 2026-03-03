@@ -30,8 +30,7 @@ class ResponsivaController extends Controller
 
                     // Docente
                     ->orWhereHas('teacher', function ($q) use ($search) {
-                        $q->where('name', 'like', "%{$search}%")
-                            ->orWhere('surname', 'like', "%{$search}%");
+                        $q->where('surname', 'like', "%{$search}%");
                     })
 
                     // Serie del dispositivo
@@ -150,8 +149,7 @@ class ResponsivaController extends Controller
 
                     // Docente
                     ->orWhereHas('teacher', function ($q) use ($search) {
-                        $q->where('name', 'like', "%{$search}%")
-                            ->orWhere('surname', 'like', "%{$search}%");
+                        $q->where('surname', 'like', "%{$search}%");
                     })
 
                     // Serie del dispositivo
@@ -416,8 +414,7 @@ class ResponsivaController extends Controller
 
                     // Docente
                     ->orWhereHas('teacher', function ($t) use ($search) {
-                        $t->where('name', 'like', "%{$search}%")
-                            ->orWhere('surname', 'like', "%{$search}%");
+                        $t->where('surname', 'like', "%{$search}%");
                     })
 
                     // Dispositivo
