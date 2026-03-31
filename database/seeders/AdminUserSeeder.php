@@ -69,5 +69,13 @@ class AdminUserSeeder extends Seeder
                 'password' => Hash::make('joel123'),
             ]
         );
+
+        User::firstOrCreate(
+            ['email' => 'jorge.rangel@wexford.edu.mx'],
+            [
+                'name' => 'Jorge',
+                'password' => Hash::make('jorge123'),
+            ]
+        );
     }
 }
