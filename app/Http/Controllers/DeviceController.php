@@ -80,7 +80,7 @@ class DeviceController extends Controller
                 ->with('error', 'No se puede eliminar el dispositivo porque tiene una responsiva activa');
         }
 
-        $device->delete();
+        $device->query()->delete();
 
         return redirect()
             ->route('devices.index')

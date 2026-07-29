@@ -50,8 +50,8 @@ class ResponsivaController extends Controller
 
     public function create()
     {
-        $teachers = Teacher::orderBy('name')->get();
-        $devices = Device::where('status', 'Disponible')->get();
+        $teachers = Teacher::query()->orderBy('name', 'asc')->get();
+        $devices = Device::query()->where('status', 'Disponible')->get();
 
         return view('responsivas.create', compact('teachers', 'devices'));
     }
@@ -215,8 +215,8 @@ class ResponsivaController extends Controller
 
     public function createFull()
     {
-        $teachers = Teacher::orderBy('name')->get();
-        $devices = Device::where('status', 'Disponible')->get();
+        $teachers = Teacher::query()->orderBy('name', 'asc')->get();
+        $devices = Device::query()->where('status', 'Disponible')->get();
         return view('responsivas.create-full', compact('teachers', 'devices'));
     }
 
@@ -376,7 +376,7 @@ class ResponsivaController extends Controller
                 'action_date' => date('Y-m-d H:i:s'),
             ]);
 
-            $responsiva->delete();
+            $responsiva->query()->delete();
         });
 
         return back()->with('success', 'Responsiva enviada a la papelera');

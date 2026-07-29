@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\ResponsivaController;
@@ -23,39 +25,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Pagina de Incio
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-
-        $totalResponsivas = Responsiva::count('*');
-        $responsivasActivas = Responsiva::where('status', '=', 'Activa')->count();
-        $responsivasPapelera = Responsiva::onlyTrashed()->count();
-
-        $totalUsuarios = Teacher::count('*');
-
-        $totalDispositivos = Device::count('*');
-        $dispositivosUsados = Device::where('status', '=', 'Asignado')->count();
-        $dispositivosDisponibles = Device::where('status', '=', 'Disponible')->count();
-        $dispositivosMantenimiento = Device::where('status', '=', 'Mantenimiento')->count();
-
-        $activeLoans = Loan::with(['teacher', 'device'])
-            ->where('status', 'active')
-            ->orderBy('loan_date')
-            ->get();
-
-        $totalPrestamos = Loan::where('status', 'active')->count();
-
-        return view('dashboard', compact(
-            'totalResponsivas',
-            'responsivasActivas',
-            'responsivasPapelera',
-            'totalUsuarios',
-            'totalDispositivos',
-            'totalPrestamos',
-            'dispositivosUsados',
-            'dispositivosDisponibles',
-            'dispositivosMantenimiento',
-            'activeLoans'
-        ));
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class , 'index'])->name('dashboard');
 });
 
 //Ruta de Maestros

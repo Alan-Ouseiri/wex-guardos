@@ -45,7 +45,7 @@ class LoanController extends Controller
     {
         return view('loans.create', [
             'teachers' => Teacher::orderBy('surname', 'asc')->get(),
-            'devices' => Device::where('status', '=', 'Disponible')->get(),
+            'devices' => Device::query()->where('status', 'Disponible')->get(),
         ]);
     }
 
@@ -71,7 +71,8 @@ class LoanController extends Controller
                 'status' => 'active',
             ]);
 
-            Device::where('id', $request->device_id)
+            Device::query()
+                ->where('id', $request->device_id)
                 ->update(['status' => 'Asignado']);
         });
 
