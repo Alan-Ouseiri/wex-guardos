@@ -60,7 +60,12 @@
     <!-- Select 2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
+
     <!-- JS Generales -->
+    @yield('scripts')
+
     <!-- Buscador de Usuarios y dispositivos -->
     <script>
         $(document).ready(function() {
@@ -100,28 +105,6 @@
             toggleSection(this, 'existingDevice', 'newDevice');
         });
     </script>
-
-    <!-- Estilos -->
-    <style>
-        .menu-card {
-            display: block;
-        }
-
-        .card-hover {
-            border: 2px solid transparent;
-            transition:
-                transform 0.25s ease,
-                border-color 0.25s ease,
-                box-shadow 0.25s ease;
-            transform-origin: center;
-        }
-
-        .menu-card:hover .card-hover {
-            transform: scale(1.08);
-            border-color: var(--hover-color);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
-        }
-    </style>
 
 </body>
 

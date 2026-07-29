@@ -25,16 +25,16 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
 
-        $totalResponsivas = Responsiva::count();
-        $responsivasActivas = Responsiva::where('status', 'Activa')->count();
+        $totalResponsivas = Responsiva::count('*');
+        $responsivasActivas = Responsiva::where('status', '=', 'Activa')->count();
         $responsivasPapelera = Responsiva::onlyTrashed()->count();
 
-        $totalUsuarios = Teacher::count();
+        $totalUsuarios = Teacher::count('*');
 
-        $totalDispositivos = Device::count();
-        $dispositivosUsados = Device::where('status', 'Asignado')->count();
-        $dispositivosDisponibles = Device::where('status', 'Disponible')->count();
-        $dispositivosMantenimiento = Device::where('status', 'Mantenimiento')->count();
+        $totalDispositivos = Device::count('*');
+        $dispositivosUsados = Device::where('status', '=', 'Asignado')->count();
+        $dispositivosDisponibles = Device::where('status', '=', 'Disponible')->count();
+        $dispositivosMantenimiento = Device::where('status', '=', 'Mantenimiento')->count();
 
         $activeLoans = Loan::with(['teacher', 'device'])
             ->where('status', 'active')
@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
 //Ruta de Maestros
 Route::middleware(['auth'])->group(function () {
     Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers.index'); //Incio y listado de docentes
+    Route::get('/teachers/all', [TeacherController::class, 'all'])->name('teachers.all');
     Route::get('/teachers/new', [TeacherController::class, 'new'])->name('teachers.new'); //Formulario para crear
     Route::post('/teachers', [TeacherController::class, 'create'])->name('teachers.create'); //Funcion de crear
     Route::get('/teachers/{teacher}/edit', [TeacherController::class, 'edit'])->name('teachers.edit'); //Formulario para editar

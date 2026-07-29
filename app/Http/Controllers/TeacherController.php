@@ -8,32 +8,20 @@ use Illuminate\Http\Request;
 
 class TeacherController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $query = Teacher::query();
-
-        if ($request->filled('search')) {
-            $search = $request->search;
-
-            $query->where(function ($q) use ($search) {
-
-                // Nombre
-                $q->where('surname', 'like', "%{$search}%")
-
-                    // Email
-                    ->orWhere('email', 'like', "%{$search}%")
-
-                    // Número de empleado
-                    ->orWhere('employee_number', 'like', "%{$search}%");
-            });
-        }
-
-        $teachers = $query
-            ->orderBy('employee_number')
-            ->paginate(10)
-            ->withQueryString();
+        $teachers = Teacher::all();
 
         return view('teachers.index', compact('teachers'));
+    }
+
+    public function all()
+    {
+        $query = Teacher::withCount(['responsivas' => function ($q) {
+            $q->where('status', 'Activa');
+        }])->get();
+
+        return $query;
     }
 
     public function new()
@@ -46,7 +34,6 @@ class TeacherController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
-            'employee_number' => 'max:50|unique:teachers,employee_number',
             'role' => 'required|string|max:255',
             'email' => 'required|email',
         ]);
@@ -68,7 +55,6 @@ class TeacherController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
-            'employee_number' => 'max:50|unique:teachers,employee_number,' . $teacher->id,
             'role' => 'required|string|max:255',
             'email' => 'required|email',
         ]);
@@ -92,7 +78,7 @@ class TeacherController extends Controller
                 ->with('error', 'No se puede eliminar el docente porque tiene una responsiva activa');
         }
 
-        $teacher->delete();
+        $teacher->forceDelete();
 
         return redirect()
             ->route('teachers.index')

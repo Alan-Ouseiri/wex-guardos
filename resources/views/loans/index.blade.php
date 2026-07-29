@@ -53,6 +53,8 @@
             </div>
         </div>
 
+        <div style="display: none;"> {{ date_default_timezone_set('America/Mexico_City') }}</div>
+
         <!-- Contenido -->
         <div class="col-12 mt-4">
             <table class="col-12 w-100 p-3 rounded-2 bg-white shadow">
@@ -74,24 +76,30 @@
                         <td class="col-3">{{ $loan->teacher->full_name }}</td>
                         <td class="col-3">{{ $loan->device->brand }} {{ $loan->device->model }}</td>
                         <td class="col-2">{{ $loan->loan_date }}</td>
-                        <td class="col-2">
-                            @if ($loan->return_date)
-                            {{ $loan->return_date }}
-                            @else
-                            <span class="text-muted">Pendiente</span>
-                            @endif
-                        </td>
+                        <td class="col-2">{{ $loan->return_date }}</td>
+
                         <td class="col-1 text-center">
-                            @if ($loan->status === 'active')
-                            <span class="badge" style="background-color: #FEF9C2; color: #C5852E;">
-                                <i class="fa-regular fa-clock"></i> Activo
-                            </span>
-                            @else
-                            <span class="badge text-success" style="background-color: #DBFCE7;">
-                                <i class="fa-regular fa-circle-check"></i> Devuelto
-                            </span>
-                            @endif
+                            @switch($loan->status)
+                            @case('active')
+                            @if($loan->return_date <= now())
+                                <span class="badge" style="background-color: #dc3545; color: white;">
+                                <i class="fa-regular fa-clock"></i> Atrasado
+                                </span>
+                                @else
+                                <span class="badge" style="background-color: #FEF9C2; color: #C5852E;">
+                                    <i class="fa-regular fa-clock"></i> Activo
+                                </span>
+                                @endif
+                                @break
+
+                            @case('returned')
+                                @default
+                                <span class="badge text-success" style="background-color: #DBFCE7;">
+                                    <i class="fa-regular fa-circle-check"></i> Devuelto
+                                </span>
+                                @endswitch
                         </td>
+
                         <td class="col-1 text-center">
                             @if ($loan->status === 'active')
                             <button type="button" style="background: none; border: none;" data-bs-toggle="modal" data-bs-target="#returnLoanModal{{ $loan->id }}">

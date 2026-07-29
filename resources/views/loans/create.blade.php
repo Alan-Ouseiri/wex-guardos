@@ -38,7 +38,13 @@
                 {{-- Fecha préstamo --}}
                 <div class="mb-3">
                     <label class="form-label"><i class="fa-regular fa-calendar" style="color: #B108BB;"></i> Fecha de préstamo</label>
-                    <input type="date" name="loan_date" class="form-control" value="{{ now()->toDateString() }}" required>
+                    <input type="datetime-local" name="loan_date" class="form-control" value="{{ now()->toDateString() }}" required>
+                </div>
+
+                {{-- Fecha devolucion --}}
+                <div class="mb-3">
+                    <label class="form-label"><i class="fa-regular fa-calendar-check" style="color: #B108BB;"></i> Fecha de devolucion</label>                    
+                    <input type="date" name="loan_return" class="form-control" value="{{ now()->toDateString() }}" required>
                 </div>
 
                 {{-- Usuario --}}

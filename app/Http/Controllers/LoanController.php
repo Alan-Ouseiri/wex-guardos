@@ -44,8 +44,8 @@ class LoanController extends Controller
     public function create()
     {
         return view('loans.create', [
-            'teachers' => Teacher::orderBy('surname')->get(),
-            'devices' => Device::where('status', 'Disponible')->get(),
+            'teachers' => Teacher::orderBy('surname', 'asc')->get(),
+            'devices' => Device::where('status', '=', 'Disponible')->get(),
         ]);
     }
 
@@ -56,6 +56,7 @@ class LoanController extends Controller
             'device_id' => 'required|exists:devices,id',
             'location' => 'required',
             'loan_date' => 'required|date',
+            'loan_return' => 'required|date',
         ]);
 
         DB::transaction(function () use ($request) {
@@ -65,6 +66,7 @@ class LoanController extends Controller
                 'device_id' => $request->device_id,
                 'location' => $request->location,
                 'loan_date' => $request->loan_date,
+                'return_date' => $request->loan_return,
                 'notes' => $request->notes,
                 'status' => 'active',
             ]);
