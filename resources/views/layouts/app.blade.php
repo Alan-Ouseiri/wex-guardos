@@ -14,6 +14,9 @@
     <!-- Select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.dataTables.css" />
+
     <!-- Icono -->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 
@@ -28,7 +31,8 @@
         <nav class="col-12 navbar navbar-white bg-white shadow-sm px-3">
             <div class="col-auto d-flex flex-wrap align-items-center justify-content-center">
                 <!-- Icono -->
-                <a href="{{ route('dashboard') }}" class="text-white h3 mb-0 p-2 rounded-3" style="background: linear-gradient(139deg,#3341e8 0%, #9412f8 50%, #3341e8 100%);">
+                <a href="{{ route('dashboard') }}" class="text-white h3 mb-0 p-2 rounded-3"
+                    style="background: linear-gradient(139deg,#3341e8 0%, #9412f8 50%, #3341e8 100%);">
                     <i class="fa-regular fa-file-lines"></i>
                 </a>
 
@@ -40,10 +44,11 @@
             </div>
 
             @auth
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
-            </form>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="btn btn-sm btn-outline-danger"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i></button>
+                </form>
             @endauth
         </nav>
         <!-- Contenido -->
@@ -55,12 +60,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
 
     <!-- Select 2 -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.dataTables.css" />
+    <!-- DataTables -->
     <script src="https://cdn.datatables.net/2.3.8/js/dataTables.js"></script>
 
     <!-- JS Generales -->
@@ -68,7 +74,7 @@
 
     <!-- Buscador de Usuarios y dispositivos -->
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.select-teacher').select2({
                 placeholder: 'Seleccione un usuario',
                 allowClear: true,
@@ -97,11 +103,11 @@
         toggleSection(teacherSwitch, 'existingTeacher', 'newTeacher');
         toggleSection(deviceSwitch, 'existingDevice', 'newDevice');
 
-        teacherSwitch.addEventListener('change', function() {
+        teacherSwitch.addEventListener('change', function () {
             toggleSection(this, 'existingTeacher', 'newTeacher');
         });
 
-        deviceSwitch.addEventListener('change', function() {
+        deviceSwitch.addEventListener('change', function () {
             toggleSection(this, 'existingDevice', 'newDevice');
         });
     </script>

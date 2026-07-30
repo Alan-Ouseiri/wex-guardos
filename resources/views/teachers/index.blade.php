@@ -3,72 +3,83 @@
 @section('title', 'Usuarios')
 
 @section('scripts')
-<script src="{{ asset('js/dataTables/teachersTable.js') }}"></script>
+    <script type="module" src="{{ asset('js/dataTables/teachersTable.js') }}"></script>
 @endsection
 
 @section('content')
 
-<div class='d-flex justify-content-center mt-5 pb-5'>
-    <div class="col-xxl-8 col-xl-10 col-lg-11 col-12">
+    <!-- Atras -->
+    <div class="col-12 d-flex mt-4">
+        <a href="{{ route('dashboard') }}" class="boton-desplegable">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span class="texto-animado">Atrás</span>
+        </a>
+    </div>
 
-        <!-- Titulo -->
-        <div class="d-flex align-items-center mb-3">
-            <a href="{{ route("dashboard") }}" class="text-decoration-none text-black">
-                <i class="h5 fa-solid fa-arrow-left mb-0"></i>
-            </a>
-            <div class="flex-fill ms-2">
-                <p class="h4 fw-bold mb-0">Usuarios</p>
-                <span style="font-size: 12px;">Gestiona todos los Usuarios</span>
-            </div>
-        </div>
+    <!-- Contenido -->
+    <div class='d-flex justify-content-center mt-3 pb-5'>
+        <div class="col-xxl-8 col-xl-10 col-lg-11 col-12 bg-gradient-orange rounded-4 shadow" style="padding: 1px;">
+            <div class="bg-white rounded-4 shadow p-3">
 
-        <!-- Mensajes de Exito -->
-        @if (session('success'))
-        <div class="col-12 alert alert-success alert-dismissible fade show" role="alert">
-            <i class="fa-regular fa-circle-check"></i>
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        @endif
-
-        <!-- Mensajes de Error -->
-        @if(session('error'))
-        <div class="col-12 alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="fa-solid fa-circle-exclamation"></i>
-            {{ session('error') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        @endif
-
-        <!-- Buscador y Botones -->
-        <div class="col-12 d-flex justify-content-end">
-            <div class="col-auto">
-                <a href="{{ route('teachers.new') }}" class="text-decoration-none text-white col-auto">
-                    <div class="col-12 rounded-3 py-2 px-4 text-center" style="background: linear-gradient(135deg,rgba(244, 73, 0, 0.8) 0%, rgba(204, 54, 0, 1) 100%);">
-                        <i class="fa-solid fa-plus"></i> Nuevo Usuario
+                <!-- Cabecera -->
+                <div class="d-flex align-items-center justify-content-between border-bottom pb-3">
+                    <!-- Titulo -->
+                    <div>
+                        <h2 class="fw-bold text-orange mb-0"><i class="fa-solid fa-people-group"></i> Usuarios</h2>
+                        <span class="text-secondary" style="font-size: 14px;">Gestiona todos los Usuarios</span>
                     </div>
-                </a>
+
+                    <!-- Boton -->
+                    <div class="col-auto">
+                        <a href="{{ route('teachers.new') }}" class="text-decoration-none text-white">
+                            <div class="rounded-3 py-2 px-4 text-center bg-gradient-orange">
+                                <i class="fa-solid fa-plus"></i> Nuevo Usuario
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mensajes -->
+                <div class="pt-3">
+                    @if (session('success'))
+                        <div class="col-12 alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fa-regular fa-circle-check"></i> {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+
+                    <!-- Mensajes de Error -->
+                    @if(session('error'))
+                        <div class="col-12 alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+                </div>
+
+                <!-- Tabla -->
+                <div class="mt-4">
+                    <table id="miTabla" data-url="{{ route('teachers.all') }}"
+                        data-edit-url="{{ route('teachers.edit', 0) }}" class="display">
+                        <thead class="bg-secondary-subtle">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Rol</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Tabla -->
-        <div class="mt-4">
-            <table id="miTabla" data-url="{{ route('teachers.all') }}" data-edit-url="{{ route('teachers.edit', 0) }}" class="display bg-white" style="width:100%">
-                <thead>
-                    <tr class="bg-gradient-orange">
-                        <th class="text-white">Nombre</th>
-                        <th class="text-white">Email</th>
-                        <th class="text-white">Rol</th>
-                        <th class="text-white">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Modal -->
-        @foreach ($teachers as $teacher)
+    <!-- Modal -->
+    @foreach ($teachers as $teacher)
         <div class="modal fade" id="deleteTeacherModal{{ $teacher->id }}" tabindex="-1">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -108,8 +119,6 @@
                 </div>
             </div>
         </div>
-        @endforeach
-    </div>
-</div>
+    @endforeach
 
 @endsection

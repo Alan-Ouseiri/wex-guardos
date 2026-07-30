@@ -1,16 +1,30 @@
+/* Texto */
 /* Azul */
-.bg-gradient-blue {
-    background: linear-gradient(135deg, rgba(79, 57, 246, 0.5) 0%, rgba(68, 45, 216, 1) 100%);
-}
-
-/* Texto Azul */
 .text-blue {
     color: #4630DD;
 }
 
-/* BG Azul */
+/* Naranja */
+.text-orange {
+    color: #d0560a;
+}
+
+
+/* Fondo */
+/* Azul */
 .bg-blue {
     background-color: #4630DD;
+}
+
+.bg-orange {
+    background-color: #d0560a;
+}
+
+
+/* Fondo Degradado */
+/* Azul */
+.bg-gradient-blue {
+    background: linear-gradient(135deg, rgba(79, 57, 246, 0.5) 0%, rgba(68, 45, 216, 1) 100%);
 }
 
 /* Verde */
@@ -48,10 +62,14 @@
     background: linear-gradient(135deg, rgba(0, 180, 161, 0.5), rgba(0, 127, 117, 1));
 }
 
+
+/* Animaciones */
+/* Carta */
 .menu-card {
     display: block;
 }
 
+/* Carta Hover */
 .card-hover {
     border: 2px solid transparent;
     transition:
@@ -61,8 +79,53 @@
     transform-origin: center;
 }
 
+/* Carta Colores */
 .menu-card:hover .card-hover {
     transform: scale(1.08);
     border-color: var(--hover-color);
     box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Boton Atras */
+.boton-desplegable {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+    color: #000000;
+    text-decoration: none;
+    border: 1px solid #dee2e6;
+    border-top-right-radius: 50rem;
+    border-bottom-right-radius: 50rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Ajuste del icono */
+.boton-desplegable i {
+    font-size: 1.25rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+}
+
+/* Estado Incial */
+.boton-desplegable .texto-animado {
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    transition: max-width 0.3s ease-in-out, margin-left 0.3s ease-in-out;
+}
+
+/* Efecto */
+.boton-desplegable:hover {
+    color: #2563eb;
+    border-color: #bfdbfe;
+}
+
+/* Despiegue */
+.boton-desplegable:hover .texto-animado {
+    max-width: 100px;
+    margin-left: 0.5rem;
 }

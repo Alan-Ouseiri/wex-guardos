@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Responsiva;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -17,9 +18,18 @@ class TeacherController extends Controller
 
     public function all()
     {
-        $query = Teacher::withCount(['responsivas' => function ($q) {
-            $q->where('status', 'Activa');
-        }])->get();
+        $query = Teacher::orderBy('created_at')->get();
+
+        foreach ($query as $key => $q) {
+            $q->user = $q->name . ' ' . $q->surname;
+
+            $active = Responsiva::select('id')->where('user_id', $q->id)->first();
+            if ($active == '') {
+                $q->buttons = view('teachers.buttonDelete', ['user' => $q->id])->render();
+            } else {
+                $q->buttons = view('teachers.buttonEdit', ['user' => $q->id])->render();
+            }
+        }
 
         return $query;
     }
