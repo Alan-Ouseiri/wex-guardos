@@ -223,51 +223,6 @@
             </div>
         </div>
 
-        <!-- Estadisticas -->
-        <div class="row g-4 py-4">
-            <div class="col-12">
-                <div class="row h-100 shadow bg-white rounded-4 p-4">
-                    <!-- Titulo -->
-                    <h5 class="fw-bold">Resumen de Actividad</h5>
-
-                    <!-- Dispositivos Disponibles -->
-                    <div class="col-lg-4 col-md-6 col-12 p-2">
-                        <div class="rounded-4 h-100 py-4 text-center" style="background-color: #F0FDF4;">
-                            <p class="h4 fw-bold" style="color: #00A63E;">
-                                {{ $dispositivosDisponibles }}
-                            </p>
-                            <p class="mb-0" style="font-size: 14px;">
-                                Dispositivos disponibles
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Dispositivos Usados -->
-                    <div class="col-lg-4 col-md-6 col-12 p-2">
-                        <div class="rounded-4 h-100 py-4 text-center" style="background-color: #FEFCE8;">
-                            <p class="h4 fw-bold" style="color: #D08700;">
-                                {{ $dispositivosUsados }}
-                            <p class="mb-0" style="font-size: 14px;">
-                                Dispositivos en uso
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Prestamos Activos -->
-                    <div class="col-lg-4 col-md-6 col-12 p-2">
-                        <div class="rounded-4 h-100 py-4 text-center" style="background-color: #fdefff;">
-                            <p class="h4 fw-bold" style="color: #ce15fc;">
-                                {{ $totalPrestamos }}
-                            </p>
-                            <p class="mb-0" style="font-size: 14px;">
-                                Total de Prestamos Activos
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
 

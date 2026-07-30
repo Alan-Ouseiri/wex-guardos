@@ -1,17 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\ResponsivaController;
 use App\Http\Controllers\TeacherController;
-use App\Models\Device;
-use App\Models\Loan;
-use App\Models\Responsiva;
-use App\Models\Teacher;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 //Ruta Raiz
@@ -25,7 +19,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Pagina de Incio
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', [DashboardController::class , 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
 //Ruta de Maestros
