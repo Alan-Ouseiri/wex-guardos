@@ -10,18 +10,26 @@ class DeviceController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Device::query();
-
-        if ($request->filled('search')) {
-            $query->where('serial_number', 'like', '%' . $request->search . '%');
-        }
-
-        $devices = $query
-            ->orderBy('created_at', 'desc')
-            ->paginate(10)
-            ->withQueryString();
+        $devices = Device::where('status', '!=', 'Asignado')->get();
 
         return view('devices.index', compact('devices'));
+    }
+
+    public function all()
+    {
+        $query = Device::orderByDesc('created_at')->get();
+
+        foreach ($query as $key => $q) {
+            $q->description = $q->brand . ' ' . $q->type . ' ' . $q->model;
+
+            if ($q->status == 'Asignado') {
+                $q->buttons = view('devices.buttonEdit', ['device' => $q->id])->render();
+            } else {
+                $q->buttons = view('devices.buttonDelete', ['device' => $q->id])->render();
+            }
+        }
+
+        return $query;
     }
 
     public function new()

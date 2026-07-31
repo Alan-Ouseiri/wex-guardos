@@ -60,8 +60,7 @@
 
                 <!-- Tabla -->
                 <div class="mt-4">
-                    <table id="miTabla" data-url="{{ route('teachers.all') }}"
-                        data-edit-url="{{ route('teachers.edit', 0) }}" class="display">
+                    <table id="usersTable" data-url="{{ route('teachers.all') }}" class="display">
                         <thead class="bg-secondary-subtle">
                             <tr>
                                 <th>Nombre</th>

@@ -41,6 +41,7 @@ Route::middleware(["auth"])->group(function () {
     Route::get('/devices/{device}/edit', [DeviceController::class, 'edit'])->name('devices.edit'); //Formulario para editar
     Route::put('/devices/{device}', [DeviceController::class, 'update'])->name('devices.update'); //Funcion para editar
     Route::delete('/devices/{device}', [DeviceController::class, 'destroy'])->name('devices.destroy'); //Funcion para eliminar
+    Route::get('/devices/all', [DeviceController::class, 'all'])->name('devices.all');
 });
 
 //Ruta para Responsivas

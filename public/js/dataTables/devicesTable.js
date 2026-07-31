@@ -2,16 +2,16 @@ import { myLanguage } from "./language.js";
 
 $(document).ready(function () {
 
-    $('#usersTable').DataTable({
+    $('#devicesTable').DataTable({
         ajax: {
-            url: $('#usersTable').data('url'),
+            url: $('#devicesTable').data('url'),
             dataSrc: '',
             type: 'GET'
         },
         columns: [
-            { data: 'user' },
-            { data: 'email' },
-            { data: 'role' },
+            { data: 'description' },
+            { data: 'serial_number' },
+            { data: 'status' },
             { data: 'buttons' },
         ],
         columnDefs: [{ orderable: false, targets: 3 }],

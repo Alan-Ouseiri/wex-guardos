@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center">
-    <a href="{{ route('teachers.edit', $user) }}" class="me-2 text-decoration-none">
+    <a href="{{ route('devices.edit', $device) }}">
         <i class="fa-solid fa-pencil"></i>
     </a>
 </div>
