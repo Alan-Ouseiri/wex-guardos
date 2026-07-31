@@ -47,7 +47,7 @@
                         @csrf
                         <!-- Nombre -->
                         <div class="mb-3">
-                            <label class="form-label"><i class="fa-solid fa-user" style="color: #D33900;"></i> Nombre
+                            <label class="form-label"><i class="fa-solid fa-user text-orange"></i> Nombre
                                 <span class="text-danger">*</span></label>
                             <input type="text" name="name" class="form-control" placeholder="Nombre del usuario"
                                 value="{{ old('name') }}" required>
@@ -55,7 +55,7 @@
 
                         <!-- Apellido -->
                         <div class="mb-3">
-                            <label class="form-label"><i class="fa-solid fa-user-group" style="color: #D33900;"></i>
+                            <label class="form-label"><i class="fa-solid fa-user-group text-orange"></i>
                                 Apellido
                                 <span class="text-danger">*</span></label>
                             <input type="text" name="surname" class="form-control" placeholder="Apellido del usuario"
@@ -64,7 +64,7 @@
 
                         <!-- Número de empleado -->
                         <div class="mb-3">
-                            <label class="form-label"><i class="fa-solid fa-hashtag" style="color: #D33900;"></i> Número de
+                            <label class="form-label"><i class="fa-solid fa-hashtag text-orange"></i> Número de
                                 empleado</label>
                             <input type="text" name="employee_number" class="form-control" placeholder="Ej. DOC123"
                                 value="{{ old('employee_number') }}">
@@ -72,7 +72,7 @@
 
                         <!-- Email -->
                         <div class="mb-3">
-                            <label class="form-label"><i class="fa-regular fa-envelope" style="color: #D33900;"></i> Email
+                            <label class="form-label"><i class="fa-regular fa-envelope text-orange"></i> Email
                                 <span class="text-danger">*</span></label>
                             <input type="email" name="email" class="form-control" placeholder="correo@wexford.edu.mx"
                                 value="{{ old('email') }}" required>
@@ -80,7 +80,7 @@
 
                         <!-- Rol -->
                         <div class="mb-3">
-                            <label class="form-label"><i class="fa-regular fa-address-book" style="color: #D33900;"></i> Rol
+                            <label class="form-label"><i class="fa-regular fa-address-book text-orange"></i> Rol
                                 del
                                 empleado <span class="text-danger">*</span></label>
                             <input type="text" name="role" class="form-control"
@@ -95,8 +95,7 @@
                                 </a>
                             </div>
                             <div class="col-auto">
-                                <button class="text-white w-100 border border-0 h-100 rounded-3 py-2 px-2"
-                                    style="background-color: #D33900;">
+                                <button class="text-white w-100 border border-0 h-100 rounded-3 py-2 px-2 bg-orange">
                                     <i class="fa-regular fa-floppy-disk"></i> Crear Usuario
                                 </button>
                             </div>

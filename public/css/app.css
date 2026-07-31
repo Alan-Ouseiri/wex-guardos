@@ -6,12 +6,12 @@
 
 /* Naranja */
 .text-orange {
-    color: #d0560a;
+    color: #d33900;
 }
 
 /* Teal */
 .text-teal {
-    color: #1ca497;
+    color: #0E887F;
 }
 
 
@@ -21,8 +21,14 @@
     background-color: #4630DD;
 }
 
+/* Naranja */
 .bg-orange {
-    background-color: #d0560a;
+    background-color: #d33900;
+}
+
+/* Teal */
+.bg-teal {
+    background-color: #0E887F;
 }
 
 
