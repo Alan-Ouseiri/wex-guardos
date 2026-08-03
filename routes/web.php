@@ -46,13 +46,15 @@ Route::middleware(["auth"])->group(function () {
 
 //Ruta para Responsivas
 Route::middleware(['auth'])->group(function () {
+    Route::post('/responsivas/delete', [ResponsivaController::class, 'destroy'])->name('responsivas.destroy');
+    Route::post('/responsivas/{id}/restore', [ResponsivaController::class, 'restore'])->name('responsivas.restore');
+    Route::post('/responsivas', [ResponsivaController::class, 'store'])->name('responsivas.store');
     Route::get('/responsivas/all', [ResponsivaController::class, 'all'])->name('responsivas.all');
     Route::get('/responsivas/all/trash', [ResponsivaController::class, 'allTrash'])->name('responsivas.all.trash');
     Route::get('/responsivas', [ResponsivaController::class, 'index'])->name('responsivas.index');
     Route::get('/responsivas/trash', [ResponsivaController::class, 'trash'])->name('responsivas.trash');
     Route::get('/responsivas/active', [ResponsivaController::class, 'active'])->name('responsivas.active');
     Route::get('/responsivas/create', [ResponsivaController::class, 'create'])->name('responsivas.create');
-    Route::post('/responsivas', [ResponsivaController::class, 'store'])->name('responsivas.store');
     Route::put('/responsivas/{responsiva}/return', [ResponsivaController::class, 'returnDevice'])->name('responsivas.return');
     Route::get('/responsivas/{responsiva}/history', [ResponsivaController::class, 'history'])->name('responsivas.history');
     Route::get('/responsivas/create-full', [ResponsivaController::class, 'createFull'])->name('responsivas.create.full');
@@ -60,9 +62,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/responsivas/{responsiva}/edit', [ResponsivaController::class, 'edit'])->name('responsivas.edit');
     Route::post('/responsivas/{responsiva}', [ResponsivaController::class, 'update'])->name('responsivas.update');
     Route::get('/responsivas/{responsiva}', [ResponsivaController::class, 'show'])->name('responsivas.show');
-    Route::delete('/responsivas/{responsiva}', [ResponsivaController::class, 'destroy'])->name('responsivas.destroy');
     Route::delete('/responsivas/{id}/force', [ResponsivaController::class, 'forceDelete'])->name('responsivas.forceDelete');
-    Route::post('/responsivas/{id}/restore', [ResponsivaController::class, 'restore'])->name('responsivas.restore');
     Route::get('/responsivas/activas/all', [ResponsivaController::class, 'allActive'])->name('responsivas.all.active');
 });
 

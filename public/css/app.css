@@ -15,12 +15,18 @@
 }
 
 /* Purple */
-.text-purple{
+.text-purple {
     color: #a64bf3;
 }
 
-.text-gray{
+/* Gris */
+.text-gray {
     color: #777777;
+}
+
+/* Verde */
+.text-green {
+    color: #146d3b;
 }
 
 
@@ -38,6 +44,11 @@
 /* Teal */
 .bg-teal {
     background-color: #0E887F;
+}
+
+/* Verde */
+.bg-green {
+    background-color: #146d3b;
 }
 
 

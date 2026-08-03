@@ -152,8 +152,8 @@
                                     <i class="fa-solid fa-print"></i> Imprimir
                                 </a>
 
+                                <!-- Editar -->
                                 @if ($responsiva->status === 'Activa')
-                                    <!-- Editar -->
                                     <a href="{{ route('responsivas.edit', $responsiva) }}" class="text-decoration-none mb-2">
                                         <i class="fa-solid fa-pen"></i> Editar
                                     </a>
@@ -194,6 +194,16 @@
                                         <i class="fa-solid fa-envelope"></i> Mandar Correo electrónico al Usuario
                                     </a>
                                 @endif
+
+                                <!-- Eliminar -->
+                                @if ($responsiva->status != 'Activa')
+                                    <button style="background: none; border: none;" data-bs-toggle="modal" class="col-auto text-primary"
+                                        data-bs-target="#deleteModal{{ $responsiva->id }}">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                        Eliminar Responsiva
+                                    </button>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -233,6 +243,40 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal Eliminar -->
+    <div class="modal fade" id="deleteModal{{ $responsiva->id }}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Eliminar Responsiva</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    ¿Seguro que deseas enviar esta responsiva a la papelera?
+                    <br>
+                    <strong>{{ $responsiva->responsiva_number }}</strong>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+
+                    <form method="POST" action="{{ route('responsivas.destroy') }}">
+                        @csrf
+                        <input type="text" name="val" id="val" value="{{ $responsiva->id }}">
+                        <button class="btn btn-danger">
+                            Sí, eliminar
+                        </button>
+                    </form>
+                </div>
+
+            </div>
         </div>
     </div>
 

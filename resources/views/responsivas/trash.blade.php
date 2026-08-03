@@ -35,6 +35,27 @@
 
                 </div>
 
+                <!-- Mensajes -->
+                <div class="pt-3">
+                    <!-- Mensajes de Exito -->
+                    @if (session('success'))
+                        <div class="col-12 alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fa-regular fa-circle-check"></i>
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+
+                    <!-- Mensajes de Error -->
+                    @if(session('error'))
+                        <div class="col-12 alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
+                </div>
+
                 <!-- Contenido -->
                 <div class="col-12 mt-4">
                     <table id="trashTable" data-url="{{ route('responsivas.all.trash') }}" class="display">

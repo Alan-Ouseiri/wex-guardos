@@ -102,9 +102,6 @@ class ResponsivaController extends Controller
     public function store(Request $request)
     {
         $date = Carbon::parse($request->date);
-        date_default_timezone_set('America/Mexico_City');
-
-
         $year = $date->year;
         $month = $date->month;
 
@@ -121,7 +118,7 @@ class ResponsivaController extends Controller
             $nextNumber = $lastConsecutive + 1;
         }
 
-        $responsivaNumber = $year . str_pad($month, 2, '0', STR_PAD_LEFT) . '-' .
+        $responsivaNumber = (string)$year . str_pad((string)$month, 2, '0', STR_PAD_LEFT) . '-' .
             str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
 
         $validated = $request->validate([
@@ -228,7 +225,7 @@ class ResponsivaController extends Controller
 
             $responsiva->histories()->create([
                 'action' => 'Regresado',
-                'description' => 'Dispositivo devuelto con código de verificación',
+                'description' => 'Dispositivo devuelto',
                 'action_date' => date('Y-m-d H:i:s'),
             ]);
         });
@@ -399,21 +396,22 @@ class ResponsivaController extends Controller
         return view('responsivas.show', compact('responsiva'));
     }
 
-    public function destroy(Responsiva $responsiva)
+    public function destroy(Request $request)
     {
-        date_default_timezone_set('America/Mexico_City');
+        $responsiva = Responsiva::find($request->val);
         DB::transaction(function () use ($responsiva) {
-
-            $responsiva->histories()->create([
+            
+            $h = ResponsivaHistory::create([
+                'responsiva_id' => $responsiva->id,
                 'action' => 'Eliminada',
                 'description' => 'La responsiva fue enviada a la papelera',
                 'action_date' => date('Y-m-d H:i:s'),
             ]);
 
-            $responsiva->query()->delete();
+            $r = Responsiva::where('id', $responsiva->id)->delete();
         });
 
-        return back()->with('success', 'Responsiva enviada a la papelera');
+        return view('responsivas.index')->with('success', 'Responsiva enviada a la papelera');
     }
 
     public function forceDelete($id)

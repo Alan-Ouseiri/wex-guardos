@@ -17,11 +17,11 @@
         <h4 class="mb-4 fw-bold">Crear Responsivas</h4>
 
         <!-- Crear Responsivas -->
-        <div class="row mx-auto justify-content-center g-4 row-cols-lg-3 row-cols-md-2 row-cols-1">
+        <div class="row mx-auto justify-content-center g-5 row-cols-md-2 row-cols-1">
             <!-- Crear Responsiva -->
             <div class="col">
                 <a href="{{ route("responsivas.create") }}" class="text-decoration-none text-black menu-card" style="--hover-color:#4630DD;">
-                    <div class="bg-white shadow rounded-4 h-100 py-3 card-hover">
+                    <div class="bg-white shadow rounded-4 h-100 py-4 card-hover">
                         <!-- Icono -->
                         <div class="col-12 d-flex justify-content-center align-items-center">
                             <span class="p-3 rounded-circle h4 text-white bg-gradient-blue">
@@ -44,7 +44,7 @@
             <!-- Crear Responsiva Blanca -->
             <div class="col">
                 <a href="{{ route("responsivas.create.full") }}" class="text-decoration-none text-black menu-card" style="--hover-color:#35C86E;">
-                    <div class="bg-white shadow rounded-4 h-100 py-3 card-hover">
+                    <div class="bg-white shadow rounded-4 h-100 py-4 card-hover">
                         <!-- Icono -->
                         <div class="col-12 d-flex justify-content-center align-items-center">
                             <span class="p-3 rounded-circle h4 text-white bg-gradient-green">
@@ -64,28 +64,6 @@
                 </a>
             </div>
 
-            <!-- Crear Prestamo -->
-            <div class="col">
-                <a href="{{ route("loans.index") }}" class="text-decoration-none text-black menu-card" style="--hover-color:#BF36C2;">
-                    <div class="bg-white shadow rounded-4 h-100 py-3 card-hover">
-                        <!-- Icono -->
-                        <div class="col-12 d-flex justify-content-center align-items-center">
-                            <span class="p-3 rounded-circle h4 text-white bg-gradient-pink">
-                                <i class="fa-regular fa-clock"></i>
-                            </span>
-                        </div>
-                        <!-- Texto -->
-                        <div class="col-12 text-center">
-                            <p class="h5 fw-bold">
-                                Prestamo de equipos
-                            </p>
-                            <p class="text-body-tertiary mb-0" style="font-size: 14px;">
-                                Crea un prestamo temporal de un equipo
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
         </div>
 
         <h4 class="my-4 fw-bold">Panel de Control</h4>
