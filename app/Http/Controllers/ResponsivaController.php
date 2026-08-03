@@ -75,6 +75,22 @@ class ResponsivaController extends Controller
 
         return $query;
     }
+
+    public function allTrash()
+    {
+        $query = Responsiva::onlyTrashed()->get();
+
+        foreach ($query as $key => $q) {
+            $q->name = $q->teacher->name . ' ' . $q->teacher->surname;
+            $q->description = $q->device->brand . ' ' . $q->device->type . ' ' . $q->device->model;
+            $q->no = $q->device->serial_number;
+            $q->button = view('responsivas.buttonTrash', ['r' => $q->id])->render();
+            $q->fecha = $q->deleted_at->format('d/m/Y H:i');
+        }
+
+        return $query;
+    }
+
     public function create()
     {
         $teachers = Teacher::query()->orderBy('name', 'asc')->get();
@@ -417,37 +433,9 @@ class ResponsivaController extends Controller
         return back()->with('success', 'Responsiva eliminada definitivamente');
     }
 
-    public function trash(Request $request)
+    public function trash()
     {
-        $query = Responsiva::onlyTrashed()
-            ->with(['teacher', 'device']);
-
-        if ($request->filled('search')) {
-            $search = $request->search;
-
-            $query->where(function ($q) use ($search) {
-
-                // Folio
-                $q->where('responsiva_number', 'like', "%{$search}%")
-
-                    // Docente
-                    ->orWhereHas('teacher', function ($t) use ($search) {
-                        $t->where('surname', 'like', "%{$search}%");
-                    })
-
-                    // Dispositivo
-                    ->orWhereHas('device', function ($d) use ($search) {
-                        $d->where('serial_number', 'like', "%{$search}%");
-                    });
-            });
-        }
-
-        $responsivas = $query
-            ->orderBy('deleted_at', 'desc')
-            ->paginate(10)
-            ->withQueryString();
-
-        return view('responsivas.trash', compact('responsivas'));
+        return view('responsivas.trash');
     }
 
     public function restore($id)

@@ -17,7 +17,7 @@
     </div>
 
     <!-- Contenido -->
-    <div class='d-flex justify-content-center mt-5 pb-5'>
+    <div class='d-flex justify-content-center mt-3 pb-5'>
         <div class="col-xxl-8 col-xl-10 col-lg-11 col-12 rounded-4 bg-gradient-purple" style="padding: 1px;">
             <div class="bg-white rounded-4 p-3">
 

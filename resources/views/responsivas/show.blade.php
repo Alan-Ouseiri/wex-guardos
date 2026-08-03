@@ -152,10 +152,12 @@
                                     <i class="fa-solid fa-print"></i> Imprimir
                                 </a>
 
-                                <!-- Editar -->
-                                <a href="{{ route('responsivas.edit', $responsiva) }}" class="text-decoration-none mb-2">
-                                    <i class="fa-solid fa-pen"></i> Editar
-                                </a>
+                                @if ($responsiva->status === 'Activa')
+                                    <!-- Editar -->
+                                    <a href="{{ route('responsivas.edit', $responsiva) }}" class="text-decoration-none mb-2">
+                                        <i class="fa-solid fa-pen"></i> Editar
+                                    </a>
+                                @endif
 
                                 <!-- Historial -->
                                 <a href="{{ route('responsivas.history', $responsiva) }}" class="text-decoration-none mb-2">

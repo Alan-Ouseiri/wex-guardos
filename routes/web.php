@@ -47,6 +47,7 @@ Route::middleware(["auth"])->group(function () {
 //Ruta para Responsivas
 Route::middleware(['auth'])->group(function () {
     Route::get('/responsivas/all', [ResponsivaController::class, 'all'])->name('responsivas.all');
+    Route::get('/responsivas/all/trash', [ResponsivaController::class, 'allTrash'])->name('responsivas.all.trash');
     Route::get('/responsivas', [ResponsivaController::class, 'index'])->name('responsivas.index');
     Route::get('/responsivas/trash', [ResponsivaController::class, 'trash'])->name('responsivas.trash');
     Route::get('/responsivas/active', [ResponsivaController::class, 'active'])->name('responsivas.active');
