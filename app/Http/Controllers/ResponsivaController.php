@@ -48,6 +48,20 @@ class ResponsivaController extends Controller
         return view('responsivas.index', compact('responsivas'));
     }
 
+    public function allActive()
+    {
+        $query = Responsiva::where('status', 'Activa')->get();
+
+        foreach ($query as $key => $q) {
+            $q->name = $q->teacher->name . ' ' . $q->teacher->surname;
+            $q->description = $q->device->brand . ' ' . $q->device->type . ' ' . $q->device->model;
+            $q->no = $q->device->serial_number;
+            $q->button = view('responsivas.buttonSee', ['r' => $q->id])->render();
+        }
+
+        return $query;
+    }
+
     public function create()
     {
         $teachers = Teacher::query()->orderBy('name', 'asc')->get();
@@ -167,18 +181,9 @@ class ResponsivaController extends Controller
         return view('responsivas.active', compact('responsivas'));
     }
 
-    public function returnDevice(Request $request, Responsiva $responsiva)
+    public function returnDevice(Responsiva $responsiva)
     {
         date_default_timezone_set('America/Mexico_City');
-        $request->validate([
-            'verification_code' => 'required',
-        ]);
-
-        if ($request->verification_code !== $responsiva->verification_code) {
-            return back()->withErrors([
-                'verification_code' => 'Código de verificación incorrecto'
-            ]);
-        }
 
         DB::transaction(function () use ($responsiva) {
 
@@ -224,7 +229,7 @@ class ResponsivaController extends Controller
     {
         date_default_timezone_set('America/Mexico_City');
         $usingExistingTeacher = $request->filled('teacher_id');
-        $usingExistingDevice  = $request->filled('device_id');
+        $usingExistingDevice = $request->filled('device_id');
 
         $request->validate([
             'teacher_id' => $usingExistingTeacher ? 'required|exists:teachers,id' : 'nullable',

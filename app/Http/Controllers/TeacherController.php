@@ -14,7 +14,7 @@ class TeacherController extends Controller
         $teachers = Teacher::all();
 
         foreach ($teachers as $key => $t) {
-            $active = Responsiva::select('id')->where('user_id', $t->id)->where('status', 'activa')->first();
+            $active = Responsiva::select('id')->where('teacher_id', $t->id)->where('status', 'activa')->first();
             if ($active != '') {
                 unset($teachers[$key]);
             }
@@ -30,7 +30,7 @@ class TeacherController extends Controller
         foreach ($query as $key => $q) {
             $q->user = $q->name . ' ' . $q->surname;
 
-            $active = Responsiva::select('id')->where('user_id', $q->id)->where('status', 'activa')->first();
+            $active = Responsiva::select('id')->where('teacher_id', $q->id)->where('status', 'activa')->first();
             if ($active == '') {
                 $q->buttons = view('teachers.buttonDelete', ['user' => $q->id])->render();
             } else {
