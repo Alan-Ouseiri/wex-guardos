@@ -62,6 +62,19 @@ class ResponsivaController extends Controller
         return $query;
     }
 
+    public function all()
+    {
+        $query = Responsiva::get();
+
+        foreach ($query as $key => $q) {
+            $q->name = $q->teacher->name . ' ' . $q->teacher->surname;
+            $q->description = $q->device->brand . ' ' . $q->device->type . ' ' . $q->device->model;
+            $q->no = $q->device->serial_number;
+            $q->button = view('responsivas.buttonSee', ['r' => $q->id])->render();
+        }
+
+        return $query;
+    }
     public function create()
     {
         $teachers = Teacher::query()->orderBy('name', 'asc')->get();

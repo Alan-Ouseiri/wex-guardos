@@ -6,7 +6,7 @@
 
     <!-- Atras -->
     <div class="col-12 d-flex mt-4">
-        <a href="{{ route('responsivas.active') }}" class="boton-desplegable">
+        <a href="{{ route('responsivas.index') }}" class="boton-desplegable">
             <i class="fa-solid fa-arrow-left"></i>
             <span class="texto-animado">Atrás</span>
         </a>
