@@ -118,7 +118,7 @@ class ResponsivaController extends Controller
             $nextNumber = $lastConsecutive + 1;
         }
 
-        $responsivaNumber = (string)$year . str_pad((string)$month, 2, '0', STR_PAD_LEFT) . '-' .
+        $responsivaNumber = (string) $year . str_pad((string) $month, 2, '0', STR_PAD_LEFT) . '-' .
             str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
 
         $validated = $request->validate([
@@ -134,7 +134,6 @@ class ResponsivaController extends Controller
 
         $responsiva = Responsiva::create([
             'responsiva_number' => $responsivaNumber,
-            'verification_code' => $this->generateVerificationCode(),
             'assigned_date' => $request->date,
             'teacher_id' => $request->teacher_id,
             'device_id' => $device->id,
@@ -313,7 +312,6 @@ class ResponsivaController extends Controller
 
             $responsiva = Responsiva::create([
                 'responsiva_number' => $responsivaNumber,
-                'verification_code' => $this->generateVerificationCode(),
                 'teacher_id' => $teacher->id,
                 'device_id' => $device->id,
                 'assigned_date' => $request->assigned_date,
@@ -323,6 +321,7 @@ class ResponsivaController extends Controller
                 'notes' => $request->notes,
                 'delivery_image' => $imagePath,
                 'status' => 'Activa',
+                'user_id' => Auth::id(),
             ]);
 
             $responsiva->histories()->create([
@@ -399,7 +398,7 @@ class ResponsivaController extends Controller
     {
         $responsiva = Responsiva::find($request->val);
         DB::transaction(function () use ($responsiva) {
-            
+
             $h = ResponsivaHistory::create([
                 'responsiva_id' => $responsiva->id,
                 'action' => 'Eliminada',
@@ -452,5 +451,67 @@ class ResponsivaController extends Controller
         return redirect()
             ->route('responsivas.trash')
             ->with('success', 'Responsiva restaurada correctamente');
+    }
+
+    public function reassign(Request $request)
+    {
+        /* Encontrar la responsiva antigua */
+        $responsiva = Responsiva::find($request->val);
+
+        /* Generar Folio */
+        $date = Carbon::parse(date("Y-m-d"));
+        $year = $date->year;
+        $month = $date->month;
+
+        $lastResponsiva = Responsiva::withTrashed()
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
+            ->orderBy('responsiva_number', 'desc')
+            ->first();
+
+        $nextNumber = 1;
+
+        if ($lastResponsiva) {
+            $lastConsecutive = (int) substr($lastResponsiva->responsiva_number, -5);
+            $nextNumber = $lastConsecutive + 1;
+        }
+
+        $responsivaNumber = (string) $year . str_pad((string) $month, 2, '0', STR_PAD_LEFT) . '-' .
+            str_pad($nextNumber, 5, '0', STR_PAD_LEFT);
+
+
+        /* Buscar Dispositivo */
+        $device = Device::findOrFail($responsiva->device->id);
+
+        $responsiva = Responsiva::create([
+            'responsiva_number' => $responsivaNumber,
+            'assigned_date' => date("Y-m-d"),
+            'teacher_id' => $responsiva->teacher->id,
+            'device_id' => $responsiva->device->id,
+            'device_description' => $device->description,
+            'serial_number' => $device->serial_number,
+            'condition' => $responsiva->condition,
+            'location' => $responsiva->location,
+            'delivered_by' => $responsiva->delivered_by,
+            'status' => 'Activa',
+            'user_id' => Auth::id(),
+        ]);
+
+        // Cambiar estado del dispositivo
+        $device->update([
+            'status' => 'Asignado'
+        ]);
+
+        /* Crear Historial */
+        ResponsivaHistory::create([
+            'responsiva_id' => $responsiva->id,
+            'action' => 'Asignada',
+            'description' => 'Creación de la responsiva y asignacion del dispositivo',
+            'action_date' => date('Y-m-d H:i:s'),
+        ]);
+
+        return redirect()
+            ->route('responsivas.index')
+            ->with('success', 'Responsiva creada correctamente');
     }
 }

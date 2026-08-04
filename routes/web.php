@@ -46,6 +46,7 @@ Route::middleware(["auth"])->group(function () {
 
 //Ruta para Responsivas
 Route::middleware(['auth'])->group(function () {
+    Route::post('/responsivas/reassign', [ResponsivaController::class, 'reassign'])->name('responsivas.reassign');
     Route::post('/responsivas/delete', [ResponsivaController::class, 'destroy'])->name('responsivas.destroy');
     Route::post('/responsivas/{id}/restore', [ResponsivaController::class, 'restore'])->name('responsivas.restore');
     Route::post('/responsivas', [ResponsivaController::class, 'store'])->name('responsivas.store');

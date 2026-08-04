@@ -41,7 +41,7 @@
                         <tbody>
                             @foreach ($histories as $h)
                                 <tr class="col-12 row mx-auto border-bottom py-3">
-                                    <td class="col-3">{{ $h->action_date }}</td>
+                                    <td class="col-3">{{ date('d-m-Y H:m:s', strtotime($h->action_date)) }}</td>
                                     <td class="col-3">{{ ucfirst($h->action) }}</td>
                                     <td class="col-5">{{ $h->description }}</td>
                                 </tr>
