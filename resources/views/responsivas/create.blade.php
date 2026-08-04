@@ -52,14 +52,14 @@
                     <form method="POST" action="{{ route('responsivas.store') }}">
                         @csrf
 
-                        <div class="mb-3">
+                        <div class="pb-3">
                             <label class="form-label"><i class="fa-regular fa-calendar text-blue"></i> Fecha de
                                 Entrega <span class="text-danger">*</span></label>
                             <input type="date" name="date" min="2020-01-01" max="2030-12-31" class="form-control"
                                 value="{{ old('date', now()->toDateString()) }}">
                         </div>
 
-                        <div class="mb-3">
+                        <div class="pb-3">
                             <label class="form-label"><i class="fa-regular fa-user text-blue"></i> Usuario</label>
                             <select name="teacher_id" class="form-select select-teacher">
                                 <option value="">Seleccione un usuario <span class="text-danger">*</span></option>
@@ -71,7 +71,7 @@
                             </select>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="pb-3">
                             <label class="form-label"><i class="fa-solid fa-mobile-screen-button text-blue"></i>
                                 Dispositivo</label>
                             <select name="device_id" class="form-select select-device">
@@ -85,27 +85,30 @@
 
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label"><i class="fa-solid fa-box-open text-blue"></i> Condición <span class="text-danger">*</span></label>
+                        <div class="pb-3">
+                            <label class="form-label"><i class="fa-solid fa-box-open text-blue"></i> Condición <span
+                                    class="text-danger">*</span></label>
                             <input type="text" name="condition" class="form-control" placeholder="Ej. Usado"
                                 value="{{ old('condition') }}">
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label"><i class="fa-solid fa-location-dot text-blue"></i> Ubicación <span class="text-danger">*</span></label>
+                        <div class="pb-3">
+                            <label class="form-label"><i class="fa-solid fa-location-dot text-blue"></i> Ubicación <span
+                                    class="text-danger">*</span></label>
                             <input type="text" name="location" class="form-control" placeholder="Ej. Campus Maravillas"
                                 value="{{ old('location') }}">
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label"><i class="fa-regular fa-circle-check text-blue"></i> Entregó
-                                con <span class="text-danger">*</span></label>
-                            <input type="text" name="delivered_by" class="form-control" placeholder="Ej. Cable y cargador"
-                                value="{{ old('delivered_by') }}">
+                        <div class="pb-3">
+                            <label class="form-label">
+                                <i class="fa-regular fa-circle-check text-blue"></i> Entregó con <span
+                                    class="text-danger">*</span>
+                            </label>
+                            <input type="text" name="delivered_by" class="form-control" placeholder="Ej. Cable y cargador" value="{{ old('delivered_by') }}">
                         </div>
 
                         <!-- Botones -->
-                        <div class="row justify-content-end g-lg-5 g-4 pt-3">
+                        <div class="row justify-content-end g-lg-5 g-4 mt-3">
                             <div class="col-auto border border-1 border-secondary rounded-3 py-2">
                                 <a href="{{ route('dashboard') }}" class="text-decoration-none text-black">
                                     Cancelar

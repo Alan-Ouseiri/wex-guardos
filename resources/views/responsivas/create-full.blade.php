@@ -98,9 +98,8 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label">No. Empleado <span class="text-danger">*</span></label>
-                                    <input name="teacher[employee_number]" class="form-control" placeholder="No. Empleado"
-                                        required>
+                                    <label class="form-label">No. Empleado</label>
+                                    <input name="teacher[employee_number]" class="form-control" placeholder="No. Empleado">
                                 </div>
 
                             </div>

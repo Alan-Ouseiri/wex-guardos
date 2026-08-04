@@ -269,7 +269,7 @@
 
                     <form method="POST" action="{{ route('responsivas.destroy') }}">
                         @csrf
-                        <input type="text" name="val" id="val" value="{{ $responsiva->id }}">
+                        <input type="text" name="val" id="val" class="d-none" value="{{ $responsiva->id }}">
                         <button class="btn btn-danger">
                             Sí, eliminar
                         </button>

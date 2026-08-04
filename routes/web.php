@@ -64,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/responsivas/{responsiva}', [ResponsivaController::class, 'show'])->name('responsivas.show');
     Route::delete('/responsivas/{id}/force', [ResponsivaController::class, 'forceDelete'])->name('responsivas.forceDelete');
     Route::get('/responsivas/activas/all', [ResponsivaController::class, 'allActive'])->name('responsivas.all.active');
+    Route::post('/responsivas/history/{id}', [ResponsivaController::class, 'allHistory'])->name('responsivas.all.history');
 });
 
 //Ruta PDF
