@@ -53,6 +53,7 @@ class TeacherController extends Controller
             'surname' => 'required|string|max:255',
             'role' => 'required|string|max:255',
             'email' => 'required|email',
+            'employee_number' => 'max:255'
         ]);
 
         Teacher::create($validated);

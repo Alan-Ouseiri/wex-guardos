@@ -252,7 +252,6 @@ class ResponsivaController extends Controller
 
     public function storeFull(Request $request)
     {
-        date_default_timezone_set('America/Mexico_City');
         $usingExistingTeacher = $request->filled('teacher_id');
         $usingExistingDevice = $request->filled('device_id');
 

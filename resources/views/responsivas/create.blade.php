@@ -65,7 +65,7 @@
                                 <option value="">Seleccione un usuario <span class="text-danger">*</span></option>
                                 @foreach ($teachers as $teacher)
                                     <option value="{{ $teacher->id }}">
-                                        {{ $teacher->full_name }} — {{ $teacher->employee_number }}
+                                        {{ $teacher->full_name }}{{ isset($teacher->employee_number) ? ' - ' . $teacher->employee_number : '' }}
                                     </option>
                                 @endforeach
                             </select>
@@ -78,11 +78,10 @@
                                 <option value="">Seleccione un dispositivo <span class="text-danger">*</span></option>
                                 @foreach ($devices as $device)
                                     <option value="{{ $device->id }}">
-                                        {{ $device->description }} — {{ $device->serial_number }}
+                                        {{ $device->description }} - {{ $device->serial_number }}
                                     </option>
                                 @endforeach
                             </select>
-
                         </div>
 
                         <div class="pb-3">
@@ -101,10 +100,11 @@
 
                         <div class="pb-3">
                             <label class="form-label">
-                                <i class="fa-regular fa-circle-check text-blue"></i> Entregó con <span
-                                    class="text-danger">*</span>
+                                <i class="fa-regular fa-circle-check text-blue"></i>
+                                Entregó con <span class="text-danger">*</span>
                             </label>
-                            <input type="text" name="delivered_by" class="form-control" placeholder="Ej. Cable y cargador" value="{{ old('delivered_by') }}">
+                            <input type="text" name="delivered_by" class="form-control" placeholder="Ej. Cable y cargador"
+                                value="{{ old('delivered_by') }}">
                         </div>
 
                         <!-- Botones -->

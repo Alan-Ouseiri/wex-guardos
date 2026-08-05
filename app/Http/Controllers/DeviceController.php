@@ -47,6 +47,8 @@ class DeviceController extends Controller
             'status' => 'required|in:Disponible,Asignado,Mantenimiento,Retirado',
         ]);
 
+        $validated['serial_number'] = strtoupper($validated['serial_number']);
+
         Device::create($validated);
 
         return redirect()
@@ -68,6 +70,8 @@ class DeviceController extends Controller
             'serial_number' => 'required|string|max:100|unique:devices,serial_number,' . $device->id,
             'status' => 'required|in:Disponible,Asignado,Mantenimiento,Retirado',
         ]);
+
+        $validated['serial_number'] = strtoupper($validated['serial_number']);
 
         $device->update($validated);
 
