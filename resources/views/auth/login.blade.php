@@ -5,7 +5,7 @@
 @section('content')
 
 <div class='d-flex justify-content-center align-items-center h-100'>
-    <div class="col-xl-3 col-lg-5 col-md-8 col-11">
+    <div class="col-xxl-3 col-xl-4 col-lg-5 col-md-8 col-11">
         <div class="col-12 bg-white shadow rounded-4">
 
             <!-- Logo -->
